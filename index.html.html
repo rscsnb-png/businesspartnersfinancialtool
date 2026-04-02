@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPL AFS Analyser</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--navy:#1F3864;--blue:#2E5FA3;--teal:#1D9E75;--amber:#D97706;--red:#DC2626;--purple:#7C3AED;--border:#dce3f0;--bg:#f4f6fb;--card:#ffffff;--text:#1a1a2e;--muted:#64748b;--label:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);min-height:100vh;color:var(--text)}
+.shell{max-width:1020px;margin:0 auto;padding:24px 20px 60px}
+
+/* TOPBAR */
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.tlogo{width:38px;height:38px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tlogo span{color:#fff;font-size:12px;font-weight:800}
+.ttitle{font-size:17px;font-weight:700;color:var(--navy)}
+.tsub{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* SETUP */
+.setup{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:18px}
+.fl{font-size:10px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px}
+
+.pcards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.pc{border:1.5px solid var(--border);border-radius:9px;padding:13px;cursor:pointer;transition:all .15s;position:relative;background:#fff}
+.pc:hover{border-color:var(--blue)}
+.pc.sb{border-color:var(--navy);background:#eef2fa}
+.pc.sg{border-color:var(--teal);background:#e8f8f3}
+.ptick{position:absolute;top:9px;right:10px;width:16px;height:16px;border-radius:50%;display:none;align-items:center;justify-content:center}
+.pc.sb .ptick{display:flex;background:var(--navy)}
+.pc.sg .ptick{display:flex;background:var(--teal)}
+.ptick svg{width:8px;height:8px;stroke:#fff;fill:none;stroke-width:2.5}
+.pav{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;margin-bottom:8px}
+.avd{background:#dbeafe;color:#1e40af}.avs{background:#fef3c7;color:#92400e}.avb{background:#d1fae5;color:#065f46}
+.pn{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:1px}
+.pr{font-size:10px;color:var(--blue);font-weight:600;margin-bottom:4px;line-height:1.3}
+.pd{font-size:10px;color:var(--muted);line-height:1.5}
+
+.arow{margin-bottom:18px}
+.ainput{width:100%;height:37px;border:1px solid var(--border);border-radius:7px;padding:0 11px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}
+.ainput:focus{outline:none;border-color:var(--blue)}
+.anote{font-size:10px;color:var(--label);margin-top:4px}
+.anote a{color:var(--blue)}
+
+.dz{border:2px dashed #c5d0e6;border-radius:9px;background:#fafbff;padding:18px;text-align:center;cursor:pointer;transition:all .15s;margin-bottom:8px}
+.dz:hover,.dz.drag-over{border-color:var(--blue);background:#eef2fa}
+.dz.loaded{border-color:var(--teal);background:#e8f8f3;border-style:solid;cursor:default}
+.dz.errored{border-color:var(--red);background:#fef2f2;border-style:solid;cursor:default}
+.di{font-size:20px;margin-bottom:4px}.dm{font-size:12px;color:var(--muted)}.ds{font-size:10px;color:var(--label);margin-top:2px}
+.dfn{font-size:12px;font-weight:700;color:var(--teal);margin-bottom:2px}.dfn.err{color:var(--red)}
+.dst{font-size:10px;color:var(--muted);margin-bottom:6px}
+.dclr{font-size:11px;background:#fff;border:1px solid #ccc;border-radius:4px;padding:2px 10px;cursor:pointer;color:#555}
+.dclr:hover{background:#f5f5f5}
+#pfi{display:none}
+
+.orline{text-align:center;font-size:10px;color:var(--label);margin:8px 0}
+.atx{width:100%;height:72px;border:1px solid var(--border);border-radius:7px;padding:8px 11px;font-size:12px;color:var(--text);background:#fff;resize:vertical;font-family:inherit;line-height:1.5}
+.atx:focus{outline:none;border-color:var(--blue)}
+
+.rbtn{width:100%;padding:12px;margin-top:14px;background:var(--navy);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;font-family:inherit}
+.rbtn:hover:not(:disabled){background:var(--blue)}
+.rbtn:disabled{opacity:.42;cursor:not-allowed}
+.spin{width:15px;height:15px;flex-shrink:0;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RESULTS */
+.results{display:none;margin-top:20px}
+
+/* TABS */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:18px;overflow-x:auto}
+.tbtn{padding:9px 18px;font-size:12px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;font-family:inherit;white-space:nowrap}
+.tbtn.active{color:var(--navy);border-bottom-color:var(--navy)}
+.tbtn:hover:not(.active){color:var(--text)}
+.tpane{display:none}.tpane.active{display:block}
+
+/* SUMMARY BAR */
+.sbar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px 15px}
+.scl{font-size:9px;font-weight:700;color:var(--label);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.scv{font-size:22px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:2px}
+.scv.pos{color:var(--teal)}.scv.neg{color:var(--red)}
+.scs{font-size:10px;color:var(--muted)}
+
+/* CHART GRID */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.cct{font-size:10px;font-weight:700;color:var(--navy);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+.cwrap{position:relative;height:190px}
+.nodata{text-align:center;padding:30px 10px;color:var(--label);font-size:12px}
+.nodata-icon{font-size:24px;margin-bottom:6px}
+
+/* CHAT */
+.chat-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.chat-msgs{padding:16px;min-height:120px;max-height:420px;overflow-y:auto;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:85%;padding:10px 13px;border-radius:10px;font-size:13px;line-height:1.6}
+.msg.user{background:#eef2fa;color:var(--navy);align-self:flex-end;border-radius:10px 10px 2px 10px}
+.msg.assistant{background:#f8fafc;border:1px solid var(--border);color:var(--text);align-self:flex-start;border-radius:10px 10px 10px 2px}
+.msg.assistant.err{background:#fef2f2;border-color:#fecaca;color:#b91c1c}
+.chat-chart{margin-top:8px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px}
+.chat-chart-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.chat-chart-wrap{position:relative;height:200px}
+.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border);background:#fafbff}
+.chat-input{flex:1;height:38px;border:1px solid var(--border);border-radius:7px;padding:0 11px;font-size:13px;color:var(--text);background:#fff;font-family:inherit}
+.chat-input:focus{outline:none;border-color:var(--blue)}
+.chat-send{padding:0 16px;height:38px;background:var(--navy);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;flex-shrink:0}
+.chat-send:hover:not(:disabled){background:var(--blue)}
+.chat-send:disabled{opacity:.45;cursor:not-allowed}
+.chat-hint{font-size:11px;color:var(--label);margin-bottom:10px}
+.chat-examples{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cex{font-size:11px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:4px 12px;cursor:pointer;color:var(--blue);transition:all .15s}
+.cex:hover{background:#eef2fa;border-color:var(--blue)}
+
+/* ANALYSIS */
+.agrid{display:grid;gap:14px}
+.agrid.dual{grid-template-columns:1fr 1fr}
+.apanel{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.ahead{display:flex;align-items:center;gap:10px;padding:11px 15px;border-bottom:1px solid var(--border);background:#fafbff}
+.ahav{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
+.ahn{font-size:13px;font-weight:700;color:var(--navy)}
+.ahr{font-size:10px;color:var(--muted)}
+.abody{padding:15px;font-size:13px;color:var(--text);line-height:1.75;white-space:pre-wrap;max-height:560px;overflow-y:auto}
+.ltxt{color:var(--label);font-style:italic;font-size:13px}
+.errbox{background:#fef2f2;border:1px solid #fecaca;border-radius:7px;padding:9px 12px;font-size:12px;color:#b91c1c}
+
+/* NIC */
+.nic-out{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;font-size:13px;color:var(--text);line-height:1.8;white-space:pre-wrap;min-height:100px;max-height:600px;overflow-y:auto}
+.nic-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+
+/* SCORECARD */
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.score-chart-wrap{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+.score-radar-wrap{position:relative;height:280px}
+.score-table{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.score-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;padding:11px 15px;border-bottom:1px solid var(--border);gap:12px}
+.score-row:last-child{border-bottom:none}
+.score-row.head{background:#fafbff;font-size:10px;font-weight:700;color:var(--label);text-transform:uppercase;letter-spacing:.06em}
+.sdim{font-size:13px;font-weight:600;color:var(--text)}
+.sscore{font-size:14px;font-weight:700;width:32px;text-align:center}
+.sbadge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
+.bg{background:#dcfce7;color:#166534}.ba{background:#fef9c3;color:#854d0e}.br{background:#fee2e2;color:#991b1b}
+.score-verdict{margin-top:12px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--text);line-height:1.7}
+.score-verdict-label{font-size:10px;font-weight:700;color:var(--label);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+
+/* ACTION ROW */
+.actrow{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.abtn{padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:background .15s}
+.abtn.pri{background:var(--navy);color:#fff}.abtn.pri:hover{background:var(--blue)}
+.abtn.sec{background:#f0f0f0;color:#555}.abtn.sec:hover{background:#e0e0e0}
+
+@media(max-width:640px){
+  .pcards,.cgrid,.agrid.dual,.score-grid,.sbar{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<div class="topbar">
+  <div class="tlogo"><span>BPL</span></div>
+  <div><div class="ttitle">AFS Analyser</div><div class="tsub">AI-powered financial analysis · Business Partners Limited</div></div>
+</div>
+
+<!-- SETUP -->
+<div class="setup">
+  <div class="fl" style="margin-bottom:10px">Analyst persona</div>
+  <div class="pcards">
+    <div class="pc" id="pc-david" onclick="selP('david')">
+      <div class="ptick"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>
+      <div class="pav avd">DM</div><div class="pn">David</div>
+      <div class="pr">Strategic CFO · CA(SA), MBA</div>
+      <div class="pd">Commercial lens — profitability, liquidity, cash flow.</div>
+    </div>
+    <div class="pc" id="pc-sarah" onclick="selP('sarah')">
+      <div class="ptick"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>
+      <div class="pav avs">SV</div><div class="pn">Sarah</div>
+      <div class="pr">Forensic Auditor · CA(SA), CFE</div>
+      <div class="pd">Forensic lens — red flags, mismatches, hard questions.</div>
+    </div>
+    <div class="pc" id="pc-both" onclick="selP('both')">
+      <div class="ptick"><svg viewBox="0 0 10 10"><polyline points="1.5,5 4,7.5 8.5,2.5"/></svg></div>
+      <div class="pav avb">D+S</div><div class="pn">Both</div>
+      <div class="pr">David &amp; Sarah · Side by side</div>
+      <div class="pd">Dual analysis from one PDF.</div>
+    </div>
+  </div>
+
+  <div class="arow">
+    <div class="fl">Anthropic API key</div>
+    <input type="password" class="ainput" id="apikey" placeholder="sk-ant-..."/>
+    <p class="anote">Never stored — used only for API calls. Get one at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>.</p>
+  </div>
+
+  <div class="fl">AFS document</div>
+  <div class="dz" id="dz">
+    <div id="st-idle"><div class="di">📄</div><div class="dm">Drop your AFS PDF here, or click to browse</div><div class="ds">Claude reads the PDF natively</div></div>
+    <div id="st-loaded" style="display:none"><div class="di">✅</div><div class="dfn" id="fn-ok"></div><div class="dst">Ready — Claude will read this PDF directly</div><button class="dclr" id="btn-clr">Remove</button></div>
+    <div id="st-err" style="display:none"><div class="di">⚠️</div><div class="dfn err" id="fn-err"></div><button class="dclr" id="btn-eclr">Try again</button></div>
+  </div>
+  <input type="file" id="pfi" accept=".pdf"/>
+
+  <div class="orline">— or paste key figures manually —</div>
+  <textarea class="atx" id="atx" placeholder="E.g. Revenue: R29.3m | GP margin: 32% | Net profit: R1.3m | Cash: R850k | Total debt: R18m | Salaries: R6m | Admin: R2m"></textarea>
+
+  <button class="rbtn" id="rbtn" onclick="runAll()" disabled>
+    <div class="spin" id="spin"></div><span id="rlbl">Select a persona to begin</span>
+  </button>
+</div>
+
+<!-- RESULTS -->
+<div class="results" id="results">
+  <div class="tabs">
+    <button class="tbtn active" onclick="tab('charts')">📊 Charts</button>
+    <button class="tbtn" onclick="tab('analysis')">💬 Analysis</button>
+    <button class="tbtn" onclick="tab('chat')">✨ Ask for charts</button>
+    <button class="tbtn" onclick="tab('nic')">📝 NIC Summary</button>
+    <button class="tbtn" onclick="tab('score')">🎯 Deal Scorecard</button>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="tpane active" id="tab-charts">
+    <div class="sbar">
+      <div class="sc"><div class="scl">Latest Revenue</div><div class="scv" id="sc-rev">—</div><div class="scs" id="sc-rev-s"></div></div>
+      <div class="sc"><div class="scl">Net Profit</div><div class="scv" id="sc-np">—</div><div class="scs" id="sc-np-s"></div></div>
+      <div class="sc"><div class="scl">Current Ratio</div><div class="scv" id="sc-cr">—</div><div class="scs" id="sc-cr-s"></div></div>
+      <div class="sc"><div class="scl">Debt / Equity</div><div class="scv" id="sc-de">—</div><div class="scs" id="sc-de-s"></div></div>
+    </div>
+    <div class="cgrid">
+      <div class="cc"><div class="cct">Revenue &amp; Gross Profit</div><div class="cwrap"><canvas id="ch-rev"></canvas></div></div>
+      <div class="cc"><div class="cct">Liquidity &amp; Solvency Ratios</div><div class="cwrap"><canvas id="ch-rat"></canvas></div></div>
+      <div class="cc"><div class="cct">Expense Breakdown</div><div class="cwrap"><canvas id="ch-exp"></canvas></div></div>
+      <div class="cc"><div class="cct">Cash Flow Waterfall</div><div class="cwrap"><canvas id="ch-cf"></canvas></div></div>
+    </div>
+  </div>
+
+  <!-- ANALYSIS -->
+  <div class="tpane" id="tab-analysis">
+    <div class="agrid" id="agrid"></div>
+    <div class="actrow">
+      <button class="abtn pri" onclick="copyAnalysis()">Copy analysis</button>
+      <button class="abtn sec" onclick="resetAll()">New analysis</button>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="tpane" id="tab-chat">
+    <p class="chat-hint">Ask for any chart or visualisation based on the extracted financial data.</p>
+    <div class="chat-examples">
+      <span class="cex" onclick="askChat(this.textContent)">Gross margin % trend</span>
+      <span class="cex" onclick="askChat(this.textContent)">Salaries vs other expenses bar chart</span>
+      <span class="cex" onclick="askChat(this.textContent)">Net profit margin over years</span>
+      <span class="cex" onclick="askChat(this.textContent)">Assets vs liabilities comparison</span>
+      <span class="cex" onclick="askChat(this.textContent)">Operating cash flow trend</span>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-msgs" id="chat-msgs">
+        <div class="msg assistant">Hi — I have the financial data loaded. Ask me to plot any chart or run any calculation on this business's numbers.</div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chat-in" placeholder="E.g. Show me a gross margin trend chart..." onkeydown="if(event.key==='Enter')sendChat()"/>
+        <button class="chat-send" id="chat-send" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NIC -->
+  <div class="tpane" id="tab-nic">
+    <div class="nic-out" id="nic-out"><span class="ltxt">NIC financial summary will appear here after analysis...</span></div>
+    <div class="nic-actions">
+      <button class="abtn pri" onclick="copyNIC()">Copy NIC summary</button>
+      <button class="abtn sec" onclick="regenNIC()">Regenerate</button>
+    </div>
+  </div>
+
+  <!-- SCORECARD -->
+  <div class="tpane" id="tab-score">
+    <div class="score-grid">
+      <div class="score-chart-wrap">
+        <div class="cct">Risk radar</div>
+        <div class="score-radar-wrap"><canvas id="ch-radar"></canvas></div>
+      </div>
+      <div class="score-table" id="score-table">
+        <div class="score-row head"><span>Dimension</span><span>Score</span><span>Rating</span></div>
+      </div>
+    </div>
+    <div class="score-verdict" id="score-verdict"><span class="ltxt">Scorecard will appear after analysis...</span></div>
+  </div>
+</div>
+
+</div>
+<script>
+var NAVY='#1F3864',BLUE='#2E5FA3',TEAL='#1D9E75',AMBER='#D97706',RED='#DC2626',PURPLE='#7C3AED',GRAY='#94a3b8';
+
+var PERSONAS={
+  david:{initials:'DM',avCls:'avd',name:'David',role:'Strategic CFO · CA(SA), MBA',
+    prompt:'You are David, a 54-year-old CA(SA) and corporate CFO with 30 years of experience (ex-Deloitte). Review these Annual Financial Statements for a Business Partners investment committee with a commercially minded lens.\n\nCover:\n1. Financial overview & summary — profitability, liquidity, solvency.\n2. Key metrics — 3–5 most critical ratios or trends.\n3. Professional opinion — candid view on viability and trajectory.\n\nWrite in plain paragraphs. Be concise. Use South African business context.'},
+  sarah:{initials:'SV',avCls:'avs',name:'Sarah',role:'Forensic Auditor · CA(SA), CFE',
+    prompt:'You are Sarah, a 42-year-old CA(SA) and Certified Fraud Examiner with 16 years forensic experience including SARS Special Investigations. Review these AFS for a Business Partners investment committee.\n\nCover:\n1. Red flags & irregularities — unusual patterns, mismatched cash flows, unexplained variances.\n2. Risk areas — related-party transactions, going-concern risks, compliance concerns.\n3. Hard questions for management — 4–6 specific pointed questions.\n\nWrite in plain paragraphs. Be precise and skeptical.'}
+};
+
+var EXTRACT_SYS='You are a financial data extraction engine. Extract structured financial data from this AFS document.\n\nRespond ONLY with a single valid JSON object — no markdown, no backticks, no preamble.\n\nSchema:\n{\n  "years":["2023","2024","2025"],\n  "revenue":[1000000,1200000,1400000],\n  "gross_profit":[300000,360000,448000],\n  "net_profit":[50000,80000,120000],\n  "operating_cash_flow":[90000,110000,150000],\n  "investing_cash_flow":[-30000,-20000,-15000],\n  "financing_cash_flow":[-20000,-40000,-60000],\n  "current_assets":[400000,420000,450000],\n  "current_liabilities":[250000,280000,300000],\n  "total_assets":[900000,950000,1000000],\n  "total_liabilities":[500000,520000,480000],\n  "equity":[400000,430000,520000],\n  "expenses":{"salaries":200000,"rent":80000,"admin":60000,"depreciation":40000,"other":50000},\n  "currency":"ZAR"\n}\n\nRules:\n- Use most recent year expenses.\n- If a value cannot be found use null.\n- All monetary values in same currency.\n- years array length must match all other arrays.\n- Single-year documents: arrays of length 1 are valid.\n- Return ONLY the JSON object. Nothing else.';
+
+var NIC_SYS='You are a credit analyst at Business Partners Limited in South Africa. Draft the financial section of a NIC (New Investment Committee) summary based on the provided AFS data and analysis.\n\nFormat it as follows:\n\nFINANCIAL SUMMARY — [Company Name if known, otherwise "Applicant"]\n\nTURNOVER & PROFITABILITY\n[2-3 sentences covering revenue trend, gross margin, net profit]\n\nLIQUIDITY\n[2 sentences on current ratio, working capital position]\n\nSOLVENCY & LEVERAGE\n[2 sentences on debt/equity, total liabilities, equity base]\n\nCASH FLOW\n[2 sentences on operating cash flow, cash generation ability]\n\nKEY CONCERNS\n[2-4 bullet points of main financial risks]\n\nKEY POSITIVES\n[2-4 bullet points of main financial strengths]\n\nWrite in formal, concise BPL investment committee language. Use ZAR values. Be direct.';
+
+var SCORE_SYS='You are a credit risk analyst at Business Partners Limited. Score this business on 6 dimensions based on the AFS data provided.\n\nRespond ONLY with valid JSON — no markdown, no explanation:\n{\n  "scores":{\n    "Profitability":7,\n    "Liquidity":4,\n    "Solvency":3,\n    "Cash Flow":6,\n    "Revenue Trend":8,\n    "Management Risk":5\n  },\n  "verdict":"2-3 sentence overall verdict on whether Business Partners should proceed with this deal, and at what risk level."\n}\n\nScoring: 1-3 = High Risk (Red), 4-6 = Moderate (Amber), 7-10 = Low Risk (Green).\nBase scores strictly on the financial data. Return ONLY the JSON.';
+
+var sel=null,pdfB64=null,exData=null,charts={},chatHistory=[],nicText='',scoreData=null;
+
+// PERSONA
+function selP(n){
+  sel=n;
+  ['david','sarah','both'].forEach(function(x){var c=document.getElementById('pc-'+x);c.classList.remove('sb','sg');});
+  document.getElementById('pc-'+n).classList.add(n==='both'?'sg':'sb');
+  refBtn();
+}
+function refBtn(){
+  var b=document.getElementById('rbtn'),l=document.getElementById('rlbl');
+  if(!sel){l.textContent='Select a persona to begin';b.disabled=true;return;}
+  var m={david:'Run analysis as David',sarah:'Run analysis as Sarah',both:'Run both analyses'};
+  l.textContent=m[sel];b.disabled=false;
+}
+
+// DROP ZONE
+var dz=document.getElementById('dz'),fi=document.getElementById('pfi');
+function dzSt(s,msg){
+  ['idle','loaded','err'].forEach(function(x){document.getElementById('st-'+x).style.display='none';});
+  document.getElementById('st-'+s).style.display='block';
+  dz.classList.remove('loaded','errored');
+  if(s==='loaded')dz.classList.add('loaded');
+  if(s==='err'){dz.classList.add('errored');if(msg)document.getElementById('fn-err').textContent=msg;}
+}
+dz.addEventListener('click',function(e){if(e.target.id==='btn-clr'||e.target.id==='btn-eclr')return;if(pdfB64)return;fi.click();});
+dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('drag-over');});
+dz.addEventListener('dragleave',function(){dz.classList.remove('drag-over');});
+dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(!f||!f.name.toLowerCase().endsWith('.pdf')){dzSt('err','Please drop a .pdf file.');return;}rdFile(f);});
+fi.addEventListener('change',function(){if(this.files.length){rdFile(this.files[0]);this.value='';}});
+document.getElementById('btn-clr').addEventListener('click',function(e){e.stopPropagation();clrFile();});
+document.getElementById('btn-eclr').addEventListener('click',function(e){e.stopPropagation();clrFile();});
+function rdFile(f){pdfB64=null;var r=new FileReader();r.onload=function(ev){var d=ev.target.result;pdfB64=d.indexOf(',')>=0?d.split(',')[1]:d;document.getElementById('fn-ok').textContent=f.name;dzSt('loaded');};r.onerror=function(){dzSt('err','Could not read file. Please try again.');};r.readAsDataURL(f);}
+function clrFile(){pdfB64=null;fi.value='';dzSt('idle');}
+
+// USER CONTENT BUILDER
+function uc(forExtract){
+  var txt=document.getElementById('atx').value.trim();
+  var instruction=forExtract?'Extract the financial data from this AFS document and return JSON only.':'Please review the Annual Financial Statements in this document.';
+  if(pdfB64)return[{type:'document',source:{type:'base64',media_type:'application/pdf',data:pdfB64}},{type:'text',text:instruction}];
+  return(forExtract?'Extract financial data:\n\n':'Here is the AFS data:\n\n')+txt;
+}
+
+// API
+async function api(sys,userContent,maxTok){
+  var key=document.getElementById('apikey').value.trim();
+  var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:maxTok||1200,system:sys,messages:[{role:'user',content:userContent}]})});
+  var d=await r.json();
+  if(d.error)throw new Error(d.error.message);
+  return d.content.map(function(b){return b.type==='text'?b.text:'';}).join('');
+}
+
+// FMT
+function fmt(v,cur){
+  if(v===null||v===undefined||isNaN(v))return'—';
+  var a=Math.abs(v),p=v<0?'-':'',s=cur==='ZAR'?'R':(cur||'R');
+  if(a>=1000000)return p+s+(a/1000000).toFixed(1)+'m';
+  if(a>=1000)return p+s+(a/1000).toFixed(0)+'k';
+  return p+s+a.toFixed(0);
+}
+function safe(arr,i){return(arr&&arr[i]!==undefined&&arr[i]!==null)?arr[i]:null;}
+function cleanArr(arr){return(arr||[]).map(function(v){return(v===null||v===undefined)?null:Number(v);});}
+
+// SUMMARY CARDS
+function renderSummary(d){
+  var n=(d.years||[]).length-1; if(n<0)n=0;
+  var rev=safe(d.revenue,n),np=safe(d.net_profit,n),ca=safe(d.current_assets,n),cl=safe(d.current_liabilities,n),eq=safe(d.equity,n),tl=safe(d.total_liabilities,n);
+  var cr=(ca&&cl)?+(ca/cl).toFixed(2):null,de=(eq&&tl)?+(tl/eq).toFixed(2):null,mg=(rev&&np!=null&&rev>0)?((np/rev)*100).toFixed(1)+'%':null;
+  document.getElementById('sc-rev').textContent=rev!=null?fmt(rev,d.currency):'—';
+  document.getElementById('sc-rev-s').textContent=d.years&&d.years[n]?'Year ending '+d.years[n]:'';
+  var npEl=document.getElementById('sc-np');npEl.textContent=np!=null?fmt(np,d.currency):'—';npEl.className='scv'+(np!=null?(np>=0?' pos':' neg'):'');
+  document.getElementById('sc-np-s').textContent=mg?'Margin: '+mg:'';
+  var crEl=document.getElementById('sc-cr');crEl.textContent=cr!=null?cr:'—';crEl.className='scv'+(cr!=null?(cr>=1.5?' pos':cr<1?' neg':''):'');
+  document.getElementById('sc-cr-s').textContent=cr!=null?(cr>=1.5?'Healthy':cr<1?'Below threshold':'Adequate'):'';
+  var deEl=document.getElementById('sc-de');deEl.textContent=de!=null?de:'—';deEl.className='scv'+(de!=null?(de>2?' neg':' pos'):'');
+  document.getElementById('sc-de-s').textContent=de!=null?(de>2?'High leverage':'Conservative'):'';
+}
+
+// CHARTS
+function killChart(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
+function baseOpts(fmtY,stacked){
+  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},padding:8,boxWidth:10}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(fmtY?fmt(c.raw,'ZAR'):c.raw);}}}},scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10},callback:function(v){return fmtY?fmt(v,'ZAR'):v;}},grid:{color:'#f0f4f8'}}}};
+}
+
+function renderCharts(d){
+  var yrs=d.years||[];
+  var rev=cleanArr(d.revenue),gp=cleanArr(d.gross_profit),np=cleanArr(d.net_profit);
+  var ocf=cleanArr(d.operating_cash_flow),icf=cleanArr(d.investing_cash_flow),fcf=cleanArr(d.financing_cash_flow);
+  var ca=cleanArr(d.current_assets),cl=cleanArr(d.current_liabilities),eq=cleanArr(d.equity),tl=cleanArr(d.total_liabilities);
+
+  // 1. Revenue & GP
+  killChart('rev');
+  var hasRevData=rev.some(function(v){return v!=null;})||gp.some(function(v){return v!=null;});
+  if(hasRevData&&yrs.length>0){
+    var revDs=[];
+    if(rev.some(function(v){return v!=null;}))revDs.push({label:'Revenue',data:rev,backgroundColor:NAVY+'cc',borderRadius:4,order:2});
+    if(gp.some(function(v){return v!=null;}))revDs.push({label:'Gross Profit',data:gp,backgroundColor:TEAL+'cc',borderRadius:4,order:2});
+    if(np.some(function(v){return v!=null;}))revDs.push({label:'Net Profit',data:np,type:'line',borderColor:AMBER,backgroundColor:'transparent',pointBackgroundColor:AMBER,tension:.3,order:1});
+    charts['rev']=new Chart(document.getElementById('ch-rev'),{type:'bar',data:{labels:yrs,datasets:revDs},options:baseOpts(true,false)});
+  } else { noDataBox('ch-rev'); }
+
+  // 2. Ratios
+  killChart('rat');
+  var crArr=[],deArr=[];
+  yrs.forEach(function(_,i){crArr.push((ca[i]&&cl[i])?+(ca[i]/cl[i]).toFixed(2):null);deArr.push((tl[i]&&eq[i]&&eq[i]!==0)?+(tl[i]/eq[i]).toFixed(2):null);});
+  var hasRat=crArr.some(function(v){return v!=null;})||deArr.some(function(v){return v!=null;});
+  if(hasRat&&yrs.length>0){
+    var ratDs=[];
+    if(crArr.some(function(v){return v!=null;}))ratDs.push({label:'Current Ratio',data:crArr,borderColor:TEAL,backgroundColor:TEAL+'22',fill:true,tension:.3,pointBackgroundColor:TEAL});
+    if(deArr.some(function(v){return v!=null;}))ratDs.push({label:'Debt/Equity',data:deArr,borderColor:RED,backgroundColor:RED+'11',fill:true,tension:.3,pointBackgroundColor:RED});
+    charts['rat']=new Chart(document.getElementById('ch-rat'),{type:'line',data:{labels:yrs,datasets:ratDs},options:baseOpts(false,false)});
+  } else { noDataBox('ch-rat'); }
+
+  // 3. Expenses doughnut
+  killChart('exp');
+  var exp=d.expenses||{};
+  var expL=[],expV=[],expC=[NAVY,BLUE,TEAL,AMBER,RED,PURPLE,GRAY];
+  Object.keys(exp).forEach(function(k){if(exp[k]!=null&&exp[k]>0){expL.push(k.charAt(0).toUpperCase()+k.slice(1));expV.push(Number(exp[k]));}});
+  if(expV.length>0){
+    charts['exp']=new Chart(document.getElementById('ch-exp'),{type:'doughnut',data:{labels:expL,datasets:[{data:expV,backgroundColor:expC,borderWidth:2,borderColor:'#fff'}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{font:{size:10},padding:8,boxWidth:10}},tooltip:{callbacks:{label:function(c){return c.label+': '+fmt(c.raw,'ZAR');}}}}}});
+  } else { noDataBox('ch-exp'); }
+
+  // 4. Cash flow
+  killChart('cf');
+  var hasCF=ocf.some(function(v){return v!=null;})||icf.some(function(v){return v!=null;})||fcf.some(function(v){return v!=null;});
+  if(hasCF&&yrs.length>0){
+    var cfDs=[];
+    if(ocf.some(function(v){return v!=null;}))cfDs.push({label:'Operating',data:ocf,backgroundColor:TEAL+'cc',borderRadius:4});
+    if(icf.some(function(v){return v!=null;}))cfDs.push({label:'Investing',data:icf,backgroundColor:RED+'cc',borderRadius:4});
+    if(fcf.some(function(v){return v!=null;}))cfDs.push({label:'Financing',data:fcf,backgroundColor:AMBER+'cc',borderRadius:4});
+    charts['cf']=new Chart(document.getElementById('ch-cf'),{type:'bar',data:{labels:yrs,datasets:cfDs},options:baseOpts(true,false)});
+  } else { noDataBox('ch-cf'); }
+}
+
+function noDataBox(canvasId){
+  var canvas=document.getElementById(canvasId);
+  if(!canvas)return;
+  var wrap=canvas.parentElement;
+  wrap.innerHTML='<div class="nodata"><div class="nodata-icon">📉</div>Could not extract data for this chart from the document.</div>';
+}
+
+// SCORECARD
+function renderScorecard(sd){
+  if(!sd||!sd.scores)return;
+  scoreData=sd;
+  var dims=Object.keys(sd.scores);
+  var vals=dims.map(function(k){return sd.scores[k];});
+
+  killChart('radar');
+  charts['radar']=new Chart(document.getElementById('ch-radar'),{type:'radar',data:{labels:dims,datasets:[{label:'Risk Score',data:vals,backgroundColor:NAVY+'33',borderColor:NAVY,pointBackgroundColor:NAVY,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:9}},pointLabels:{font:{size:11}},grid:{color:'#e2e8f0'}}},plugins:{legend:{display:false}}}});
+
+  var tbl=document.getElementById('score-table');
+  tbl.innerHTML='<div class="score-row head"><span>Dimension</span><span>Score</span><span>Rating</span></div>';
+  dims.forEach(function(k){
+    var v=sd.scores[k];
+    var cls=v>=7?'bg':v>=4?'ba':'br';
+    var lbl=v>=7?'Low Risk':v>=4?'Moderate':'High Risk';
+    var row=document.createElement('div');row.className='score-row';
+    row.innerHTML='<span class="sdim">'+k+'</span><span class="sscore" style="color:'+(v>=7?TEAL:v>=4?AMBER:RED)+'">'+v+'</span><span class="sbadge '+cls+'">'+lbl+'</span>';
+    tbl.appendChild(row);
+  });
+
+  var verd=document.getElementById('score-verdict');
+  verd.innerHTML='<div class="score-verdict-label">Overall verdict</div>'+(sd.verdict||'');
+}
+
+// NIC
+function renderNIC(text){nicText=text;document.getElementById('nic-out').textContent=text;}
+async function regenNIC(){
+  if(!exData){alert('Run an analysis first.');return;}
+  document.getElementById('nic-out').innerHTML='<span class="ltxt">Regenerating...</span>';
+  try{var t=await api(NIC_SYS,uc(false),800);renderNIC(t);}
+  catch(e){document.getElementById('nic-out').innerHTML='<div class="errbox">Error: '+e.message+'</div>';}
+}
+function copyNIC(){if(!nicText)return;navigator.clipboard.writeText(nicText).then(function(){alert('NIC summary copied!');});}
+
+// CHAT
+var chatChartCount=0;
+function askChat(txt){document.getElementById('chat-in').value=txt;sendChat();}
+async function sendChat(){
+  var inp=document.getElementById('chat-in');
+  var txt=inp.value.trim();if(!txt)return;
+  if(!exData){addMsg('assistant','Please run an analysis first so I have the financial data loaded.',true);return;}
+  inp.value='';
+  addMsg('user',txt,false);
+  var sendBtn=document.getElementById('chat-send');sendBtn.disabled=true;
+  addMsg('assistant','Thinking…',false,'msg-thinking');
+
+  var dataContext='Here is the extracted financial data as JSON:\n'+JSON.stringify(exData,null,2)+'\n\nUser request: '+txt;
+  var chatSys='You are a financial charting assistant. The user has AFS data and wants a specific chart or calculation.\n\nYou have Chart.js 4.x available.\n\nRespond with JSON only in this format:\n{\n  "title": "Chart title",\n  "type": "bar|line|doughnut|radar|pie",\n  "labels": ["2023","2024","2025"],\n  "datasets": [\n    {"label":"Revenue","data":[1000000,1200000,1400000],"backgroundColor":"#1F3864cc","borderColor":"#1F3864","borderRadius":4}\n  ],\n  "yIsCurrency": true,\n  "explanation": "One sentence explaining what this chart shows."\n}\n\nUse these colours: Navy=#1F3864, Blue=#2E5FA3, Teal=#1D9E75, Amber=#D97706, Red=#DC2626.\nFor line charts add tension:0.3 to datasets.\nReturn ONLY the JSON. No markdown. No explanation outside the JSON.';
+
+  try{
+    var raw=await api(chatSys,dataContext,600);
+    var clean=raw.replace(/```json|```/g,'').trim();
+    var cfg=JSON.parse(clean);
+    var thinking=document.getElementById('msg-thinking');if(thinking)thinking.remove();
+    var msgDiv=addMsg('assistant',cfg.explanation||'',false);
+    var chartDiv=document.createElement('div');chartDiv.className='chat-chart';
+    var chartId='chat-ch-'+(++chatChartCount);
+    chartDiv.innerHTML='<div class="chat-chart-title">'+cfg.title+'</div><div class="chat-chart-wrap"><canvas id="'+chartId+'"></canvas></div>';
+    msgDiv.appendChild(chartDiv);
+    var cOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{font:{size:10},padding:8,boxWidth:10}},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+(cfg.yIsCurrency?fmt(c.raw,'ZAR'):c.raw);}}}},scales:{}};
+    if(cfg.type!=='doughnut'&&cfg.type!=='pie'&&cfg.type!=='radar'){cOpts.scales={x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10},callback:function(v){return cfg.yIsCurrency?fmt(v,'ZAR'):v;}},grid:{color:'#f0f4f8'}}};}
+    charts[chartId]=new Chart(document.getElementById(chartId),{type:cfg.type,data:{labels:cfg.labels,datasets:cfg.datasets},options:cOpts});
+  }catch(e){
+    var thinking2=document.getElementById('msg-thinking');if(thinking2)thinking2.remove();
+    addMsg('assistant','Sorry, I could not generate that chart: '+e.message,true);
+  }
+  sendBtn.disabled=false;
+  var msgs=document.getElementById('chat-msgs');msgs.scrollTop=msgs.scrollHeight;
+}
+
+function addMsg(role,text,isErr,id){
+  var msgs=document.getElementById('chat-msgs');
+  var d=document.createElement('div');
+  d.className='msg '+role+(isErr?' err':'');
+  if(id)d.id=id;
+  if(text)d.textContent=text;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+  return d;
+}
+
+// MAIN RUN
+async function runAll(){
+  var key=document.getElementById('apikey').value.trim();
+  var txt=document.getElementById('atx').value.trim();
+  if(!sel)return;
+  if(!key){alert('Please enter your Anthropic API key.');return;}
+  if(!pdfB64&&!txt){alert('Please upload a PDF or paste some figures first.');return;}
+
+  var btn=document.getElementById('rbtn'),sp=document.getElementById('spin'),lb=document.getElementById('rlbl');
+  btn.disabled=true;sp.style.display='block';lb.textContent='Analysing…';
+
+  document.getElementById('results').style.display='block';
+
+  var toRun=sel==='both'?['david','sarah']:[sel];
+  var ag=document.getElementById('agrid');
+  ag.className='agrid'+(toRun.length===2?' dual':'');
+  ag.innerHTML=toRun.map(function(k){var p=PERSONAS[k];return'<div class="apanel"><div class="ahead"><div class="ahav '+p.avCls+'">'+p.initials+'</div><div><div class="ahn">'+p.name+'</div><div class="ahr">'+p.role+'</div></div></div><div class="abody" id="ab-'+k+'"><span class="ltxt">Analysing…</span></div></div>';}).join('');
+  document.getElementById('nic-out').innerHTML='<span class="ltxt">Generating NIC summary…</span>';
+  document.getElementById('score-verdict').innerHTML='<span class="ltxt">Generating scorecard…</span>';
+
+  // Build tasks
+  var tasks=[];
+
+  // Extract
+  tasks.push(api(EXTRACT_SYS,uc(true),900).then(function(raw){
+    var c=raw.replace(/```json|```/g,'').trim();
+    try{return JSON.parse(c);}catch(e){return null;}
+  }).catch(function(){return null;}));
+
+  // Analysis
+  toRun.forEach(function(k){
+    tasks.push(api(PERSONAS[k].prompt,uc(false),1200).then(function(t){return{k:k,t:t};}).catch(function(e){return{k:k,err:e.message};}));
+  });
+
+  // NIC
+  tasks.push(api(NIC_SYS,uc(false),800).then(function(t){return{nic:t};}).catch(function(e){return{nic:null,err:e.message};}));
+
+  // Scorecard
+  tasks.push(api(SCORE_SYS,uc(true),400).then(function(raw){
+    var c=raw.replace(/```json|```/g,'').trim();
+    try{return{score:JSON.parse(c)};}catch(e){return{score:null};}
+  }).catch(function(){return{score:null};}));
+
+  var res=await Promise.all(tasks);
+
+  // Process extraction
+  exData=res[0];
+  if(exData){renderSummary(exData);renderCharts(exData);}
+  else{['ch-rev','ch-rat','ch-exp','ch-cf'].forEach(noDataBox);}
+
+  // Process analysis
+  var aRes=res.slice(1,1+toRun.length);
+  aRes.forEach(function(r){
+    var el=document.getElementById('ab-'+r.k);
+    if(r.err)el.innerHTML='<div class="errbox"><strong>Error:</strong> '+r.err+'</div>';
+    else el.textContent=r.t;
+  });
+
+  // NIC
+  var nicRes=res[1+toRun.length];
+  if(nicRes&&nicRes.nic)renderNIC(nicRes.nic);
+  else document.getElementById('nic-out').innerHTML='<div class="errbox">Could not generate NIC summary.</div>';
+
+  // Scorecard
+  var scoreRes=res[2+toRun.length];
+  if(scoreRes&&scoreRes.score)renderScorecard(scoreRes.score);
+  else document.getElementById('score-verdict').innerHTML='<div class="errbox">Could not generate scorecard.</div>';
+
+  btn.disabled=false;sp.style.display='none';refBtn();
+  tab('charts');
+}
+
+// TABS
+function tab(n){
+  var names=['charts','analysis','chat','nic','score'];
+  var btns=document.querySelectorAll('.tbtn');
+  var panes=document.querySelectorAll('.tpane');
+  btns.forEach(function(b,i){b.classList.toggle('active',names[i]===n);});
+  panes.forEach(function(p){p.classList.remove('active');});
+  document.getElementById('tab-'+n).classList.add('active');
+}
+
+// UTILS
+function copyAnalysis(){
+  var out='';document.querySelectorAll('.abody').forEach(function(b){out+=b.textContent+'\n\n---\n\n';});
+  navigator.clipboard.writeText(out.trim()).then(function(){var b=document.querySelector('.abtn.pri');var ot=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=ot;},2000);});
+}
+function resetAll(){
+  document.getElementById('results').style.display='none';
+  document.getElementById('atx').value='';
+  clrFile();
+  Object.keys(charts).forEach(function(k){try{charts[k].destroy();}catch(e){}});
+  charts={};exData=null;nicText='';scoreData=null;chatHistory=[];
+  document.getElementById('chat-msgs').innerHTML='<div class="msg assistant">Hi — I have the financial data loaded. Ask me to plot any chart or run any calculation on this business\'s numbers.</div>';
+}
+</script>
+</body>
+</html>
