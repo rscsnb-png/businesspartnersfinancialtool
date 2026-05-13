@@ -20,9 +20,9 @@ const specialisms = [
 ]
 
 const branches = [
-  { country: 'South Africa', cities: 'Johannesburg · Cape Town · Pretoria', flag: '🇿🇦' },
-  { country: 'Namibia', cities: 'Windhoek', flag: '🇳🇦' },
-  { country: 'Netherlands', cities: 'Amsterdam · Rotterdam', flag: '🇳🇱' },
+  { country: 'South Africa', cities: 'Western Cape · Gauteng · KwaZulu Natal · Northern Cape · Mpumalanga', flag: '🇿🇦' },
+  { country: 'Namibia', cities: 'Walvis Bay · Windhoek', flag: '🇳🇦' },
+  { country: 'Netherlands', cities: 'Hilversum', flag: '🇳🇱' },
 ]
 
 export default function About() {
