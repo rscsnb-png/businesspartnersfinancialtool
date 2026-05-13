@@ -12,28 +12,39 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-beige via-beige to-stone/30" />
-      <div className="absolute top-0 right-0 w-1/2 h-full opacity-[0.03]">
-        <svg viewBox="0 0 800 800" className="w-full h-full">
-          <circle cx="400" cy="400" r="300" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-blue" />
-          <circle cx="400" cy="400" r="200" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-blue" />
-          <circle cx="400" cy="400" r="100" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-blue" />
+      {/* Warm gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-beige via-white to-coral/10" />
+
+      {/* Playful floating shapes */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-sage/8 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-40 h-40 bg-coral/8 rounded-full blur-2xl" />
+
+      {/* Decorative dots pattern */}
+      <div className="absolute top-32 right-12 opacity-20 hidden lg:block">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          {[...Array(25)].map((_, i) => (
+            <circle key={i} cx={(i % 5) * 28 + 10} cy={Math.floor(i / 5) * 28 + 10} r="3" fill="#D4A373" />
+          ))}
         </svg>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12 w-full pt-28 pb-20 lg:pt-32 lg:pb-28">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           <div className="lg:col-span-7 xl:col-span-6">
+            {/* Colorful pill badge */}
             <motion.div
               custom={0}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="flex items-center gap-3 mb-8"
+              className="mb-8"
             >
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-gold-dark">
-                Personalised Learning &middot; Homeschool &amp; Mainstream
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sage/15 to-gold/15 border border-sage/20">
+                <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
+                <span className="text-xs font-semibold tracking-wide uppercase text-blue">
+                  Homeschool &amp; Mainstream Support
+                </span>
               </span>
             </motion.div>
 
@@ -45,7 +56,12 @@ export default function Hero() {
               className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-[4.2rem] leading-[1.1] tracking-tight text-blue mb-6"
             >
               Every child deserves a pathway{' '}
-              <span className="italic text-sage">designed for them</span>
+              <span className="relative">
+                <span className="italic text-coral">designed for them</span>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
+                  <path d="M2 8c40-8 80-4 120-2s60 4 76-2" stroke="#E8856F" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+                </svg>
+              </span>
             </motion.h1>
 
             <motion.p
@@ -70,78 +86,103 @@ export default function Hero() {
             >
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue text-white text-sm font-medium tracking-wide rounded-full hover:bg-blue-light transition-all duration-300 shadow-lg shadow-blue/20 hover:shadow-xl hover:shadow-blue/30 hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold tracking-wide rounded-full hover:shadow-xl hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Book a Free Consultation
+                <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
               </a>
               <a
                 href="#process"
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide text-blue border border-stone rounded-full hover:border-blue hover:text-blue-light transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wide text-blue bg-white border-2 border-blue/10 rounded-full hover:border-blue/30 hover:bg-blue/5 transition-all duration-300"
               >
                 See How It Works
-                <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
               </a>
             </motion.div>
 
+            {/* Trust indicators with color accents */}
             <motion.div
               custom={4}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="mt-14 pt-8 border-t border-stone/60"
+              className="mt-14 flex flex-wrap gap-6 lg:gap-10"
             >
-              <div className="flex flex-wrap gap-8 lg:gap-12">
-                <div>
-                  <div className="font-serif text-2xl text-blue">200+</div>
-                  <div className="text-xs text-warm-gray mt-1 tracking-wide">Families Supported</div>
+              {[
+                { value: '200+', label: 'Families Supported', color: 'bg-sage' },
+                { value: '3', label: 'Countries', color: 'bg-gold' },
+                { value: '4', label: 'International Awards', color: 'bg-coral' },
+              ].map((stat) => (
+                <div key={stat.label} className="flex items-center gap-3">
+                  <div className={`w-10 h-10 ${stat.color}/15 rounded-xl flex items-center justify-center`}>
+                    <span className="font-serif text-lg font-bold text-blue">{stat.value}</span>
+                  </div>
+                  <span className="text-xs text-warm-gray leading-tight">{stat.label}</span>
                 </div>
-                <div>
-                  <div className="font-serif text-2xl text-blue">3</div>
-                  <div className="text-xs text-warm-gray mt-1 tracking-wide">Countries</div>
-                </div>
-                <div>
-                  <div className="font-serif text-2xl text-blue">Award</div>
-                  <div className="text-xs text-warm-gray mt-1 tracking-wide">Winning Practice</div>
-                </div>
-              </div>
+              ))}
             </motion.div>
           </div>
 
+          {/* Hero Image */}
           <div className="lg:col-span-5 xl:col-span-6 relative">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, x: 20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
-              <div className="relative aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden">
+              {/* Colorful frame behind image */}
+              <div className="absolute -inset-3 bg-gradient-to-br from-sage/30 via-gold/20 to-coral/30 rounded-3xl blur-sm" />
+
+              <div className="relative aspect-[4/5] lg:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80&auto=format&fit=crop"
-                  alt="Diverse children learning together in a warm, supportive environment"
+                  src="/images/hero.jpg"
+                  alt="Children learning together in a collaborative, supportive environment"
                   className="w-full h-full object-cover"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue/20 via-transparent to-transparent" />
               </div>
 
-              <div className="absolute -bottom-6 -left-6 lg:-left-10 bg-white rounded-xl shadow-xl shadow-charcoal/5 p-5 max-w-[220px]">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-sage/15 flex items-center justify-center">
-                    <svg className="w-4 h-4 text-sage" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
-                    </svg>
-                  </div>
-                  <span className="text-xs font-medium text-blue">SA &middot; Namibia &middot; NL</span>
+              {/* Floating badge — bottom left */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="absolute -bottom-4 -left-4 lg:-left-8 bg-white rounded-2xl shadow-xl shadow-charcoal/8 p-4 flex items-center gap-3"
+              >
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sage to-mint flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3" />
+                  </svg>
                 </div>
-                <p className="text-[11px] text-warm-gray leading-relaxed">
-                  Centres across three countries, one integrated approach.
-                </p>
-              </div>
+                <div>
+                  <div className="text-xs font-bold text-blue">SA &middot; Namibia &middot; NL</div>
+                  <div className="text-[10px] text-warm-gray">Three countries, one village</div>
+                </div>
+              </motion.div>
+
+              {/* Floating badge — top right */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1 }}
+                className="absolute -top-3 -right-3 lg:-right-6 bg-gradient-to-br from-gold to-sunshine text-white rounded-2xl shadow-lg p-3 text-center"
+              >
+                <div className="text-lg font-bold leading-none">Award</div>
+                <div className="text-[10px] font-medium opacity-80">Winning</div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
+      </div>
+
+      {/* Wave divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 80" fill="none" className="w-full">
+          <path d="M0 40c240-30 480 20 720 10s480-40 720-10v40H0z" fill="white" />
+        </svg>
       </div>
     </section>
   )

@@ -2,10 +2,10 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const credentials = [
-  { label: 'Years of Experience', value: '12+' },
-  { label: 'Qualified Practitioners', value: '15+' },
-  { label: 'International Awards', value: '4' },
-  { label: 'Families Served', value: '200+' },
+  { label: 'Years of Experience', value: '12+', color: 'from-coral to-gold' },
+  { label: 'Qualified Practitioners', value: '15+', color: 'from-sage to-mint' },
+  { label: 'International Awards', value: '4', color: 'from-gold to-sunshine' },
+  { label: 'Families Served', value: '200+', color: 'from-lavender to-sage-light' },
 ]
 
 const specialisms = [
@@ -22,9 +22,9 @@ const specialisms = [
 ]
 
 const branches = [
-  { country: 'South Africa', cities: 'Johannesburg · Cape Town · Pretoria' },
-  { country: 'Namibia', cities: 'Windhoek' },
-  { country: 'Netherlands', cities: 'Amsterdam · Rotterdam' },
+  { country: 'South Africa', cities: 'Johannesburg · Cape Town · Pretoria', flag: '🇿🇦' },
+  { country: 'Namibia', cities: 'Windhoek', flag: '🇳🇦' },
+  { country: 'Netherlands', cities: 'Amsterdam · Rotterdam', flag: '🇳🇱' },
 ]
 
 export default function About() {
@@ -32,8 +32,12 @@ export default function About() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="about" className="py-24 lg:py-36 bg-blue text-white overflow-hidden" ref={sectionRef}>
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+    <section id="about" className="py-24 lg:py-36 bg-blue text-white overflow-hidden relative" ref={sectionRef}>
+      {/* Decorative shapes */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-sage/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -41,44 +45,49 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-10">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop"
-                alt="Our diverse team of educators and therapists collaborating"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+            {/* Team image with colorful frame */}
+            <div className="relative mb-10">
+              <div className="absolute -inset-2 bg-gradient-to-br from-sage/40 via-gold/30 to-coral/40 rounded-3xl blur-sm" />
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                <img
+                  src="/images/team.jpg"
+                  alt="Aldeia therapist working one-on-one with a child"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mb-10">
+            {/* Credentials — colorful cards */}
+            <div className="grid grid-cols-2 gap-4 mb-10">
               {credentials.map((cred, i) => (
                 <motion.div
                   key={cred.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-white/5 rounded-xl p-4 border border-white/10"
                 >
-                  <div className="font-serif text-3xl text-gold-light">{cred.value}</div>
-                  <div className="text-xs text-white/50 mt-1 tracking-wide">{cred.label}</div>
+                  <div className={`font-serif text-2xl font-bold bg-gradient-to-r ${cred.color} bg-clip-text text-transparent`}>
+                    {cred.value}
+                  </div>
+                  <div className="text-xs text-white/50 mt-1">{cred.label}</div>
                 </motion.div>
               ))}
             </div>
 
             {/* Branches */}
-            <div className="border-t border-white/10 pt-8">
-              <div className="text-xs font-medium tracking-[0.15em] uppercase text-white/40 mb-4">
+            <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+              <div className="text-xs font-semibold tracking-[0.15em] uppercase text-gold mb-4">
                 Our Centres
               </div>
               <div className="space-y-3">
                 {branches.map((branch) => (
-                  <div key={branch.country} className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                    </svg>
+                  <div key={branch.country} className="flex items-center gap-3">
+                    <span className="text-lg">{branch.flag}</span>
                     <div>
                       <div className="text-sm font-medium text-white">{branch.country}</div>
-                      <div className="text-xs text-white/50">{branch.cities}</div>
+                      <div className="text-xs text-white/40">{branch.cities}</div>
                     </div>
                   </div>
                 ))}
@@ -92,12 +101,10 @@ export default function About() {
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-gold">
-                Our Story
-              </span>
-            </div>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/20 text-gold text-xs font-semibold tracking-wide uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+              Our Story
+            </span>
 
             <h2 className="font-serif text-3xl lg:text-4xl leading-snug mb-8">
               Built by practitioners who believe{' '}
@@ -127,49 +134,40 @@ export default function About() {
               </p>
             </div>
 
-            {/* Awards */}
-            <div className="bg-white/5 rounded-xl p-6 mb-10">
-              <div className="text-xs font-medium tracking-[0.15em] uppercase text-gold mb-4">
+            {/* Awards — colorful row */}
+            <div className="bg-white/5 rounded-2xl p-6 mb-10 border border-white/10">
+              <div className="text-xs font-semibold tracking-[0.15em] uppercase text-gold mb-4">
                 International Recognition
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
-                  </svg>
-                  <span className="text-sm text-white/70">Excellence in Inclusive Education</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
-                  </svg>
-                  <span className="text-sm text-white/70">Therapeutic Innovation Award</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
-                  </svg>
-                  <span className="text-sm text-white/70">Best Practice in Family-Centred Care</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
-                  </svg>
-                  <span className="text-sm text-white/70">Cross-Border Education Pioneer</span>
-                </div>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {[
+                  'Excellence in Inclusive Education',
+                  'Therapeutic Innovation Award',
+                  'Best Practice in Family-Centred Care',
+                  'Cross-Border Education Pioneer',
+                ].map((award) => (
+                  <div key={award} className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-sunshine flex items-center justify-center flex-shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172" />
+                      </svg>
+                    </div>
+                    <span className="text-sm text-white/70">{award}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Specialisms */}
-            <div className="border-t border-white/10 pt-8">
-              <div className="text-xs font-medium tracking-[0.15em] uppercase text-white/40 mb-4">
+            {/* Specialisms — colorful pills */}
+            <div>
+              <div className="text-xs font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">
                 Our Specialisms
               </div>
               <div className="flex flex-wrap gap-2">
                 {specialisms.map((s) => (
                   <span
                     key={s}
-                    className="text-xs px-4 py-2 rounded-full border border-white/10 text-white/60 hover:border-gold/40 hover:text-gold-light transition-colors duration-300"
+                    className="text-xs px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/60 hover:bg-gold/20 hover:border-gold/30 hover:text-gold-light transition-all duration-300 cursor-default"
                   >
                     {s}
                   </span>

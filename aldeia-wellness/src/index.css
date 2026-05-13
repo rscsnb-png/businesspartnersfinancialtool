@@ -18,6 +18,11 @@
   --color-gold: #D4A373;
   --color-gold-light: #E0BB94;
   --color-gold-dark: #C08A55;
+  --color-coral: #E8856F;
+  --color-coral-light: #F0A090;
+  --color-lavender: #B8A9D4;
+  --color-mint: #7ECBA1;
+  --color-sunshine: #F2C94C;
   --color-charcoal: #2A2A2A;
   --color-warm-gray: #6B6560;
   --color-stone: #E0D8CE;
@@ -36,6 +41,6 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-sage);
+  background-color: var(--color-coral);
   color: white;
 }

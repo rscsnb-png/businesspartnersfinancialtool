@@ -9,6 +9,8 @@ const steps = [
     description:
       'Share your child\'s story, strengths, and challenges. We\'ll learn about your family\'s goals and answer every question — no pressure, no commitment.',
     detail: '30-minute video or in-person session',
+    color: 'from-coral to-gold',
+    dotColor: 'bg-coral',
   },
   {
     number: '02',
@@ -17,6 +19,8 @@ const steps = [
     description:
       'Our multidisciplinary team observes and evaluates your child across educational, therapeutic, and social-emotional domains to build a complete picture.',
     detail: 'Comprehensive written report provided',
+    color: 'from-sage to-mint',
+    dotColor: 'bg-sage',
   },
   {
     number: '03',
@@ -25,6 +29,8 @@ const steps = [
     description:
       'Together, we co-create a learning plan that integrates education and therapy — tailored for homeschool or mainstream settings — with clear goals and the flexibility to adapt.',
     detail: 'Collaborative planning with your family',
+    color: 'from-gold to-sunshine',
+    dotColor: 'bg-gold',
   },
   {
     number: '04',
@@ -33,6 +39,8 @@ const steps = [
     description:
       'Your child\'s team of educators and therapists work in concert — sharing progress, adjusting strategies, and keeping you informed every step of the way.',
     detail: 'Regular progress reviews & family check-ins',
+    color: 'from-lavender to-sage-light',
+    dotColor: 'bg-lavender',
   },
 ]
 
@@ -48,30 +56,29 @@ function StepCard({ step, index }) {
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       className="relative group"
     >
-      {index < steps.length - 1 && (
-        <div className="hidden lg:block absolute top-16 left-1/2 w-px h-[calc(100%+2rem)] bg-gradient-to-b from-sage/30 to-transparent -translate-x-1/2 -z-0" />
-      )}
-
-      <div className="relative z-10 grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
-        <div className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-2 lg:text-left' : 'lg:text-right'}`}>
-          <span className="inline-block font-serif text-6xl lg:text-7xl text-stone/50 group-hover:text-sage/30 transition-colors duration-500 mb-2">
+      <div className="flex gap-6 lg:gap-8">
+        {/* Step indicator */}
+        <div className="flex flex-col items-center flex-shrink-0">
+          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white font-serif font-bold text-lg shadow-lg`}>
             {step.number}
-          </span>
-          <div className="text-xs font-medium tracking-[0.2em] uppercase text-sage">
-            {step.subtitle}
           </div>
+          {index < steps.length - 1 && (
+            <div className="w-px h-full bg-gradient-to-b from-stone to-transparent mt-3" />
+          )}
         </div>
 
-        <div className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-1 lg:text-right' : ''}`}>
-          <div className={`bg-white rounded-2xl p-8 lg:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow duration-500 ${index % 2 === 1 ? 'lg:ml-auto' : ''}`}>
-            <h3 className="font-serif text-2xl text-blue mb-3">{step.title}</h3>
-            <p className="text-warm-gray leading-relaxed mb-4">{step.description}</p>
-            <div className={`flex items-center gap-2 text-xs text-sage font-medium ${index % 2 === 1 ? 'lg:justify-end' : ''}`}>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-              </svg>
-              {step.detail}
-            </div>
+        {/* Content */}
+        <div className="pb-12">
+          <div className="text-xs font-semibold tracking-[0.2em] uppercase text-sage mb-2">
+            {step.subtitle}
+          </div>
+          <h3 className="font-serif text-2xl text-blue mb-3">{step.title}</h3>
+          <p className="text-warm-gray leading-relaxed mb-4">{step.description}</p>
+          <div className="inline-flex items-center gap-2 text-xs font-medium text-white bg-gradient-to-r from-sage to-sage-dark px-4 py-1.5 rounded-full">
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+            </svg>
+            {step.detail}
           </div>
         </div>
       </div>
@@ -84,7 +91,7 @@ export default function Process() {
   const isInView = useInView(headerRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="process" className="py-24 lg:py-36 bg-white">
+    <section id="process" className="py-24 lg:py-36 bg-white relative">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div ref={headerRef} className="text-center max-w-2xl mx-auto mb-16 lg:mb-24">
           <motion.div
@@ -92,13 +99,10 @@ export default function Process() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="w-12 h-px bg-gold" />
-              <span className="text-xs font-medium tracking-[0.2em] uppercase text-gold-dark">
-                Your Journey
-              </span>
-              <div className="w-12 h-px bg-gold" />
-            </div>
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 text-gold-dark text-xs font-semibold tracking-wide uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+              Your Journey
+            </span>
             <h2 className="font-serif text-3xl lg:text-[2.75rem] text-blue leading-snug mb-6">
               Four steps to a{' '}
               <span className="italic text-sage">brighter path</span>
@@ -110,7 +114,7 @@ export default function Process() {
           </motion.div>
         </div>
 
-        <div className="space-y-12 lg:space-y-16 max-w-4xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           {steps.map((step, index) => (
             <StepCard key={step.number} step={step} index={index} />
           ))}
