@@ -97,37 +97,20 @@ export default function Centres() {
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="bg-white rounded-2xl p-8 lg:p-12 shadow-[0_1px_3px_rgba(0,0,0,0.04)] text-center max-w-3xl mx-auto"
         >
-          <h3 className="font-serif text-xl text-blue mb-3">Follow Our Centres</h3>
+          <h3 className="font-serif text-xl text-blue mb-3">Follow Our Journey</h3>
           <p className="text-warm-gray text-sm mb-6">
             See what&apos;s happening at our centres — follow us on Facebook for updates, events, and stories.
           </p>
-          {/*
-            To embed your Facebook page, replace the iframe src below with your actual Facebook Page URL.
-            Get your embed code at: https://developers.facebook.com/docs/plugins/page-plugin/
-          */}
-          <div className="bg-beige rounded-xl p-8 border border-stone/50">
-            <div className="flex flex-col items-center gap-4">
-              <svg className="w-10 h-10 text-blue/30" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-              <p className="text-sm text-warm-gray">
-                Facebook Page plugin will appear here.<br />
-                <span className="text-xs text-warm-gray/60">
-                  Add your Facebook Page URL in the code to activate.
-                </span>
-              </p>
-              <a
-                href="https://www.facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium px-6 py-2.5 bg-blue text-white rounded-full hover:bg-blue-light transition-colors"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-                Visit Our Facebook Page
-              </a>
-            </div>
+          <div className="flex justify-center">
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+              width="500"
+              height="600"
+              className="max-w-full border-none overflow-hidden rounded-xl"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
+              title="Aldeia Neuro Facebook Page"
+            />
           </div>
         </motion.div>
       </div>
