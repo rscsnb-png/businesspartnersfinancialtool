@@ -156,7 +156,7 @@ const pages = {
         <div className="bg-gradient-to-r from-blue to-blue-light rounded-2xl p-8 mt-10 text-center text-white">
           <h3 className="font-serif text-xl mb-3">Still have questions?</h3>
           <p className="text-white/70 text-sm mb-6">Book a free consultation and we&apos;ll answer everything in person.</p>
-          <a href="#contact" className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300">
+          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300">
             Book a Free Consultation
           </a>
         </div>
@@ -196,7 +196,7 @@ const pages = {
           <p className="text-warm-gray text-sm mb-6 max-w-md mx-auto">
             Our team can provide advice specific to your child&apos;s needs. Start with a free consultation.
           </p>
-          <a href="#contact" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300">
+          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300">
             Book a Free Consultation
           </a>
         </div>
@@ -233,7 +233,7 @@ const pages = {
             Every intervention we recommend is backed by research and tailored to your child. Talk to our team to learn more.
           </p>
           <div className="text-center">
-            <a href="#contact" className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300">
+            <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300">
               Speak to Our Team
             </a>
           </div>

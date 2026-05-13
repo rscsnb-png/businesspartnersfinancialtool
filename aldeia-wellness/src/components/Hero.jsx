@@ -85,7 +85,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row gap-4"
             >
               <a
-                href="#contact"
+                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold tracking-wide rounded-full hover:shadow-xl hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Book a Free Consultation

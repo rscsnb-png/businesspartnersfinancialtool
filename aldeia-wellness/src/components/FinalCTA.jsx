@@ -42,7 +42,7 @@ export default function FinalCTA() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <a
-                href="#contact"
+                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
                 className="inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold tracking-wide rounded-full hover:shadow-xl hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
               >
                 Book Your Free Consultation

@@ -255,7 +255,7 @@ export default function BlogPost({ onClose }) {
                 learning therapy, or an integrated approach is the right next step.
               </p>
               <a
-                href="#contact"
+                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
                 onClick={onClose}
                 className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300"
               >

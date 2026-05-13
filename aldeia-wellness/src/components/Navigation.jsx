@@ -64,7 +64,7 @@ export default function Navigation() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
               className="text-sm font-medium px-6 py-2.5 bg-blue text-white rounded-full hover:bg-blue-light transition-colors duration-300"
             >
               Book a Consultation
@@ -105,7 +105,7 @@ export default function Navigation() {
                 </a>
               ))}
               <a
-                href="#contact"
+                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
                 onClick={() => setMobileOpen(false)}
                 className="text-center text-sm font-medium px-6 py-3 bg-blue text-white rounded-full"
               >
