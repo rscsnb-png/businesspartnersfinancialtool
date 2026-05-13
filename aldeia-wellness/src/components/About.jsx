@@ -135,14 +135,16 @@ export default function About() {
             {/* Awards — colorful row */}
             <div className="bg-white/5 rounded-2xl p-6 mb-10 border border-white/10">
               <div className="text-xs font-semibold tracking-[0.15em] uppercase text-gold mb-4">
-                International Recognition
+                Global Winner of 13 Awards
               </div>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
-                  'Excellence in Inclusive Education',
-                  'Therapeutic Innovation Award',
-                  'Best Practice in Family-Centred Care',
-                  'Cross-Border Education Pioneer',
+                  'Best Neurobehavior Assessment & Coaching Provider 2024 — SA',
+                  'Children\'s Therapy Service of the Year — SA',
+                  'Best Children\'s Behavioural Therapy Practice 2023 — SA',
+                  'Best Family & Child Wellness Practice 2023 — Northern SA',
+                  'Most Trusted Children\'s Cognitive Behavioral Experts 2024 — SA',
+                  'Best Family & Child Wellness Practice 2024 — Gauteng',
                 ].map((award) => (
                   <div key={award} className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-gold to-sunshine flex items-center justify-center flex-shrink-0">
@@ -152,6 +154,13 @@ export default function About() {
                     </div>
                     <span className="text-sm text-white/70">{award}</span>
                   </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
+                {['AI Business Excellence Awards', 'SA Prestige Awards', 'African Excellence Awards', 'Corporate Vision Small Business Awards'].map((org) => (
+                  <span key={org} className="text-[10px] px-2.5 py-1 rounded-full bg-gold/10 text-gold-light/70">
+                    {org}
+                  </span>
                 ))}
               </div>
             </div>
