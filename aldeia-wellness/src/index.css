@@ -6,22 +6,21 @@
   --font-serif: "Playfair Display Variable", Georgia, "Times New Roman", serif;
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
 
-  --color-cream: #FAF8F5;
-  --color-cream-dark: #F0EDE8;
-  --color-sage: #7A8B6F;
-  --color-sage-light: #93A487;
-  --color-sage-dark: #5C6B52;
-  --color-forest: #2D3B28;
+  --color-beige: #F5F1EB;
+  --color-beige-dark: #EBE5DB;
+  --color-white: #FFFFFF;
+  --color-blue: #1F3A5F;
+  --color-blue-light: #2A4F7F;
+  --color-blue-dark: #152A45;
+  --color-sage: #7A9E9F;
+  --color-sage-light: #96B5B6;
+  --color-sage-dark: #5F8182;
+  --color-gold: #D4A373;
+  --color-gold-light: #E0BB94;
+  --color-gold-dark: #C08A55;
   --color-charcoal: #2A2A2A;
   --color-warm-gray: #6B6560;
-  --color-terracotta: #C4836A;
-  --color-terracotta-light: #D4A08D;
-  --color-gold: #C9A96E;
-  --color-gold-light: #D9C494;
-  --color-ivory: #FEFDFB;
-  --color-stone: #E8E2DA;
-
-  --ease-elegant: cubic-bezier(0.16, 1, 0.3, 1);
+  --color-stone: #E0D8CE;
 }
 
 html {
@@ -31,12 +30,12 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-charcoal);
-  background-color: var(--color-cream);
+  background-color: var(--color-beige);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-sage-light);
+  background-color: var(--color-sage);
   color: white;
 }

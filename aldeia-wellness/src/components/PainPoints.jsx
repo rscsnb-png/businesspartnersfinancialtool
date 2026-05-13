@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const painPoints = [
@@ -13,7 +12,7 @@ const painPoints = [
     number: '02',
     title: 'One-size-fits-all education',
     description:
-      'Traditional schooling wasn\'t designed for children who learn differently. You watch your child struggle in a system that measures success on a single scale.',
+      'Whether homeschooled or in mainstream schooling, children who learn differently deserve more than a rigid curriculum. You watch your child struggle in a system that measures success on a single scale.',
   },
   {
     number: '03',
@@ -37,12 +36,12 @@ function PainCard({ item, index }) {
     >
       <div className="flex gap-6 lg:gap-8">
         <div className="flex-shrink-0">
-          <span className="font-serif text-4xl lg:text-5xl text-stone/80 group-hover:text-terracotta/60 transition-colors duration-500">
+          <span className="font-serif text-4xl lg:text-5xl text-stone/80 group-hover:text-gold/60 transition-colors duration-500">
             {item.number}
           </span>
         </div>
         <div className="pt-2">
-          <h3 className="font-serif text-xl lg:text-2xl text-charcoal mb-3">
+          <h3 className="font-serif text-xl lg:text-2xl text-blue mb-3">
             {item.title}
           </h3>
           <p className="text-warm-gray leading-relaxed text-[15px] lg:text-base">
@@ -62,10 +61,9 @@ export default function PainPoints() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 lg:py-36 bg-ivory" ref={sectionRef}>
+    <section className="py-24 lg:py-36 bg-white" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-          {/* Left — editorial sticky label */}
           <div className="lg:col-span-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -74,14 +72,14 @@ export default function PainPoints() {
               className="lg:sticky lg:top-32"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-px bg-terracotta" />
-                <span className="text-xs font-medium tracking-[0.2em] uppercase text-terracotta">
+                <div className="w-12 h-px bg-gold" />
+                <span className="text-xs font-medium tracking-[0.2em] uppercase text-gold-dark">
                   The Challenge
                 </span>
               </div>
-              <h2 className="font-serif text-3xl lg:text-4xl text-charcoal leading-snug mb-6">
+              <h2 className="font-serif text-3xl lg:text-4xl text-blue leading-snug mb-6">
                 You know your child is{' '}
-                <span className="italic text-terracotta">capable of more</span>
+                <span className="italic text-gold-dark">capable of more</span>
               </h2>
               <p className="text-warm-gray leading-relaxed">
                 You&apos;ve done everything right — researched, advocated, shown
@@ -90,7 +88,6 @@ export default function PainPoints() {
             </motion.div>
           </div>
 
-          {/* Right — pain points list */}
           <div className="lg:col-span-7 lg:col-start-6">
             {painPoints.map((item, index) => (
               <PainCard key={item.number} item={item} index={index} />

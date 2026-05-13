@@ -4,7 +4,7 @@ import { useRef } from 'react'
 const credentials = [
   { label: 'Years of Experience', value: '12+' },
   { label: 'Qualified Practitioners', value: '15+' },
-  { label: 'Disciplines Integrated', value: '8' },
+  { label: 'International Awards', value: '4' },
   { label: 'Families Served', value: '200+' },
 ]
 
@@ -17,6 +17,14 @@ const specialisms = [
   'Art & Play Therapy',
   'Sensory Integration',
   'Family Counselling',
+  'Homeschool Support',
+  'Mainstream Integration',
+]
+
+const branches = [
+  { country: 'South Africa', cities: 'Johannesburg · Cape Town · Pretoria' },
+  { country: 'Namibia', cities: 'Windhoek' },
+  { country: 'Netherlands', cities: 'Amsterdam · Rotterdam' },
 ]
 
 export default function About() {
@@ -24,28 +32,25 @@ export default function About() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="about" className="py-24 lg:py-36 bg-forest text-white overflow-hidden" ref={sectionRef}>
+    <section id="about" className="py-24 lg:py-36 bg-blue text-white overflow-hidden" ref={sectionRef}>
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
-          {/* Left column — image & credentials */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            {/* Image placeholder */}
-            <div className="aspect-[4/3] rounded-2xl bg-white/5 mb-10 flex items-center justify-center">
-              <div className="text-center p-8">
-                <svg className="w-14 h-14 text-white/20 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                </svg>
-                <p className="text-xs text-white/30">Our multidisciplinary team</p>
-              </div>
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-10">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop"
+                alt="Our diverse team of educators and therapists collaborating"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
 
-            {/* Credentials grid */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-6 mb-10">
               {credentials.map((cred, i) => (
                 <motion.div
                   key={cred.label}
@@ -58,9 +63,29 @@ export default function About() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Branches */}
+            <div className="border-t border-white/10 pt-8">
+              <div className="text-xs font-medium tracking-[0.15em] uppercase text-white/40 mb-4">
+                Our Centres
+              </div>
+              <div className="space-y-3">
+                {branches.map((branch) => (
+                  <div key={branch.country} className="flex items-start gap-3">
+                    <svg className="w-4 h-4 text-gold mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                    </svg>
+                    <div>
+                      <div className="text-sm font-medium text-white">{branch.country}</div>
+                      <div className="text-xs text-white/50">{branch.cities}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right column — story & specialisms */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -79,7 +104,7 @@ export default function About() {
               <span className="italic text-gold-light">every child belongs</span>
             </h2>
 
-            <div className="space-y-5 text-white/70 leading-relaxed mb-12">
+            <div className="space-y-5 text-white/70 leading-relaxed mb-10">
               <p>
                 Aldeia was founded by a group of educators and therapists who were
                 frustrated by the same thing parents experience — a disconnected
@@ -88,16 +113,51 @@ export default function About() {
               <p>
                 The name &ldquo;Aldeia&rdquo; comes from the Portuguese word for
                 &ldquo;village,&rdquo; because we believe it truly takes a village
-                to nurture a child. Our multidisciplinary team works as one —
-                sharing insights in real time, adapting strategies together, and
-                keeping your family at the heart of every decision.
+                to nurture a child. From our origins in South Africa, we&apos;ve
+                grown to serve families across Namibia and the Netherlands,
+                supporting both homeschool and mainstream learners with the same
+                integrated, personalised approach.
               </p>
               <p>
-                We are registered practitioners with deep experience across special
-                education, therapeutic support, and child development. But more
-                than our credentials, what defines us is a genuine commitment to
-                seeing every child for who they are — and who they can become.
+                Our work has been recognised with multiple international awards
+                for excellence in inclusive education and therapeutic innovation.
+                But more than our accolades, what defines us is a genuine
+                commitment to seeing every child for who they are — and who they
+                can become.
               </p>
+            </div>
+
+            {/* Awards */}
+            <div className="bg-white/5 rounded-xl p-6 mb-10">
+              <div className="text-xs font-medium tracking-[0.15em] uppercase text-gold mb-4">
+                International Recognition
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
+                  </svg>
+                  <span className="text-sm text-white/70">Excellence in Inclusive Education</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
+                  </svg>
+                  <span className="text-sm text-white/70">Therapeutic Innovation Award</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
+                  </svg>
+                  <span className="text-sm text-white/70">Best Practice in Family-Centred Care</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M18.75 4.236c.982.143 1.954.317 2.916.52A6.003 6.003 0 0 1 16.27 9.728M18.75 4.236V4.5c0 2.108-.966 3.99-2.48 5.228m0 0a6.04 6.04 0 0 1-2.27.89m0 0a6.052 6.052 0 0 1-2.77-.001m0 0a6.04 6.04 0 0 1-2.27-.89" />
+                  </svg>
+                  <span className="text-sm text-white/70">Cross-Border Education Pioneer</span>
+                </div>
+              </div>
             </div>
 
             {/* Specialisms */}

@@ -5,17 +5,22 @@ const footerLinks = {
   Services: [
     'Educational Support',
     'Therapeutic Services',
-    'Family Counselling',
+    'Homeschool Pathways',
+    'Mainstream Integration',
     'Assessment & Evaluation',
-    'Group Programmes',
   ],
-  Company: ['About Us', 'Our Team', 'Careers', 'Blog', 'Contact'],
+  Locations: [
+    'South Africa',
+    'Namibia',
+    'Netherlands',
+    'Online / Remote',
+  ],
   Resources: [
     'Parent Guides',
+    'Blog',
     'FAQs',
     'Research & Evidence',
     'Community Events',
-    'Partner Schools',
   ],
 }
 
@@ -24,11 +29,9 @@ export default function Footer() {
   const isInView = useInView(ref, { once: true, margin: '-50px' })
 
   return (
-    <footer className="bg-charcoal text-white/60" ref={ref}>
+    <footer className="bg-blue-dark text-white/60" ref={ref}>
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Main footer */}
         <div className="py-16 lg:py-20 grid lg:grid-cols-12 gap-12">
-          {/* Brand column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -49,17 +52,20 @@ export default function Footer() {
                 Aldeia
               </span>
             </div>
-            <p className="text-sm leading-relaxed max-w-xs mb-8">
-              Integrated educational and therapeutic support, co-creating
-              personalised learning pathways for every child.
+            <p className="text-sm leading-relaxed max-w-xs mb-6">
+              Integrated educational and therapeutic support for homeschool and
+              mainstream learners — co-creating personalised learning pathways
+              across South Africa, Namibia, and the Netherlands.
+            </p>
+            <p className="text-xs text-white/30 mb-6">
+              Internationally award-winning practice
             </p>
             <div className="flex gap-4">
-              {/* Social icons */}
               {['facebook', 'instagram', 'linkedin'].map((social) => (
                 <a
                   key={social}
                   href="#"
-                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-sage hover:bg-sage/10 transition-all duration-300"
+                  className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:bg-gold/10 transition-all duration-300"
                   aria-label={social}
                 >
                   {social === 'facebook' && (
@@ -82,7 +88,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links], i) => (
             <motion.div
               key={category}
@@ -110,7 +115,6 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-white/5 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} Aldeia Wellness. All rights reserved.
