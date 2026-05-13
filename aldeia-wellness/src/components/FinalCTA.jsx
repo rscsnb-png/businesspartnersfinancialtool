@@ -58,17 +58,34 @@ export default function FinalCTA() {
                 <div className="text-xs font-semibold tracking-[0.15em] uppercase text-warm-gray/60 mb-2">
                   Email
                 </div>
-                <a href="mailto:hello@aldeiawellness.com" className="text-sm text-blue hover:text-coral transition-colors">
-                  hello@aldeiawellness.com
+                <a href="mailto:info@aldeiawellness.com" className="text-sm text-blue hover:text-coral transition-colors">
+                  info@aldeiawellness.com
                 </a>
               </div>
               <div>
                 <div className="text-xs font-semibold tracking-[0.15em] uppercase text-warm-gray/60 mb-2">
                   Phone
                 </div>
-                <a href="tel:+1234567890" className="text-sm text-blue hover:text-coral transition-colors">
-                  +1 (234) 567-890
-                </a>
+                <div className="space-y-1.5">
+                  <div>
+                    <span className="text-xs text-warm-gray/60">South Africa: </span>
+                    <a href="tel:+27100065199" className="text-sm text-blue hover:text-coral transition-colors">
+                      +27 10 006 5199
+                    </a>
+                  </div>
+                  <div>
+                    <span className="text-xs text-warm-gray/60">Netherlands: </span>
+                    <a href="tel:+31619415086" className="text-sm text-blue hover:text-coral transition-colors">
+                      +31 61 941 5086
+                    </a>
+                  </div>
+                  <div>
+                    <span className="text-xs text-warm-gray/60">Namibia: </span>
+                    <a href="tel:+264815883067" className="text-sm text-blue hover:text-coral transition-colors">
+                      +264 81 588 3067
+                    </a>
+                  </div>
+                </div>
               </div>
               <div>
                 <div className="text-xs font-semibold tracking-[0.15em] uppercase text-warm-gray/60 mb-2">
