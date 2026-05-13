@@ -41,12 +41,16 @@ export default function Navigation() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="flex items-center justify-between h-18 lg:h-20">
-          <a href="#" className="flex items-center group">
+          <a href="#" className="flex items-center gap-2 group">
             <img
               src="/images/logo.png"
               alt="Aldeia"
               className="h-12 lg:h-14 w-auto"
+              onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block' }}
             />
+            <span className="font-serif text-2xl tracking-tight text-blue group-hover:text-coral transition-colors hidden">
+              aldeia
+            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-8">

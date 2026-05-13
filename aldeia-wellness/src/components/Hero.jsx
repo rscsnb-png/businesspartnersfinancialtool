@@ -43,7 +43,7 @@ export default function Hero() {
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sage/15 to-gold/15 border border-sage/20">
                 <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
                 <span className="text-xs font-semibold tracking-wide uppercase text-blue">
-                  Homeschool &amp; Mainstream Support
+                  Learning &amp; Behaviour Support
                 </span>
               </span>
             </motion.div>

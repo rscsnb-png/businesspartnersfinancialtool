@@ -46,7 +46,11 @@ export default function Footer() {
                   src="/images/logo.png"
                   alt="Aldeia"
                   className="h-14 w-auto brightness-0 invert"
+                  onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block' }}
                 />
+                <span className="font-serif text-2xl tracking-tight text-white hidden">
+                  aldeia
+                </span>
               </div>
               <p className="text-sm leading-relaxed max-w-xs mb-6">
                 Integrated educational and therapeutic support for homeschool and
@@ -60,9 +64,13 @@ export default function Footer() {
                 {['facebook', 'instagram', 'linkedin'].map((social) => (
                   <a
                     key={social}
-                    href={social === 'facebook' ? 'https://www.facebook.com/aldeianeuro' : '#'}
-                    target={social === 'facebook' ? '_blank' : undefined}
-                    rel={social === 'facebook' ? 'noopener noreferrer' : undefined}
+                    href={
+                      social === 'facebook' ? 'https://www.facebook.com/aldeianeuro'
+                        : social === 'instagram' ? 'https://www.instagram.com/int.aldeianeuroinstitute/'
+                        : 'https://www.linkedin.com/company/aldeianbi'
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:bg-gold/10 transition-all duration-300"
                     aria-label={social}
                   >
