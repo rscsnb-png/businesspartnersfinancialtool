@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'Can I combine homeschool support with therapy?',
-    a: 'Absolutely — this is one of our core strengths. We design integrated pathways where education and therapy reinforce each other, so your child gets a seamless, holistic experience whether they learn at home or in school.',
+    a: 'Absolutely — this is one of our core strengths. We are registered facilitators with SACAI and work with Impaq, Think Digital, and Cambrilearn (Aldeia families receive a 50% discount at Cambrilearn). We design integrated pathways where education and therapy reinforce each other, so your child gets a seamless, holistic experience whether they learn at home or in school.',
   },
   {
     q: 'What does an assessment involve?',
