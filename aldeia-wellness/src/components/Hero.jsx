@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="absolute top-32 right-12 opacity-20 hidden lg:block">
         <svg width="120" height="120" viewBox="0 0 120 120">
           {[...Array(25)].map((_, i) => (
-            <circle key={i} cx={(i % 5) * 28 + 10} cy={Math.floor(i / 5) * 28 + 10} r="3" fill="#D4A373" />
+            <circle key={i} cx={(i % 5) * 28 + 10} cy={Math.floor(i / 5) * 28 + 10} r="3" fill="#FFCF26" />
           ))}
         </svg>
       </div>
@@ -59,7 +59,7 @@ export default function Hero() {
               <span className="relative">
                 <span className="italic text-coral">designed for them</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none">
-                  <path d="M2 8c40-8 80-4 120-2s60 4 76-2" stroke="#E8856F" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
+                  <path d="M2 8c40-8 80-4 120-2s60 4 76-2" stroke="#FF6B4A" strokeWidth="3" strokeLinecap="round" opacity="0.4" />
                 </svg>
               </span>
             </motion.h1>

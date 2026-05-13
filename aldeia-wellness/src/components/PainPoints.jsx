@@ -86,7 +86,7 @@ export default function PainPoints() {
                 <span className="relative inline-block">
                   <span className="italic text-coral">capable of more</span>
                   <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" fill="none">
-                    <path d="M2 6c60-8 140-4 196-2" stroke="#E8856F" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
+                    <path d="M2 6c60-8 140-4 196-2" stroke="#FF6B4A" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
                   </svg>
                 </span>
               </h2>

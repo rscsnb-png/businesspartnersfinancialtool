@@ -50,7 +50,7 @@ export default function Blog() {
         <div className="absolute bottom-20 left-10 opacity-10 hidden lg:block">
           <svg width="100" height="100" viewBox="0 0 100 100">
             {[...Array(16)].map((_, i) => (
-              <circle key={i} cx={(i % 4) * 28 + 10} cy={Math.floor(i / 4) * 28 + 10} r="3" fill="#7A9E9F" />
+              <circle key={i} cx={(i % 4) * 28 + 10} cy={Math.floor(i / 4) * 28 + 10} r="3" fill="#34C67A" />
             ))}
           </svg>
         </div>

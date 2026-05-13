@@ -6,26 +6,26 @@
   --font-serif: "Playfair Display Variable", Georgia, "Times New Roman", serif;
   --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
 
-  --color-beige: #F5F1EB;
-  --color-beige-dark: #EBE5DB;
+  --color-beige: #FAFAF7;
+  --color-beige-dark: #F0F0EA;
   --color-white: #FFFFFF;
-  --color-blue: #1F3A5F;
-  --color-blue-light: #2A4F7F;
-  --color-blue-dark: #152A45;
-  --color-sage: #7A9E9F;
-  --color-sage-light: #96B5B6;
-  --color-sage-dark: #5F8182;
-  --color-gold: #D4A373;
-  --color-gold-light: #E0BB94;
-  --color-gold-dark: #C08A55;
-  --color-coral: #E8856F;
-  --color-coral-light: #F0A090;
-  --color-lavender: #B8A9D4;
-  --color-mint: #7ECBA1;
-  --color-sunshine: #F2C94C;
-  --color-charcoal: #2A2A2A;
-  --color-warm-gray: #6B6560;
-  --color-stone: #E0D8CE;
+  --color-blue: #1A3DA8;
+  --color-blue-light: #2550C5;
+  --color-blue-dark: #0F2466;
+  --color-sage: #34C67A;
+  --color-sage-light: #5FD99A;
+  --color-sage-dark: #22915A;
+  --color-gold: #FFCF26;
+  --color-gold-light: #FFDB5C;
+  --color-gold-dark: #9A7B00;
+  --color-coral: #FF6B4A;
+  --color-coral-light: #FF8F76;
+  --color-lavender: #E8E0F0;
+  --color-mint: #34C67A;
+  --color-sunshine: #FFCF26;
+  --color-charcoal: #1A1A2E;
+  --color-warm-gray: #5A5A6E;
+  --color-stone: #E2E0DC;
 }
 
 html {
