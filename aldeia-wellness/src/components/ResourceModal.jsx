@@ -183,10 +183,19 @@ const pages = {
             <div key={guide.title} className="bg-beige rounded-2xl p-6 lg:p-8">
               <h3 className="font-serif text-xl text-blue mb-2">{guide.title}</h3>
               <p className="text-warm-gray leading-relaxed mb-4">{guide.description}</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 {guide.tags.map((tag) => (
                   <span key={tag} className="text-xs px-3 py-1 rounded-full bg-sage/10 text-sage-dark font-medium">{tag}</span>
                 ))}
+                <a
+                  href={`mailto:info@aldeiawellness.com?subject=${encodeURIComponent('Guide Request: ' + guide.title)}&body=${encodeURIComponent('Hi Aldeia,\n\nI would like to receive the guide: "' + guide.title + '".\n\nPlease send it to this email address.\n\nThank you!')}`}
+                  className="ml-auto inline-flex items-center gap-1.5 text-xs font-semibold text-coral hover:text-coral-light transition-colors"
+                >
+                  Request this guide
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  </svg>
+                </a>
               </div>
             </div>
           ))}
