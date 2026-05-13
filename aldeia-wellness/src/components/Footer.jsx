@@ -38,19 +38,12 @@ export default function Footer() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 rounded-full bg-sage flex items-center justify-center">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10" />
-                  <path d="M12 2c2.76 0 5 4.48 5 10" />
-                  <path d="M12 2c-2.76 0-5 4.48-5 10s2.24 10 5 10" />
-                  <path d="M2 12h10" />
-                  <path d="M17 17l3 3m0-3l-3 3" />
-                </svg>
-              </div>
-              <span className="font-serif text-xl tracking-tight text-white">
-                Aldeia
-              </span>
+            <div className="mb-6">
+              <img
+                src="/images/logo.png"
+                alt="Aldeia"
+                className="h-14 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-sm leading-relaxed max-w-xs mb-6">
               Integrated educational and therapeutic support for homeschool and
