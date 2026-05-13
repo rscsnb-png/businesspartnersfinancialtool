@@ -4,14 +4,12 @@ import { useRef } from 'react'
 const credentials = [
   { label: 'Years of Experience', value: '12+', color: 'from-coral to-gold' },
   { label: 'Qualified Practitioners', value: '15+', color: 'from-sage to-mint' },
-  { label: 'International Awards', value: '4', color: 'from-gold to-sunshine' },
-  { label: 'Families Served', value: '200+', color: 'from-lavender to-sage-light' },
+  { label: 'International Awards', value: '13', color: 'from-gold to-sunshine' },
+  { label: 'Families Served', value: '2800+', color: 'from-lavender to-sage-light' },
 ]
 
 const specialisms = [
   'Special Education',
-  'Speech & Language Therapy',
-  'Occupational Therapy',
   'Educational Psychology',
   'Behavioural Support',
   'Art & Play Therapy',

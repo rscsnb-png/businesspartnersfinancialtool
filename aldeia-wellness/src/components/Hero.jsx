@@ -110,9 +110,9 @@ export default function Hero() {
               className="mt-14 flex flex-wrap gap-6 lg:gap-10"
             >
               {[
-                { value: '200+', label: 'Families Supported', color: 'bg-sage' },
+                { value: '2800+', label: 'Families Supported', color: 'bg-sage' },
                 { value: '3', label: 'Countries', color: 'bg-gold' },
-                { value: '4', label: 'International Awards', color: 'bg-coral' },
+                { value: '13', label: 'International Awards', color: 'bg-coral' },
               ].map((stat) => (
                 <div key={stat.label} className="flex items-center gap-3">
                   <div className={`w-10 h-10 ${stat.color}/15 rounded-xl flex items-center justify-center`}>
