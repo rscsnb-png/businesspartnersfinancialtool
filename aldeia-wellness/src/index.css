@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/inter";
+
+@theme {
+  --font-serif: "Playfair Display Variable", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
+
+  --color-beige: #FAFAF7;
+  --color-beige-dark: #F0F0EA;
+  --color-white: #FFFFFF;
+  --color-blue: #1A3DA8;
+  --color-blue-light: #2550C5;
+  --color-blue-dark: #0F2466;
+  --color-sage: #34C67A;
+  --color-sage-light: #5FD99A;
+  --color-sage-dark: #22915A;
+  --color-gold: #FFCF26;
+  --color-gold-light: #FFDB5C;
+  --color-gold-dark: #9A7B00;
+  --color-coral: #FF6B4A;
+  --color-coral-light: #FF8F76;
+  --color-lavender: #E8E0F0;
+  --color-mint: #34C67A;
+  --color-sunshine: #FFCF26;
+  --color-charcoal: #1A1A2E;
+  --color-warm-gray: #5A5A6E;
+  --color-stone: #E2E0DC;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background-color: var(--color-beige);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-coral);
+  color: white;
+}
