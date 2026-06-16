@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinanceSME — Finance Made Smarter. Growth Made Possible.</title>
+  <meta name="description" content="FinanceSME submits your loan application to 20+ financial institutions simultaneously — so lenders compete to offer you the most affordable interest rate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: #1A2E40;
+      background: #FFFFFF;
+      line-height: 1.6;
+    }
+
+    /* ===== VARIABLES ===== */
+    :root {
+      --navy: #0D1B2A;
+      --dark: #1A2E40;
+      --cream: #F7F4EF;
+      --white: #FFFFFF;
+      --gold: #E8A020;
+      --blue: #4A9ECA;
+      --grey: #6B7E8F;
+      --border: #D9D3C8;
+      --radius: 4px;
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4, h5 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    p { line-height: 1.7; color: var(--grey); }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section { width: 100%; }
+
+    /* ===== NAV ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--navy);
+      border-bottom: 1px solid rgba(232,160,32,0.25);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      padding: 0 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--gold); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy) !important;
+      font-weight: 600 !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius);
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: #d4911a !important; color: var(--white) !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      background: var(--navy);
+      padding: 1rem 1.5rem 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ===== HERO ===== */
+    #hero {
+      background: var(--navy);
+      padding: 8rem 1.5rem 5rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232,160,32,0.15);
+      border: 1px solid rgba(232,160,32,0.4);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+    .hero-headline {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      color: var(--white);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .hero-headline .accent { color: var(--gold); }
+    .hero-tagline {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
+    }
+    .hero-para {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      padding: 0.9rem 2.25rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #d4911a; transform: translateY(-1px); }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 4rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 1.75rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    #how-it-works {
+      background: var(--cream);
+      padding: 6rem 1.5rem;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      color: var(--dark);
+      margin-bottom: 0;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .step-connector {
+      display: none;
+    }
+    .step-card {
+      padding: 2rem 1.5rem;
+      position: relative;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-right: none;
+      transition: box-shadow 0.2s;
+    }
+    .step-card:last-child { border-right: 1px solid var(--border); }
+    .step-card:hover { box-shadow: 0 4px 20px rgba(13,27,42,0.08); }
+    .step-number {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.9;
+    }
+    .step-card h3 {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    .step-card p {
+      font-size: 0.875rem;
+      color: var(--grey);
+      line-height: 1.65;
+    }
+    .step-arrow {
+      position: absolute;
+      right: -12px;
+      top: 2rem;
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      clip-path: polygon(0 0, 60% 50%, 0 100%);
+      z-index: 2;
+    }
+    .step-card:last-child .step-arrow { display: none; }
+
+    /* ===== WHY US ===== */
+    #why-us {
+      background: var(--white);
+      padding: 6rem 1.5rem;
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+    .benefit-card {
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--gold);
+      padding: 2rem;
+      border-radius: var(--radius);
+      transition: box-shadow 0.2s;
+    }
+    .benefit-card:hover { box-shadow: 0 4px 24px rgba(13,27,42,0.07); }
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(232,160,32,0.12);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .benefit-icon svg { width: 20px; height: 20px; }
+    .benefit-card h3 {
+      font-size: 1.05rem;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+    .benefit-card p { font-size: 0.9rem; }
+    .lender-panel {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 2.25rem 2.5rem;
+    }
+    .lender-panel h4 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .lender-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .lender-tag {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      letter-spacing: 0.02em;
+    }
+    .lender-tag.highlight {
+      background: rgba(232,160,32,0.2);
+      border-color: rgba(232,160,32,0.5);
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--dark);
+      padding: 6rem 1.5rem;
+    }
+    #about .section-label { color: var(--gold); }
+    #about h2 {
+      font-size: clamp(1.8rem, 4vw, 2.75rem);
+      color: var(--white);
+      margin-bottom: 0;
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .about-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-callout {
+      background: rgba(232,160,32,0.08);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.75rem 2rem;
+    }
+    .about-callout p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .about-callout strong { color: var(--gold); font-style: normal; }
+
+    /* ===== CALCULATOR ===== */
+    #calculator {
+      background: var(--cream);
+      padding: 6rem 1.5rem;
+    }
+    .calc-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .calc-supporting {
+      text-align: center;
+      color: var(--grey);
+      margin-top: -2rem;
+      margin-bottom: 3.5rem;
+      font-size: 0.95rem;
+    }
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .calc-sliders {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .slider-group { margin-bottom: 2.25rem; }
+    .slider-group:last-child { margin-bottom: 0; }
+    .slider-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+    .slider-value {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 0.9rem;
+    }
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+      transition: transform 0.15s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: var(--gold);
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--gold);
+    }
+    .slider-track-wrap {
+      position: relative;
+    }
+    .calc-results {
+      background: var(--navy);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      position: sticky;
+      top: 88px;
+    }
+    .result-primary-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .result-primary {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .result-primary-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 2rem;
+    }
+    .result-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 0 0 1.75rem;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.1rem;
+    }
+    .result-row:last-of-type { margin-bottom: 0; }
+    .result-row-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+    .result-row-value {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--white);
+    }
+    .calc-disclaimer {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.55;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: var(--white);
+      padding: 6rem 1.5rem;
+    }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contact-info h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--dark);
+      margin-bottom: 1.25rem;
+    }
+    .contact-info > p {
+      font-size: 0.95rem;
+      color: var(--grey);
+      margin-bottom: 2rem;
+    }
+    .contact-email {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      color: var(--dark);
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-bottom: 1.75rem;
+      transition: color 0.2s;
+    }
+    .contact-email:hover { color: var(--gold); }
+    .feedback-badge {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      background: rgba(74,158,202,0.08);
+      border: 1px solid rgba(74,158,202,0.25);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--dark);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .feedback-badge .check { color: #2ecc71; font-size: 1rem; flex-shrink: 0; }
+
+    /* Form */
+    .enquiry-form { width: 100%; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .form-group label .req { color: var(--gold); }
+    .form-control {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--dark);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus { border-color: var(--gold); }
+    .form-control.error { border-color: #e74c3c; }
+    select.form-control { cursor: pointer; }
+    textarea.form-control { resize: vertical; min-height: 100px; }
+
+    /* Security check */
+    .security-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .robot-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .robot-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      transition: border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+    }
+    .robot-checkbox.checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .robot-checkbox.checked::after {
+      content: '✓';
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .robot-label {
+      font-size: 0.9rem;
+      color: var(--dark);
+      font-weight: 500;
+    }
+    .math-challenge {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .math-challenge.visible { display: block; }
+    .math-challenge label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .math-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .math-question {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--dark);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.55rem 0.9rem;
+      white-space: nowrap;
+    }
+    .math-input {
+      width: 80px;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--dark);
+      text-align: center;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .math-input:focus { border-color: var(--gold); }
+    .math-input.error { border-color: #e74c3c; }
+    .math-feedback {
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+    .math-feedback.ok { color: #2ecc71; }
+    .math-feedback.fail { color: #e74c3c; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-bottom: 1rem;
+    }
+    .btn-submit:hover:not(:disabled) { background: #d4911a; transform: translateY(-1px); }
+    .btn-submit:disabled {
+      background: var(--border);
+      color: var(--grey);
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-notice {
+      font-size: 0.78rem;
+      color: var(--grey);
+      line-height: 1.55;
+      text-align: center;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 3rem 2rem;
+      background: rgba(46,204,113,0.06);
+      border: 1px solid rgba(46,204,113,0.25);
+      border-radius: var(--radius);
+    }
+    .success-message.visible { display: block; }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(46,204,113,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 1.5rem;
+    }
+    .success-message h3 {
+      font-size: 1.3rem;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+    .success-message p { color: var(--grey); font-size: 0.95rem; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      border-top: 3px solid var(--gold);
+      padding: 2.5rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-email {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-email:hover { color: var(--gold); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .steps-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .step-card {
+        border-right: 1px solid var(--border);
+      }
+      .step-card:nth-child(2) { border-right: none; }
+      .step-arrow { display: none; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .calc-layout { grid-template-columns: 1fr; }
+      .calc-results { position: static; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      #hero { padding: 7rem 1.25rem 4rem; }
+      .hero-stats { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .stat-item:last-child { border-bottom: none; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-card { border-right: 1px solid var(--border); }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .benefits-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">Finance<span>SME</span></a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#calculator">Calculator</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#why-us">Why Us</a>
+    <a href="#about">About</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">South Africa's Business Finance Intermediary</span>
+    <h1 class="hero-headline">One Application.<br /><span class="accent">20+ Lenders.</span><br />Your Best Rate.</h1>
+    <p class="hero-tagline">Finance Made Smarter. Growth Made Possible.</p>
+    <p class="hero-para">FinanceSME submits your loan application to more than 20 financial institutions and investors simultaneously — so lenders compete to offer you the most affordable interest rate on your loan.</p>
+    <a href="#contact" class="btn-primary">Start Your Application</a>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-value">20+</span>
+        <span class="stat-label">Finance Institutions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2</span>
+        <span class="stat-label">Business Days Feedback</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">1</span>
+        <span class="stat-label">Application Submitted</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">The Process</span>
+      <h2>How FinanceSME Works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <span class="step-number">01</span>
+        <h3>Submit One Application</h3>
+        <p>Complete a single application form with your business and funding details. No repetition, no multiple submissions on your end.</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-number">02</span>
+        <h3>We Approach 20+ Lenders</h3>
+        <p>FinanceSME simultaneously presents your application to our network of more than 20 banks, development finance institutions, and private investors.</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-number">03</span>
+        <h3>Lenders Compete for You</h3>
+        <p>Multiple institutions respond with their best offers — creating genuine competition that drives down your interest rate.</p>
+        <div class="step-arrow"></div>
+      </div>
+      <div class="step-card reveal">
+        <span class="step-number">04</span>
+        <h3>You Receive a Proposal</h3>
+        <p>We consolidate the best offers and present you with a clear funding proposal within 2 business days of your application.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section id="why-us">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Advantage</span>
+      <h2>Why Entrepreneurs Choose FinanceSME</h2>
+      <p style="max-width:600px;margin:1rem auto 0;color:var(--grey);font-size:1rem;">We remove the most frustrating parts of securing business finance — endless paperwork, uncertainty, and the fear of settling for a rate that's not the best you qualify for.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E8A020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <h3>Competitive Rate Guarantee</h3>
+        <p>With 20+ lenders in the room, you are never stuck with a single bank's offer. Real competition means better rates for your business.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E8A020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3>Trusted Intermediary Network</h3>
+        <p>We have established relationships with banks, development finance institutions (DFIs), and private investors — your application carries weight.</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E8A020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Fast, Clear Feedback</h3>
+        <p>Know where you stand within 2 business days — not weeks of silence from a bank. We keep you informed at every step of the process.</p>
+      </div>
+    </div>
+    <div class="lender-panel reveal">
+      <h4>Our Lender Network — 20+ Institutions &amp; Counting</h4>
+      <div class="lender-tags">
+        <span class="lender-tag">Commercial Banks</span>
+        <span class="lender-tag">Development Finance</span>
+        <span class="lender-tag">Private Investors</span>
+        <span class="lender-tag">Business Funders</span>
+        <span class="lender-tag">Micro-lenders</span>
+        <span class="lender-tag">Venture Capital</span>
+        <span class="lender-tag">Alternative Lenders</span>
+        <span class="lender-tag">Impact Investors</span>
+        <span class="lender-tag highlight">+ Many More</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-left reveal">
+        <span class="section-label">About FinanceSME</span>
+        <h2>We Work for Entrepreneurs,<br />Not for Banks.</h2>
+      </div>
+      <div class="about-right reveal">
+        <div class="about-text">
+          <p>FinanceSME was built on a simple belief: every entrepreneur deserves access to fair, affordable financing — not just the rate one bank decides to offer. We act as your dedicated finance intermediary, doing the legwork of approaching lenders on your behalf so you can focus on running your business.</p>
+          <p>Whether you are seeking start-up capital, expansion funding, or working capital, we structure your application professionally and present it to the widest possible audience of lenders — creating real competition that benefits you.</p>
+        </div>
+        <div class="about-callout" style="margin-top:2rem;">
+          <p><strong>Our commitment to you:</strong> Upon submission of your application, FinanceSME will provide you with feedback on your proposal within 2 business days. We believe your time is valuable — and so is your business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<section id="calculator">
+  <div class="calc-wrap">
+    <div class="section-header reveal">
+      <span class="section-label">Estimate Your Repayment</span>
+      <h2>Loan Repayment Calculator</h2>
+    </div>
+    <p class="calc-supporting reveal">Use the sliders below to estimate your monthly repayment. Final rates and terms are subject to lender approval.</p>
+    <div class="calc-layout reveal">
+      <div class="calc-sliders">
+        <!-- Loan Amount -->
+        <div class="slider-group">
+          <span class="slider-label">Loan Amount</span>
+          <span class="slider-value" id="loanDisplay">R 2 000 000</span>
+          <input type="range" id="loanSlider" min="250000" max="20000000" step="50000" value="2000000" />
+        </div>
+        <!-- Term -->
+        <div class="slider-group">
+          <span class="slider-label">Repayment Term</span>
+          <span class="slider-value" id="termDisplay">60 months (5 years)</span>
+          <input type="range" id="termSlider" min="3" max="120" step="1" value="60" />
+        </div>
+        <!-- Interest Rate -->
+        <div class="slider-group">
+          <span class="slider-label">Interest Rate (per annum)</span>
+          <span class="slider-value" id="rateDisplay">12.00% per annum</span>
+          <input type="range" id="rateSlider" min="0" max="20" step="0.25" value="12" />
+        </div>
+      </div>
+      <div class="calc-results">
+        <span class="result-primary-label">Monthly Repayment</span>
+        <div class="result-primary" id="monthlyResult">R 0</div>
+        <div class="result-primary-sub">per month</div>
+        <hr class="result-divider" />
+        <div class="result-row">
+          <span class="result-row-label">Total Repayment</span>
+          <span class="result-row-value" id="totalResult">R 0</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">Total Interest Paid</span>
+          <span class="result-row-value" id="interestResult">R 0</span>
+        </div>
+        <p class="calc-disclaimer">This calculator provides an estimate only. Actual repayment amounts will depend on the lender's approved interest rate and terms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Get in Touch</span>
+      <h2>Ready to Access Better Finance?</h2>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-info reveal">
+        <p>Complete the form and one of our finance specialists will review your information and respond within 2 business days with a clear proposal or next steps.</p>
+        <a href="mailto:rscsnb@gmail.com" class="contact-email">
+          <span>📧</span> rscsnb@gmail.com
+        </a>
+        <div class="feedback-badge">
+          <span class="check">✅</span>
+          <span>Feedback guaranteed within 2 business days of application submission</span>
+        </div>
+      </div>
+      <div class="reveal" id="form-container">
+        <form class="enquiry-form" id="enquiryForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="firstName" placeholder="e.g. Sipho" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" class="form-control" id="lastName" placeholder="e.g. Nkosi" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" class="form-control" id="email" placeholder="you@company.co.za" required />
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="+27 xx xxx xxxx" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Business Name <span class="req">*</span></label>
+            <input type="text" class="form-control" id="businessName" placeholder="Your registered business name" required />
+          </div>
+          <div class="form-group">
+            <label>Province <span class="req">*</span></label>
+            <select class="form-control" id="province" required>
+              <option value="">— Select Province —</option>
+              <option value="EC">Eastern Cape (EC)</option>
+              <option value="FS">Free State (FS)</option>
+              <option value="GP">Gauteng (GP)</option>
+              <option value="KZN">KwaZulu-Natal (KZN)</option>
+              <option value="LP">Limpopo (LP)</option>
+              <option value="MP">Mpumalanga (MP)</option>
+              <option value="NC">Northern Cape (NC)</option>
+              <option value="NW">North West (NW)</option>
+              <option value="WC">Western Cape (WC)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Finance Amount Required <span class="req">*</span></label>
+            <select class="form-control" id="financeAmount" required>
+              <option value="">— Select an amount —</option>
+              <option value="under500k">Under R 500,000</option>
+              <option value="500k-1m">R 500,000 – R 1 Million</option>
+              <option value="1m-5m">R 1M – R 5 Million</option>
+              <option value="5m-20m">R 5M – R 20 Million</option>
+              <option value="above20m">Above R 20 Million</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Purpose of Funding <span class="req">*</span></label>
+            <select class="form-control" id="purpose" required>
+              <option value="">— Select purpose —</option>
+              <option value="startup">Start-up / Launch Capital</option>
+              <option value="expansion">Expansion / Growth</option>
+              <option value="working-capital">Working Capital</option>
+              <option value="asset">Asset / Equipment Finance</option>
+              <option value="property">Property Finance</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Brief Description of Business &amp; Funding Need</label>
+            <textarea class="form-control" id="description" placeholder="Tell us a little about your business and what the funding will be used for…"></textarea>
+          </div>
+
+          <!-- Security Check -->
+          <div class="security-box">
+            <div class="robot-row" id="robotRow">
+              <div class="robot-checkbox" id="robotCheckbox"></div>
+              <span class="robot-label">I'm not a robot</span>
+            </div>
+            <div class="math-challenge" id="mathChallenge">
+              <label>Verify you're human — solve this:</label>
+              <div class="math-row">
+                <span class="math-question" id="mathQuestion"></span>
+                <input type="number" class="math-input" id="mathAnswer" placeholder="?" />
+              </div>
+              <p class="math-feedback" id="mathFeedback"></p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn" disabled>Submit Application Enquiry</button>
+          <p class="form-notice">By submitting this form you agree to be contacted by FinanceSME regarding your funding enquiry. Feedback will be provided within 2 business days.</p>
+        </form>
+        <div class="success-message" id="successMessage">
+          <div class="success-icon">✓</div>
+          <h3>Thank you! Your application enquiry has been received.</h3>
+          <p>We'll be in touch within 2 business days with a clear proposal or next steps for your funding application.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Finance<span>SME</span></div>
+    <p class="footer-copy">© 2025 FinanceSME. All rights reserved.</p>
+    <a href="mailto:rscsnb@gmail.com" class="footer-email">rscsnb@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  // ===== MOBILE NAV =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ===== SCROLL REVEAL =====
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ===== CALCULATOR =====
+  function fmtZAR(n) {
+    return 'R ' + Math.round(n).toLocaleString('en-ZA').replace(/,/g, ' ');
+  }
+  function calcRepayment() {
+    const P = parseFloat(document.getElementById('loanSlider').value);
+    const n = parseInt(document.getElementById('termSlider').value);
+    const annualRate = parseFloat(document.getElementById('rateSlider').value);
+    let monthly;
+    if (annualRate === 0) {
+      monthly = P / n;
+    } else {
+      const r = annualRate / 100 / 12;
+      monthly = P * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+    const total = monthly * n;
+    const interest = total - P;
+    document.getElementById('monthlyResult').textContent = fmtZAR(monthly);
+    document.getElementById('totalResult').textContent = fmtZAR(total);
+    document.getElementById('interestResult').textContent = fmtZAR(interest);
+  }
+  function updateLoanDisplay() {
+    const v = parseInt(document.getElementById('loanSlider').value);
+    document.getElementById('loanDisplay').textContent = fmtZAR(v);
+    updateSliderFill('loanSlider', 250000, 20000000, v);
+    calcRepayment();
+  }
+  function updateTermDisplay() {
+    const v = parseInt(document.getElementById('termSlider').value);
+    const years = Math.floor(v / 12);
+    const months = v % 12;
+    let label = v < 12 ? `${v} months` : `${v} months (${years} year${years > 1 ? 's' : ''}${months > 0 ? ' ' + months + ' mo' : ''})`;
+    document.getElementById('termDisplay').textContent = label;
+    updateSliderFill('termSlider', 3, 120, v);
+    calcRepayment();
+  }
+  function updateRateDisplay() {
+    const v = parseFloat(document.getElementById('rateSlider').value);
+    document.getElementById('rateDisplay').textContent = v.toFixed(2) + '% per annum';
+    updateSliderFill('rateSlider', 0, 20, v);
+    calcRepayment();
+  }
+  function updateSliderFill(id, min, max, val) {
+    const pct = ((val - min) / (max - min)) * 100;
+    document.getElementById(id).style.background =
+      `linear-gradient(to right, #E8A020 ${pct}%, #D9D3C8 ${pct}%)`;
+  }
+  document.getElementById('loanSlider').addEventListener('input', updateLoanDisplay);
+  document.getElementById('termSlider').addEventListener('input', updateTermDisplay);
+  document.getElementById('rateSlider').addEventListener('input', updateRateDisplay);
+  updateLoanDisplay(); updateTermDisplay(); updateRateDisplay();
+
+  // ===== MATH CHALLENGE =====
+  let mathAnswer = null;
+  let mathVerified = false;
+
+  function generateMath() {
+    const ops = ['+', '-', '×'];
+    const op = ops[Math.floor(Math.random() * ops.length)];
+    let a, b, ans;
+    if (op === '+') {
+      a = Math.floor(Math.random() * 15) + 2;
+      b = Math.floor(Math.random() * 15) + 2;
+      ans = a + b;
+    } else if (op === '-') {
+      a = Math.floor(Math.random() * 12) + 8;
+      b = Math.floor(Math.random() * 7) + 1;
+      ans = a - b;
+    } else {
+      a = Math.floor(Math.random() * 9) + 2;
+      b = Math.floor(Math.random() * 9) + 2;
+      ans = a * b;
+    }
+    mathAnswer = ans;
+    document.getElementById('mathQuestion').textContent = `What is ${a} ${op} ${b}?`;
+    document.getElementById('mathAnswer').value = '';
+    document.getElementById('mathFeedback').textContent = '';
+    document.getElementById('mathFeedback').className = 'math-feedback';
+  }
+
+  const robotRow = document.getElementById('robotRow');
+  const robotCheckbox = document.getElementById('robotCheckbox');
+  const mathChallenge = document.getElementById('mathChallenge');
+  const mathAnswerInput = document.getElementById('mathAnswer');
+  const mathFeedback = document.getElementById('mathFeedback');
+  const submitBtn = document.getElementById('submitBtn');
+
+  robotRow.addEventListener('click', () => {
+    if (!robotCheckbox.classList.contains('checked')) {
+      robotCheckbox.classList.add('checked');
+      mathChallenge.classList.add('visible');
+      generateMath();
+    }
+  });
+
+  mathAnswerInput.addEventListener('input', () => {
+    const val = parseInt(mathAnswerInput.value.trim());
+    if (!isNaN(val)) {
+      if (val === mathAnswer) {
+        mathVerified = true;
+        mathFeedback.textContent = '✓ Correct!';
+        mathFeedback.className = 'math-feedback ok';
+        mathAnswerInput.classList.remove('error');
+        submitBtn.disabled = false;
+      } else {
+        mathVerified = false;
+        mathFeedback.textContent = 'Incorrect — try again.';
+        mathFeedback.className = 'math-feedback fail';
+        submitBtn.disabled = true;
+      }
+    } else {
+      mathVerified = false;
+      submitBtn.disabled = true;
+    }
+  });
+
+  // ===== FORM VALIDATION & SUBMISSION =====
+  const requiredFields = ['firstName', 'lastName', 'email', 'businessName', 'province', 'financeAmount', 'purpose'];
+
+  function validateForm() {
+    let valid = true;
+    requiredFields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) {
+        el.classList.add('error');
+        valid = false;
+      } else {
+        el.classList.remove('error');
+      }
+    });
+    const emailEl = document.getElementById('email');
+    if (emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('error');
+      valid = false;
+    }
+    if (!mathVerified) {
+      mathAnswerInput.classList.add('error');
+      valid = false;
+    }
+    return valid;
+  }
+
+  requiredFields.forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById(id).classList.remove('error');
+    });
+  });
+
+  document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateForm()) {
+      document.getElementById('enquiryForm').style.display = 'none';
+      document.getElementById('successMessage').classList.add('visible');
+    }
+  });
+</script>
+</body>
+</html>
