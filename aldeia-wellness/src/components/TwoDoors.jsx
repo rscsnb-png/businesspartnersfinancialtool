@@ -85,61 +85,51 @@ export default function TwoDoors({ onOpenWellness }) {
             </div>
           </motion.div>
 
-          {/* Right door — Wellness House */}
+          {/* Right door — Wellness House (editorial / spa style) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative bg-gradient-to-br from-green/5 via-cream to-purple/5 rounded-[22px] overflow-hidden min-h-[420px] flex flex-col border-2 border-stone/40 hover:border-green/40 hover:shadow-[6px_6px_0_0_rgba(123,169,58,0.2)] transition-all duration-300 cursor-pointer"
+            className="group relative bg-cream rounded-[22px] overflow-hidden min-h-[420px] flex flex-col border border-stone/60 hover:border-stone hover:shadow-[0_8px_32px_rgba(0,0,0,0.07)] transition-all duration-500 cursor-pointer"
             onClick={() => onOpenWellness('house')}
           >
-            {/* Rainbow accent top bar */}
-            <div className="absolute top-0 left-0 right-0 h-[5px] flex overflow-hidden rounded-t-[22px]">
-              {['#7BA93A','#237BB7','#7E479A','#F2C418','#C8363F'].map(c => (
-                <div key={c} style={{ background: c, flex: 1 }} />
-              ))}
-            </div>
-
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-green/10 rounded-full blur-3xl" />
+            {/* Thin green accent line — top only */}
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-green rounded-t-[22px]" />
 
             <div className="relative z-10 p-8 lg:p-10 flex flex-col h-full pt-10">
-              <div className="flex items-start justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-green/15 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold px-3 py-1 rounded-full bg-yellow/20 text-yellow-dark shadow-[2px_2px_0_0_#B08A00]">
-                  Opening 2027
+              {/* Opening badge — minimal */}
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase text-green">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green" />
+                  Opening 2027 · Durbanville
                 </span>
               </div>
 
-              <h3 className="font-serif text-2xl lg:text-3xl text-navy mb-3">
+              <h3 className="font-serif text-2xl lg:text-3xl text-navy mb-3 leading-snug">
                 Aldeia Wellness House
               </h3>
-              <p className="text-warm-gray leading-relaxed mb-8 flex-1">
+              <p className="font-serif text-navy/50 italic mb-5">
+                A village of professionals, under one welcoming roof.
+              </p>
+              <p className="text-warm-gray leading-relaxed mb-8 flex-1 text-sm">
                 Individual and family wellbeing in Durbanville: family wellness support,
                 wellness counselling and a team of independent practitioners.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-8">
                 {['Family Wellness', 'Wellness Counselling', 'Durbanville'].map((tag) => (
-                  <span key={tag} className="text-xs px-3 py-1 rounded-full bg-navy/8 text-navy/70">
+                  <span key={tag} className="text-xs px-3 py-1.5 rounded-full border border-stone/60 text-warm-gray">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <button
-                onClick={() => onOpenWellness('house')}
-                className="inline-flex items-center gap-2 text-sm font-bold text-green hover:text-sage-dark transition-colors"
-              >
+              <div className="flex items-center gap-2 text-sm font-medium text-navy group-hover:gap-3 transition-all duration-200">
                 Visit the Wellness House
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
-              </button>
+              </div>
             </div>
           </motion.div>
         </div>
