@@ -257,7 +257,7 @@ export default function BlogPost({ onClose }) {
               <a
                 href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
                 onClick={onClose}
-                className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-3 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] active:translate-y-px active:shadow-[2px_2px_0_0_#9B2429] transition-all duration-150"
               >
                 Book a Free Consultation
               </a>

@@ -1,46 +1,53 @@
 @import "tailwindcss";
-@import "@fontsource-variable/playfair-display";
-@import "@fontsource-variable/inter";
 
 @theme {
-  --font-serif: "Playfair Display Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
+  /* ── Primary logo palette ── */
+  --color-navy:        #0D3A91;
+  --color-blue:        #0D3A91;   /* backward-compat alias → navy (used for headings) */
+  --color-blue-light:  #2080CC;
+  --color-blue-dark:   #092668;
+  --color-sky:         #237BB7;
+  --color-red:         #C8363F;
+  --color-yellow:      #F2C418;
+  --color-green:       #7BA93A;
+  --color-purple:      #7E479A;
 
-  --color-beige: #FAFAF7;
-  --color-beige-dark: #F0F0EA;
-  --color-white: #FFFFFF;
-  --color-blue: #1A3DA8;
-  --color-blue-light: #2550C5;
-  --color-blue-dark: #0F2466;
-  --color-sage: #34C67A;
-  --color-sage-light: #5FD99A;
-  --color-sage-dark: #22915A;
-  --color-gold: #FFCF26;
-  --color-gold-light: #FFDB5C;
-  --color-gold-dark: #9A7B00;
-  --color-coral: #FF6B4A;
-  --color-coral-light: #FF8F76;
-  --color-lavender: #E8E0F0;
-  --color-mint: #34C67A;
-  --color-sunshine: #FFCF26;
-  --color-charcoal: #1A1A2E;
-  --color-warm-gray: #5A5A6E;
-  --color-stone: #E2E0DC;
+  /* ── Neutrals ── */
+  --color-cream:       #FDF8EF;
+  --color-white:       #FFFFFF;
+  --color-warm-gray:   #5A6E82;
+  --color-stone:       #E5E0D8;
+
+  /* ── Backward-compat aliases so existing class names work with new colours ── */
+  --color-coral:       #C8363F;   /* → red */
+  --color-coral-light: #D95861;
+  --color-sage:        #7BA93A;   /* → green */
+  --color-sage-dark:   #5A7D2B;
+  --color-sage-light:  #A0C463;
+  --color-gold:        #F2C418;   /* → yellow */
+  --color-gold-dark:   #B08A00;
+  --color-gold-light:  #F7DC5A;
+  --color-lavender:    #7E479A;   /* → purple */
+  --color-mint:        #237BB7;   /* → sky */
+  --color-sunshine:    #F2C418;   /* → yellow */
+  --color-charcoal:    #0D3A91;   /* → navy */
+  --color-beige:       #FDF8EF;   /* → cream */
+  --color-beige-dark:  #F0E8D8;
+
+  /* ── Fonts ── */
+  --font-serif: "Baloo 2", "Trebuchet MS", sans-serif;
+  --font-sans:  "Figtree", system-ui, -apple-system, sans-serif;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-navy);
+    background: var(--color-white);
+  }
 
-body {
-  font-family: var(--font-sans);
-  color: var(--color-charcoal);
-  background-color: var(--color-beige);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: var(--color-coral);
-  color: white;
+  /* Baloo 2 is designed to be used at weight 800 for display/headings */
+  .font-serif {
+    font-weight: 800;
+  }
 }

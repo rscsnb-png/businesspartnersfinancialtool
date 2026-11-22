@@ -97,7 +97,7 @@ function PageHouse({ onNavigate }) {
 
         <button
           onClick={() => onNavigate('interest')}
-          className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-sage to-sage-dark text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-sage/25 hover:-translate-y-0.5 transition-all duration-300"
+          className="inline-flex items-center justify-center px-8 py-4 bg-green text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#5A7D2B] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#5A7D2B] active:translate-y-px active:shadow-[2px_2px_0_0_#5A7D2B] transition-all duration-150"
         >
           Join the Interest List
           <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -204,7 +204,7 @@ function PageFamily({ onNavigate }) {
 
         <button
           onClick={() => onNavigate('interest')}
-          className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300"
+          className="inline-flex items-center justify-center px-8 py-4 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] active:translate-y-px active:shadow-[2px_2px_0_0_#9B2429] transition-all duration-150"
         >
           Ask about the Family Wellness Plan
           <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -320,7 +320,7 @@ function PageServices({ onNavigate }) {
 
       <button
         onClick={() => onNavigate('interest')}
-        className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300"
+        className="inline-flex items-center justify-center px-8 py-4 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] active:translate-y-px active:shadow-[2px_2px_0_0_#9B2429] transition-all duration-150"
       >
         Join the Interest List
         <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -482,7 +482,7 @@ function PageInterest() {
         <button
           type="submit"
           disabled={!form.consent || form.interests.length === 0}
-          className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          className="w-full inline-flex items-center justify-center px-8 py-4 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] active:translate-y-px active:shadow-[2px_2px_0_0_#9B2429] transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:shadow-none"
         >
           Join the Interest List
           <svg className="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -517,11 +517,15 @@ export default function WellnessHub({ initialPage, onClose }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 40 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-3xl mx-auto my-8 lg:my-16 bg-white rounded-3xl shadow-2xl overflow-hidden"
+        className="max-w-3xl mx-auto my-8 lg:my-16 bg-white rounded-3xl shadow-2xl overflow-hidden relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Gradient bar */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-coral via-gold to-sage z-10" />
+        {/* Rainbow bar */}
+        <div className="absolute top-0 left-0 right-0 h-[6px] flex overflow-hidden z-20">
+          {['#C8363F','#F2C418','#0D3A91','#7BA93A','#7E479A','#237BB7','#006CC0'].map(c => (
+            <div key={c} style={{ background: c, flex: 1 }} />
+          ))}
+        </div>
 
         {/* Sub-nav */}
         <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-stone/50 z-10 pt-1.5">

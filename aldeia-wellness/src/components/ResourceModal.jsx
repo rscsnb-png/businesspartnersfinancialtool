@@ -156,7 +156,7 @@ const pages = {
         <div className="bg-gradient-to-r from-blue to-blue-light rounded-2xl p-8 mt-10 text-center text-white">
           <h3 className="font-serif text-xl mb-3">Still have questions?</h3>
           <p className="text-white/70 text-sm mb-6">Book a free consultation and we&apos;ll answer everything in person.</p>
-          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-white text-blue text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300">
+          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-white text-navy text-sm font-bold rounded-full shadow-[3px_3px_0_0_rgba(255,255,255,0.4)] hover:-translate-y-0.5 transition-all duration-150 border border-white/30">
             Book a Free Consultation
           </a>
         </div>
@@ -205,7 +205,7 @@ const pages = {
           <p className="text-warm-gray text-sm mb-6 max-w-md mx-auto">
             Our team can provide advice specific to your child&apos;s needs. Start with a free consultation.
           </p>
-          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300">
+          <a href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request" className="inline-flex items-center justify-center px-8 py-3 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150">
             Book a Free Consultation
           </a>
         </div>
@@ -289,7 +289,7 @@ const pages = {
           <p className="text-warm-gray text-sm mb-6 max-w-md mx-auto">
             Get in touch to register for upcoming events or suggest topics you&apos;d like us to cover.
           </p>
-          <a href="mailto:info@aldeiawellness.com" className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-coral to-gold text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-coral/25 transition-all duration-300">
+          <a href="mailto:info@aldeiawellness.com" className="inline-flex items-center justify-center px-8 py-3 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150">
             Email Us to Register
           </a>
         </div>
@@ -319,7 +319,11 @@ export default function ResourceModal({ page, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative">
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-coral via-gold to-sage" />
+          <div className="absolute top-0 left-0 right-0 h-[6px] flex overflow-hidden">
+            {['#C8363F','#F2C418','#0D3A91','#7BA93A','#7E479A','#237BB7','#006CC0'].map(c => (
+              <div key={c} style={{ background: c, flex: 1 }} />
+            ))}
+          </div>
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-10 h-10 rounded-full bg-beige/80 backdrop-blur-sm flex items-center justify-center text-charcoal hover:bg-beige transition-colors z-10"

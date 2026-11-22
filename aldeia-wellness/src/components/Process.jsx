@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import RainbowBar from './RainbowBar'
 
 const steps = [
   {
@@ -7,10 +8,11 @@ const steps = [
     title: 'Free Consultation',
     subtitle: 'We Listen',
     description:
-      'Share your child\'s story, strengths, and challenges. We\'ll learn about your family\'s goals and answer every question — no pressure, no commitment.',
+      "Share your child's story, strengths, and challenges. We'll learn about your family's goals and answer every question — no pressure, no commitment.",
     detail: '30-minute video or in-person session',
-    color: 'from-coral to-gold',
-    dotColor: 'bg-coral',
+    bg: 'bg-red',
+    tagBg: 'bg-red',
+    dot: 'bg-red',
   },
   {
     number: '02',
@@ -19,8 +21,9 @@ const steps = [
     description:
       'Our multidisciplinary team observes and evaluates your child across educational, therapeutic, and social-emotional domains to build a complete picture.',
     detail: 'Comprehensive written report provided',
-    color: 'from-sage to-mint',
-    dotColor: 'bg-sage',
+    bg: 'bg-green',
+    tagBg: 'bg-green',
+    dot: 'bg-green',
   },
   {
     number: '03',
@@ -29,18 +32,20 @@ const steps = [
     description:
       'Together, we co-create a learning plan that integrates education and therapy — tailored for homeschool or mainstream settings — with clear goals and the flexibility to adapt.',
     detail: 'Collaborative planning with your family',
-    color: 'from-gold to-sunshine',
-    dotColor: 'bg-gold',
+    bg: 'bg-yellow',
+    tagBg: 'bg-yellow',
+    dot: 'bg-yellow',
   },
   {
     number: '04',
     title: 'Integrated Support',
     subtitle: 'We Deliver',
     description:
-      'Your child\'s team of educators and therapists work in concert — sharing progress, adjusting strategies, and keeping you informed every step of the way.',
+      "Your child's team of educators and therapists work in concert — sharing progress, adjusting strategies, and keeping you informed every step of the way.",
     detail: 'Regular progress reviews & family check-ins',
-    color: 'from-lavender to-sage-light',
-    dotColor: 'bg-lavender',
+    bg: 'bg-purple',
+    tagBg: 'bg-purple',
+    dot: 'bg-purple',
   },
 ]
 
@@ -59,7 +64,7 @@ function StepCard({ step, index }) {
       <div className="flex gap-6 lg:gap-8">
         {/* Step indicator */}
         <div className="flex flex-col items-center flex-shrink-0">
-          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white font-serif font-bold text-lg shadow-lg`}>
+          <div className={`w-12 h-12 rounded-2xl ${step.bg} flex items-center justify-center text-white font-serif text-lg shadow-[3px_3px_0_0_rgba(0,0,0,0.15)]`}>
             {step.number}
           </div>
           {index < steps.length - 1 && (
@@ -69,12 +74,12 @@ function StepCard({ step, index }) {
 
         {/* Content */}
         <div className="pb-12">
-          <div className="text-xs font-semibold tracking-[0.2em] uppercase text-sage mb-2">
+          <div className="text-xs font-bold tracking-widest uppercase text-green mb-2">
             {step.subtitle}
           </div>
-          <h3 className="font-serif text-2xl text-blue mb-3">{step.title}</h3>
+          <h3 className="font-serif text-2xl text-navy mb-3">{step.title}</h3>
           <p className="text-warm-gray leading-relaxed mb-4">{step.description}</p>
-          <div className="inline-flex items-center gap-2 text-xs font-medium text-white bg-gradient-to-r from-sage to-sage-dark px-4 py-1.5 rounded-full">
+          <div className={`inline-flex items-center gap-2 text-xs font-bold text-white ${step.tagBg} px-4 py-1.5 rounded-full shadow-[2px_2px_0_0_rgba(0,0,0,0.15)]`}>
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
             </svg>
@@ -99,14 +104,15 @@ export default function Process() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gold/10 text-gold-dark text-xs font-semibold tracking-wide uppercase mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold" />
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow/15 text-yellow-dark text-xs font-bold tracking-widest uppercase mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
               Your Journey
             </span>
-            <h2 className="font-serif text-3xl lg:text-[2.75rem] text-blue leading-snug mb-6">
+            <h2 className="font-serif text-3xl lg:text-[2.75rem] text-navy leading-snug mb-3">
               Four steps to a{' '}
-              <span className="italic text-sage">brighter path</span>
+              <span className="text-green">brighter path</span>
             </h2>
+            <RainbowBar className="w-36 mx-auto mt-3 mb-6" />
             <p className="text-warm-gray text-lg leading-relaxed">
               From first conversation to ongoing support, here&apos;s how we
               partner with your family to unlock your child&apos;s potential.
