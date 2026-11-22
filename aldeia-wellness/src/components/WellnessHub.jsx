@@ -512,24 +512,27 @@ export default function WellnessHub({ initialPage, onClose }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[60] bg-navy/40 backdrop-blur-sm overflow-y-auto"
-      onClick={onClose}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-50 bg-cream overflow-y-auto"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 40 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-3xl mx-auto my-8 lg:my-16 bg-cream rounded-3xl shadow-xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className="max-w-3xl mx-auto pb-16">
         {/* Sub-nav */}
         <div className="sticky top-0 bg-cream/95 backdrop-blur-md border-b border-stone/50 z-10">
           <div className="flex items-center justify-between px-6 py-4">
-            <div className="flex items-center gap-1 overflow-x-auto scrollbar-none">
+            {/* Back button */}
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 text-sm text-warm-gray hover:text-navy transition-colors flex-shrink-0 mr-3"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+              </svg>
+              <span className="hidden sm:inline">Home</span>
+            </button>
+            <div className="flex items-center gap-1 overflow-x-auto scrollbar-none flex-1">
               {subPages.map((p) => (
                 <button
                   key={p.id}
@@ -544,15 +547,6 @@ export default function WellnessHub({ initialPage, onClose }) {
                 </button>
               ))}
             </div>
-            <button
-              onClick={onClose}
-              className="ml-3 w-8 h-8 rounded-full bg-white/60 border border-stone/40 flex items-center justify-center text-warm-gray hover:bg-white hover:text-navy transition-colors flex-shrink-0"
-              aria-label="Close"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -569,7 +563,7 @@ export default function WellnessHub({ initialPage, onClose }) {
             {pageComponents[activePage]}
           </motion.div>
         </AnimatePresence>
-      </motion.div>
+      </div>
     </motion.div>
   )
 }
