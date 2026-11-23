@@ -210,29 +210,21 @@ function HeroSection() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="rounded-[22px] overflow-hidden"
         >
-          <div className="relative rounded-[22px] overflow-hidden" style={{ minHeight: 320 }}>
-            <img
-              src="/images/stats-bg.jpg"
-              alt="Aldeia Wellness — practitioners and families"
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectPosition: 'center 30%' }}
-            />
-            <div className="absolute inset-0" style={{ background: 'rgba(10,30,60,0.55)' }} />
-            <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-0 py-14 px-6">
-              <div className="text-center px-10 py-4">
-                <div className="font-serif font-extrabold text-white leading-none mb-3" style={{ fontSize: 'clamp(3rem,8vw,5rem)' }}>10</div>
-                <div className="text-xs font-bold tracking-[0.2em] uppercase text-white/60">Branches<br/>Worldwide</div>
-              </div>
-              <div className="hidden md:block w-px self-stretch" style={{ background: 'rgba(255,255,255,0.15)', margin: '1rem 0' }} />
-              <div className="text-center px-10 py-4">
-                <div className="font-serif font-extrabold text-white leading-none mb-3" style={{ fontSize: 'clamp(3rem,8vw,5rem)' }}>3,526</div>
-                <div className="text-xs font-bold tracking-[0.2em] uppercase text-white/60">Families<br/>Supported</div>
-              </div>
-              <div className="hidden md:block w-px self-stretch" style={{ background: 'rgba(255,255,255,0.15)', margin: '1rem 0' }} />
-              <div className="text-center px-10 py-4">
-                <div className="font-serif font-extrabold text-white leading-none mb-3" style={{ fontSize: 'clamp(3rem,8vw,5rem)' }}>14</div>
-                <div className="text-xs font-bold tracking-[0.2em] uppercase text-white/60">International<br/>Awards Won</div>
-              </div>
+          <div className="rounded-[22px] overflow-hidden" style={{ background: `linear-gradient(135deg, ${NAVY} 0%, #1a4a6e 100%)` }}>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-0 py-14 px-6">
+              {[
+                { n: '10', label: 'Branches\nWorldwide' },
+                { n: '3,526', label: 'Families\nSupported' },
+                { n: '14', label: 'International\nAwards Won' },
+              ].map((s, i) => (
+                <div key={s.n} className="flex items-stretch">
+                  {i > 0 && <div className="hidden md:block w-px mx-2 self-stretch my-4" style={{ background: 'rgba(255,255,255,0.15)' }} />}
+                  <div className="text-center px-10 py-4">
+                    <div className="font-serif font-extrabold text-white leading-none mb-3" style={{ fontSize: 'clamp(3rem,8vw,5rem)' }}>{s.n}</div>
+                    <div className="text-xs font-bold tracking-[0.2em] uppercase whitespace-pre-line" style={{ color: `${SAGE}cc` }}>{s.label}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
