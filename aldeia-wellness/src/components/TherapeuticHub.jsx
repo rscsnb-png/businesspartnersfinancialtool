@@ -551,7 +551,7 @@ function AboutSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="space-y-5 text-white/70 leading-relaxed"
+            className="space-y-5 text-white font-semibold leading-relaxed"
           >
             <p>
               Aldeia was founded in 2013 by a group of learning therapists and behaviour
@@ -567,7 +567,7 @@ function AboutSection() {
               Today we operate across 10 branches in South Africa, Namibia and the
               Netherlands, and we&apos;ve supported 3,526 families across three countries.
             </p>
-            <p className="font-serif text-lg text-white/50 italic">
+            <p className="font-serif text-lg text-white font-bold italic">
               &ldquo;Every child. Every family. Every step of the way.&rdquo;
             </p>
           </motion.div>
@@ -581,8 +581,8 @@ function AboutSection() {
             <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0 mb-10">
               {PRACTITIONERS.map(p => (
                 <li key={p.label}
-                  className="px-4 py-2 rounded-full font-semibold text-[0.95rem] bg-white/5 border-2"
-                  style={{ color: p.colour, borderColor: p.colour }}>
+                  className="px-4 py-2 rounded-full font-bold text-[0.95rem] border-2"
+                  style={{ color: p.colour, borderColor: p.colour, background: 'white' }}>
                   {p.label}
                 </li>
               ))}
