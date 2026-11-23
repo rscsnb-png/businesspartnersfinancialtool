@@ -558,6 +558,7 @@ function AboutSection() {
 const CENTRES = [
   {
     country: 'South Africa', flag: '🇿🇦', colour: '#006CC0',
+    map: '/images/map-south-africa.webp',
     regions: [
       { region: 'Gauteng', locations: ['Noordheuwel', 'Randburg'] },
       { region: 'Western Cape', locations: ['Cape Town'] },
@@ -569,6 +570,7 @@ const CENTRES = [
   },
   {
     country: 'Namibia', flag: '🇳🇦', colour: '#C8363F',
+    map: '/images/map-namibia.webp',
     regions: [
       { region: null, locations: ['Swakopmund', 'Walvis Bay', 'Windhoek'] },
     ],
@@ -576,6 +578,7 @@ const CENTRES = [
   },
   {
     country: 'Netherlands', flag: '🇳🇱', colour: '#7BA93A',
+    map: '/images/map-netherlands.webp',
     regions: [
       { region: null, locations: ['Hilversum'] },
     ],
@@ -589,10 +592,25 @@ function CentresSection() {
   return (
     <section id="centres" className="py-[88px] bg-white" ref={ref}>
       <div className="max-w-[1160px] mx-auto px-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-10">
+        {/* World map banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="mb-10"
+        >
           <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">Where we are</span>
-          <RainbowStroke className="w-32 mt-1 mb-4" />
-          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight">Our centres</h2>
+          <RainbowStroke className="w-32 mt-1 mb-6" />
+          <div className="flex flex-col md:flex-row md:items-end gap-6">
+            <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight flex-1">Our centres</h2>
+          </div>
+          <div className="mt-6 rounded-[22px] overflow-hidden shadow-sm border border-stone/40">
+            <img
+              src="/images/map-world.webp"
+              alt="Aldeia global centres map"
+              className="w-full h-auto block"
+            />
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-[18px] mb-6">
@@ -602,15 +620,24 @@ function CentresSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-white rounded-[22px] border border-stone/50 overflow-hidden"
+              className="bg-white rounded-[22px] border border-stone/50 overflow-hidden flex flex-col"
               style={{ borderTop: `7px solid ${c.colour}` }}
             >
-              <div className="p-7">
+              {/* Country map image */}
+              <div className="bg-white flex items-center justify-center p-6 pb-2" style={{ minHeight: 180 }}>
+                <img
+                  src={c.map}
+                  alt={`${c.country} map`}
+                  className="w-full h-auto block object-contain"
+                  style={{ maxHeight: 200 }}
+                />
+              </div>
+              <div className="p-7 pt-3 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">{c.flag}</span>
                   <h3 className="font-serif font-bold text-xl text-navy">{c.country}</h3>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-3 flex-1">
                   {c.regions.map(r => (
                     <div key={r.region || 'main'}>
                       {r.region && (
