@@ -37,7 +37,7 @@ const TICKER = [
   'Life Coaching',
   'Mindfulness & Resilience',
   'Workshops & Parent Evenings',
-  'Opening 2027 · Durbanville',
+  'Durbanville, Cape Town',
   'IPHM Accredited Provider',
 ]
 
@@ -294,7 +294,7 @@ const SERVICES = [
   { title: 'Family Wellness Plan', desc: 'A 12-week programme giving your family a clear, written plan — 3–5 realistic goals, routines, roles and review dates. Support while you put it into practice.', colour: SAGE },
   { title: 'Wellness Counselling', desc: 'For parents and caregivers: coping, balance and emotional wellbeing. Individual sessions tailored to your season of life.', colour: MUTED_BLUE },
   { title: 'Behaviour Therapy', desc: 'Support for children and teenagers with behaviour, routines, emotional regulation and social skills.', colour: CLAY },
-  { title: 'Educational Psychology, OT, Arts Therapies & More', desc: 'Independent practitioners offering complementary services — occupational therapy, arts therapies, counselling, yoga and more.', colour: MAUVE, badge: 'Opening 2027' },
+  { title: 'Educational Psychology, OT, Arts Therapies & More', desc: 'Independent practitioners offering complementary services — occupational therapy, arts therapies, counselling, yoga and more.', colour: MAUVE },
 ]
 
 function ServicesSection() {
@@ -421,7 +421,7 @@ function FamilyPlanSection() {
           className="rounded-[22px] p-6 text-sm text-white/40"
           style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}
         >
-          Investment will be confirmed closer to opening. This service is not claimable from medical aid. ·
+          Investment details will be confirmed soon. This service is not claimable from medical aid. ·
           Plan only (steps 1–3) also available as a standalone option.
         </motion.div>
       </div>
@@ -610,7 +610,7 @@ function InterestSection({ submitted, setSubmitted }) {
         >
           <span className="inline-flex items-center gap-2 font-bold text-[0.8rem] tracking-[0.14em] uppercase block mb-2" style={{ color: SAGE }}>
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SAGE }} />
-            Opening 2027 · Durbanville
+            Durbanville, Cape Town
           </span>
           <SageLine className="w-32 mt-1 mb-4" />
           <h2 className="font-serif font-extrabold leading-tight max-w-xl" style={{ fontSize: 'clamp(2rem,4.2vw,3rem)', color: NAVY }}>
@@ -803,7 +803,7 @@ function FooterSection({ onClose }) {
           <div className="flex flex-wrap gap-3 text-xs items-center" style={{ color: '#9A9080' }}>
             <span>© 2025 Aldeia</span>
             <span>·</span>
-            <span>Durbanville, Cape Town · Opening 2027</span>
+            <span>Durbanville, Cape Town</span>
             <span>·</span>
             <a href="mailto:info@aldeiawellness.com" className="hover:text-navy transition-colors no-underline" style={{ color: '#9A9080' }}>info@aldeiawellness.com</a>
             <span>·</span>

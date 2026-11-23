@@ -97,11 +97,10 @@ export default function TwoDoors({ onOpenWellness }) {
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-green rounded-t-[22px]" />
 
             <div className="relative z-10 p-8 lg:p-10 flex flex-col h-full pt-10">
-              {/* Opening badge — minimal */}
               <div className="mb-6">
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase text-green">
                   <span className="w-1.5 h-1.5 rounded-full bg-green" />
-                  Opening 2027 · Durbanville
+                  Durbanville, Cape Town
                 </span>
               </div>
 

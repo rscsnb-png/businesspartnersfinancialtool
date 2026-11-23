@@ -108,7 +108,7 @@ export default function Navigation({ onOpenWellness }) {
                     <div className="p-1.5">
                       <div className="px-3 py-1.5 mb-1">
                         <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-warm-gray/50">
-                          Opening 2027
+                          Durbanville, Cape Town
                         </span>
                       </div>
                       {wellnessLinks.map((item) => (
