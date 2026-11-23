@@ -83,8 +83,8 @@ export default function WellnessHub({ onClose }) {
     >
       <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <HeroSection />
-      <PhilosophySection />
       <WhoWeSupport />
+      <PhilosophySection />
       <ServicesSection />
       <PractitionersSection />
       <AccreditationSection />
@@ -258,7 +258,7 @@ function PhilosophySection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section ref={ref} style={{ background: LINEN, paddingTop: '0', paddingBottom: '80px' }}>
+    <section ref={ref} style={{ background: LINEN, paddingTop: '80px', paddingBottom: '80px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -294,10 +294,10 @@ function PhilosophySection() {
           {/* Photo */}
           <div className="rounded-[18px] overflow-hidden w-full" style={{ maxHeight: '480px' }}>
             <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80&auto=format&fit=crop"
-              alt="A diverse group of women together"
+              src="/images/philosophy-family.webp"
+              alt="A warm, diverse family gathered together outdoors"
               className="w-full object-cover"
-              style={{ maxHeight: '480px', objectPosition: 'center 30%' }}
+              style={{ maxHeight: '480px', objectPosition: 'center 40%' }}
               loading="lazy"
             />
           </div>
