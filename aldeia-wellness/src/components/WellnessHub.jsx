@@ -454,7 +454,7 @@ function PractitionersSection() {
           <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase block mb-2" style={{ color: '#9A9080' }}>Join us</span>
           <SageLine className="w-32 mt-1 mb-4" />
           <h2 className="font-serif font-extrabold leading-tight max-w-lg" style={{ fontSize: 'clamp(2rem,4.2vw,3rem)', color: NAVY }}>
-            Are you a registered professional?
+            Are you a health, wellness or holistic practitioner?
           </h2>
         </motion.div>
 
@@ -465,18 +465,18 @@ function PractitionersSection() {
             transition={{ duration: 0.8 }}
           >
             <p className="leading-relaxed mb-4" style={{ color: '#6B6358' }}>
-              Looking for a warm, welcoming place to see clients in Durbanville? Aldeia
+              Looking for a warm, welcoming space to see clients in Durbanville? Aldeia
               Wellness House offers consultation rooms on fixed sessional days, with a
               shared reception and waiting area.
             </p>
             <p className="leading-relaxed mb-4" style={{ color: '#6B6358' }}>
-              We&apos;re especially interested in practitioners working with children, families
-              or adults — educational psychologists, occupational therapists, arts therapists,
-              counsellors and yoga teachers.
+              We welcome all health, wellness and holistic practitioners — whether you work
+              with the mind, body or spirit. From counsellors and therapists to beauty
+              practitioners, yoga teachers and energy healers, all are welcome.
             </p>
             <p className="leading-relaxed mb-8" style={{ color: '#6B6358' }}>
-              You keep your own practice, clients and fees. We ask for proof of current
-              registration with your professional body and professional indemnity insurance.
+              You keep your own practice, clients and fees. We simply ask for proof of
+              relevant training or registration and professional indemnity insurance where applicable.
             </p>
             <a
               href="mailto:info@aldeiawellness.com?subject=Room%20Availability%20Enquiry%20%E2%80%94%20Aldeia%20Wellness%20House"
@@ -492,17 +492,19 @@ function PractitionersSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <p className="font-bold text-[0.8rem] tracking-[0.14em] uppercase mb-4" style={{ color: '#9A9080' }}>We&apos;re looking for</p>
+            <p className="font-bold text-[0.8rem] tracking-[0.14em] uppercase mb-4" style={{ color: '#9A9080' }}>We welcome</p>
             <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0">
               {[
-                { label: 'Educational Psychologists', colour: MUTED_BLUE },
+                { label: 'Counsellors & Psychologists', colour: MUTED_BLUE },
                 { label: 'Occupational Therapists', colour: CLAY },
-                { label: 'Arts Therapists', colour: MAUVE },
-                { label: 'Counsellors', colour: SAGE },
-                { label: 'Yoga Teachers', colour: SAGE_DARK },
-                { label: 'Speech Therapists', colour: GOLD },
-                { label: 'Dietitians', colour: MUTED_BLUE },
-                { label: 'Life Coaches', colour: SAGE },
+                { label: 'Arts & Play Therapists', colour: MAUVE },
+                { label: 'Speech Therapists', colour: SAGE },
+                { label: 'Yoga & Pilates Teachers', colour: SAGE_DARK },
+                { label: 'Dietitians & Nutritionists', colour: GOLD },
+                { label: 'Beauty & Skin Practitioners', colour: MAUVE },
+                { label: 'Massage Therapists', colour: CLAY },
+                { label: 'Energy & Holistic Healers', colour: SAGE },
+                { label: 'Life & Wellness Coaches', colour: MUTED_BLUE },
               ].map(p => (
                 <li key={p.label}
                   className="px-4 py-2 rounded-full font-semibold text-[0.95rem] border-2"
@@ -587,7 +589,7 @@ function InterestSection({ submitted, setSubmitted }) {
     'Support for myself as a parent or caregiver',
     'Adult wellbeing',
     'Workshops and parent evenings',
-    "I'm a practitioner looking for a room",
+    "I'm a health, wellness or holistic practitioner looking for a room",
   ]
 
   const toggle = (val) => setForm(f => ({
