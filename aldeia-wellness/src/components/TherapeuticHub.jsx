@@ -63,13 +63,13 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
     <header className="sticky top-0 z-40 bg-white/94 backdrop-blur-sm border-b border-stone/40">
       <div className="max-w-[1160px] mx-auto px-4 h-[72px] flex items-center gap-5">
         {/* Logo + name */}
-        <a onClick={onClose} href="#" className="flex items-center gap-2.5 text-navy no-underline flex-shrink-0 font-serif font-bold text-[1.2rem]">
-          <div className="w-[54px] h-[54px] rounded-full bg-white border border-stone/40 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-sm">
-            <img src="/images/logo.png" alt="Aldeia" className="w-9 h-9 object-contain"
-              onError={(e) => { e.target.style.display = 'none' }} />
+        <a onClick={onClose} href="#" className="flex items-center gap-3 no-underline flex-shrink-0">
+          <img src="/images/logo.png" alt="Aldeia logo" className="w-14 h-14 object-contain flex-shrink-0"
+            onError={(e) => { e.target.style.display = 'none' }} />
+          <div className="flex flex-col leading-none gap-1">
+            <span className="font-serif font-bold text-[1.6rem] leading-none tracking-tight text-navy hidden sm:block">Aldeia</span>
+            <span className="text-[0.68rem] font-semibold tracking-[0.18em] uppercase text-warm-gray/60 hidden md:block">Therapeutic Learning</span>
           </div>
-          <span className="hidden sm:block">Aldeia</span>
-          <span className="text-sm text-warm-gray/60 font-normal hidden md:block">· Therapeutic Learning</span>
         </a>
 
         {/* Desktop nav */}

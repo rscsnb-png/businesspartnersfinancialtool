@@ -100,13 +100,13 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
   return (
     <header className="sticky top-0 z-40" style={{ background: LINEN, borderBottom: `1px solid ${BORDER}` }}>
       <div className="max-w-[1200px] mx-auto px-6 h-[72px] flex items-center gap-5">
-        <a onClick={onClose} href="#" className="flex items-center gap-2.5 no-underline flex-shrink-0 font-serif font-bold text-[1.15rem]" style={{ color: BARK }}>
-          <div className="w-[52px] h-[52px] rounded-full bg-white border flex items-center justify-center overflow-hidden flex-shrink-0" style={{ borderColor: BORDER }}>
-            <img src="/images/logo.png" alt="Aldeia" className="w-10 h-10 object-contain"
-              onError={(e) => { e.target.style.display = 'none' }} />
+        <a onClick={onClose} href="#" className="flex items-center gap-3 no-underline flex-shrink-0">
+          <img src="/images/logo.png" alt="Aldeia logo" className="w-14 h-14 object-contain flex-shrink-0"
+            onError={(e) => { e.target.style.display = 'none' }} />
+          <div className="flex flex-col leading-none gap-1">
+            <span className="font-serif font-bold text-[1.6rem] leading-none tracking-tight hidden sm:block" style={{ color: BARK }}>Aldeia</span>
+            <span className="text-[0.68rem] font-semibold tracking-[0.18em] uppercase hidden md:block" style={{ color: TWIG }}>Wellness House</span>
           </div>
-          <span className="hidden sm:block">Aldeia</span>
-          <span className="text-sm font-normal hidden md:block" style={{ color: TWIG }}>· Wellness House</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-1 ml-auto list-none p-0 m-0">
