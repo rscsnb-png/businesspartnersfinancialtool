@@ -83,6 +83,7 @@ export default function WellnessHub({ onClose }) {
     >
       <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <HeroSection />
+      <PhilosophySection />
       <WhoWeSupport />
       <ServicesSection />
       <PractitionersSection />
@@ -100,8 +101,8 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
     <header className="sticky top-0 z-40" style={{ background: LINEN, borderBottom: `1px solid ${BORDER}` }}>
       <div className="max-w-[1200px] mx-auto px-6 h-[72px] flex items-center gap-5">
         <a onClick={onClose} href="#" className="flex items-center gap-2.5 no-underline flex-shrink-0 font-serif font-bold text-[1.15rem]" style={{ color: BARK }}>
-          <div className="w-[48px] h-[48px] rounded-full bg-white border flex items-center justify-center overflow-hidden flex-shrink-0" style={{ borderColor: BORDER }}>
-            <img src="/images/logo.png" alt="Aldeia" className="w-8 h-8 object-contain"
+          <div className="w-[52px] h-[52px] rounded-full bg-white border flex items-center justify-center overflow-hidden flex-shrink-0" style={{ borderColor: BORDER }}>
+            <img src="/images/logo.png" alt="Aldeia" className="w-10 h-10 object-contain"
               onError={(e) => { e.target.style.display = 'none' }} />
           </div>
           <span className="hidden sm:block">Aldeia</span>
@@ -245,6 +246,61 @@ function HeroSection() {
           className="lg:hidden mt-12 rounded-[22px] overflow-hidden"
         >
           <img src="/images/wellness-hero.webp" alt="A warm welcome at Aldeia Wellness House" className="w-full h-auto block" />
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ── Philosophy ────────────────────────────────────────────────────────────────
+
+function PhilosophySection() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+  return (
+    <section ref={ref} style={{ background: LINEN, paddingTop: '0', paddingBottom: '80px' }}>
+      <div className="max-w-[1200px] mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="rounded-[28px] overflow-hidden p-10 md:p-14"
+          style={{ background: BARK }}
+        >
+          {/* Label row */}
+          <div className="flex items-center gap-4 mb-7">
+            <span className="text-[0.72rem] font-semibold tracking-[0.2em] uppercase" style={{ color: SAGE }}>
+              Our Philosophy
+            </span>
+            <div className="flex-1 h-px max-w-[120px]" style={{ background: 'rgba(78,124,95,0.4)' }} />
+          </div>
+
+          {/* Heading + body */}
+          <h2 className="font-serif font-bold text-white leading-[1.1] mb-7"
+            style={{ fontSize: 'clamp(2rem,4.5vw,3.2rem)', maxWidth: '18ch' }}>
+            Wellness looks different for everyone.
+          </h2>
+          <div className="mb-10 space-y-3" style={{ maxWidth: '70ch' }}>
+            <p className="leading-[1.9] text-[1.05rem]" style={{ color: 'rgba(249,246,241,0.75)' }}>
+              For some, it&apos;s finding someone who listens. For others, it&apos;s building
+              healthier routines, understanding their child, or finding a moment to reconnect
+              with themselves.
+            </p>
+            <p className="leading-[1.9] text-[1.05rem]" style={{ color: 'rgba(249,246,241,0.75)' }}>
+              At Wellness House, we believe support should meet you where you are.
+            </p>
+          </div>
+
+          {/* Photo */}
+          <div className="rounded-[18px] overflow-hidden w-full" style={{ maxHeight: '480px' }}>
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80&auto=format&fit=crop"
+              alt="A diverse group of women together"
+              className="w-full object-cover"
+              style={{ maxHeight: '480px', objectPosition: 'center 30%' }}
+              loading="lazy"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
@@ -800,8 +856,8 @@ function FooterSection({ onClose }) {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full border flex items-center justify-center overflow-hidden" style={{ borderColor: BORDER }}>
-              <img src="/images/logo.png" alt="Aldeia" className="w-6 h-6 object-contain"
+            <div className="w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden" style={{ borderColor: BORDER }}>
+              <img src="/images/logo.png" alt="Aldeia" className="w-7 h-7 object-contain"
                 onError={(e) => { e.target.style.display = 'none' }} />
             </div>
             <span className="font-serif font-bold text-sm" style={{ color: BARK }}>Aldeia Wellness House</span>
