@@ -36,7 +36,7 @@ export default function Landing({ onTherapeutic, onWellness }) {
         <img
           src="/images/landing-bg.webp"
           alt="Aldeia Wellness — choose your door"
-          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none"
           draggable={false}
         />
         {zones.map(zone => (
