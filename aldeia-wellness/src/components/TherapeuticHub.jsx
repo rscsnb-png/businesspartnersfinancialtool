@@ -131,102 +131,55 @@ function HeroSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
   return (
-    <section ref={ref} className="bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-0 items-stretch">
-          {/* Text side */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="py-16 lg:py-24 lg:pr-12 flex flex-col justify-center"
-          >
-            {/* Rainbow stripe */}
-            <div className="flex gap-1 w-28 mb-6">
-              {['#C8363F','#F2C418','#7BA93A','#7E479A','#237BB7','#006CC0'].map(c => (
-                <div key={c} className="h-[3px] flex-1 rounded-full" style={{ background: c }} />
-              ))}
-            </div>
+    <section ref={ref} className="bg-white">
+      {/* Full-width brand banner image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.7 }}
+        className="w-full overflow-hidden"
+      >
+        <img
+          src="/images/hero-therapeutic.webp"
+          alt="Aldeia Neurobehaviour Institute — Supporting children, strengthening families"
+          className="w-full h-auto block"
+        />
+      </motion.div>
 
-            <span className="text-xs font-bold tracking-widest uppercase text-red mb-3 block">
-              Award-winning · Since 2013
-            </span>
-            <h1 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-navy leading-[1.1] mb-6">
-              Your child is trying.<br />
-              <span className="text-red">We help them</span><br />
-              find the way.
-            </h1>
-            <p className="text-warm-gray text-lg leading-relaxed mb-8 max-w-md">
-              Integrated learning therapy, behavioural support and educational
-              programmes for children in homeschool and mainstream education.
-              We look at the whole child — not just the subject they're failing.
-            </p>
-
-            <div className="flex flex-wrap gap-4 mb-10">
-              <a
-                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150"
-              >
-                Book a free consultation
-                <ArrowRight />
-              </a>
-              <a
-                href="https://wa.me/27000000000"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-green text-green text-sm font-bold rounded-full hover:bg-green/5 transition-colors"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                  <path d="M11.998 0C5.372 0 0 5.373 0 12c0 2.117.555 4.112 1.527 5.843L.057 23.927l6.293-1.651C8.047 23.312 9.98 24 11.998 24 18.627 24 24 18.627 24 12S18.627 0 11.998 0zm0 21.818a9.78 9.78 0 01-4.991-1.371l-.358-.213-3.712.974.99-3.624-.234-.375A9.773 9.773 0 012.182 12c0-5.414 4.401-9.818 9.816-9.818 5.414 0 9.816 4.404 9.816 9.818 0 5.414-4.402 9.818-9.816 9.818z" />
-                </svg>
-                WhatsApp us
-              </a>
-            </div>
-
-            {/* Award badges */}
-            <div className="flex flex-wrap gap-3">
-              {[
-                { label: '13 Awards', colour: '#F2C418' },
-                { label: 'SAQA Registered', colour: '#7BA93A' },
-                { label: 'DBE Accredited', colour: '#006CC0' },
-              ].map(b => (
-                <span key={b.label}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cream border border-stone/50 text-navy">
-                  <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: b.colour }} />
-                  {b.label}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Photo side */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative lg:min-h-[520px] overflow-hidden"
-          >
-            {/* REPLACE THIS with a real Aldeia photo: child and therapist/teacher working together */}
-            <img
-              src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80&auto=format&fit=crop"
-              alt="A child working with an Aldeia practitioner"
-              className="absolute inset-0 w-full h-full object-cover lg:rounded-none rounded-2xl"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/20 to-transparent" />
-
-            {/* Floating review badge */}
-            <div className="absolute bottom-8 left-6 bg-white rounded-2xl shadow-xl px-5 py-4 max-w-[220px]">
-              <div className="flex items-center gap-2 mb-1">
-                <Stars n={5} />
-                <span className="text-sm font-bold text-navy">4.9</span>
-              </div>
-              <p className="text-xs text-warm-gray leading-tight">
-                "They finally understood WHY my son struggled."
-              </p>
-              <p className="text-xs text-warm-gray/60 mt-1">— Parent, Cape Town</p>
-            </div>
-          </motion.div>
+      {/* CTA strip below banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-12"
+      >
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <p className="text-warm-gray leading-relaxed max-w-lg">
+            Evidence-based learning support that empowers children to grow
+            academically, emotionally and confidently — across South Africa,
+            Namibia and the Netherlands.
+          </p>
+          <div className="flex flex-wrap gap-4 flex-shrink-0">
+            <a
+              href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150"
+            >
+              Book free consultation
+              <ArrowRight />
+            </a>
+            <a
+              href="https://wa.me/27000000000"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-green text-green text-sm font-bold rounded-full hover:bg-green/5 transition-colors"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M11.998 0C5.372 0 0 5.373 0 12c0 2.117.555 4.112 1.527 5.843L.057 23.927l6.293-1.651C8.047 23.312 9.98 24 11.998 24 18.627 24 24 18.627 24 12S18.627 0 11.998 0zm0 21.818a9.78 9.78 0 01-4.991-1.371l-.358-.213-3.712.974.99-3.624-.234-.375A9.773 9.773 0 012.182 12c0-5.414 4.401-9.818 9.816-9.818 5.414 0 9.816 4.404 9.816 9.818 0 5.414-4.402 9.818-9.816 9.818z" />
+              </svg>
+              WhatsApp us
+            </a>
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
@@ -235,14 +188,21 @@ function HeroSection() {
 
 function StatsStrip() {
   const stats = [
-    { n: '12+', label: 'Years of practice' },
-    { n: '2800+', label: 'Families supported' },
-    { n: '15+', label: 'Practitioners' },
-    { n: '3', label: 'Countries' },
+    { n: 'Since 2013', label: 'Established' },
+    { n: '12', label: 'Branches' },
+    { n: '1,556', label: 'Families supported' },
+    { n: '14', label: 'National & international awards' },
   ]
   return (
-    <div className="bg-navy">
-      <div className="max-w-7xl mx-auto px-6">
+    <div className="relative bg-navy overflow-hidden">
+      {/* Subtle background image */}
+      <img
+        src="/images/stats-bg.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+      />
+      <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
           {stats.map(s => (
             <div key={s.label} className="px-8 py-10 text-center">
@@ -493,11 +453,12 @@ function AboutSection() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* REPLACE with real team photo */}
+            {/* Team photo — using brand image; replace with actual team photo when available */}
             <img
-              src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80&auto=format&fit=crop"
+              src="/images/hero-therapeutic.webp"
               alt="The Aldeia team"
               className="rounded-[22px] w-full object-cover aspect-[4/3]"
+              style={{ objectPosition: '65% center' }}
             />
             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-yellow/20 rounded-full blur-2xl" />
           </motion.div>

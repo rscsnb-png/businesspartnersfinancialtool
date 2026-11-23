@@ -4,7 +4,7 @@ import { useState } from 'react'
 // PLACEHOLDER images — replace these with real Aldeia photos:
 // - THERAPEUTIC_IMG: A warm, genuine photo of a child and adult working together (learning/therapy setting)
 // - WELLNESS_IMG: A calm, welcoming image — the Durbanville space, a family in a garden, or a natural interior
-const THERAPEUTIC_IMG = 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400&q=80&auto=format&fit=crop'
+const THERAPEUTIC_IMG = '/images/hero-therapeutic.webp'
 const WELLNESS_IMG = 'https://images.unsplash.com/photo-1569521006898-b4d1c8cfdc65?w=1400&q=80&auto=format&fit=crop'
 
 export default function Landing({ onTherapeutic, onWellness }) {
@@ -23,11 +23,12 @@ export default function Landing({ onTherapeutic, onWellness }) {
         onHoverStart={() => setHovered('therapeutic')}
         onHoverEnd={() => setHovered(null)}
       >
-        {/* Photo */}
+        {/* Photo — offset right to show the children, not the logo text area */}
         <img
           src={THERAPEUTIC_IMG}
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition: '72% center' }}
           draggable={false}
         />
         {/* Navy overlay */}
@@ -62,11 +63,11 @@ export default function Landing({ onTherapeutic, onWellness }) {
 
             {/* Minimal stats */}
             <div className="flex gap-6 mb-10 text-white/50 text-xs">
-              <span>12+ years</span>
+              <span>12 branches</span>
               <span className="text-white/20">·</span>
-              <span>2800+ families</span>
+              <span>1,556 families</span>
               <span className="text-white/20">·</span>
-              <span>13 awards</span>
+              <span>14 awards</span>
             </div>
 
             {/* Enter CTA */}
