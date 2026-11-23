@@ -805,39 +805,105 @@ function BlogSection() {
     <section className="py-[88px] bg-cream" ref={ref}>
       <div className="max-w-[1160px] mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-10">
-          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">Resources</span>
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">Community</span>
           <RainbowStroke className="w-32 mt-1 mb-4" />
           <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight">
-            For the parents in the thick of it
+            Follow our journey
           </h2>
+          <p className="text-warm-gray mt-3 text-[1.05rem] max-w-xl">
+            Updates, articles, family stories and resources — straight from our team.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-[18px]">
-          {BLOG_POSTS.map((p, i) => (
-            <motion.article
-              key={p.id}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col group cursor-pointer"
-              style={{ borderTop: `7px solid ${p.colour}` }}
-            >
-              <div className="relative h-44 overflow-hidden">
-                <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="p-6 flex flex-col gap-2 flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: p.colour }}>{p.tag}</span>
-                  <span className="text-xs text-warm-gray/50">· {p.readTime} read</span>
+        <div className="grid md:grid-cols-2 gap-6">
+
+          {/* ── Facebook live feed ── */}
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
+            <div className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col">
+              <div className="flex items-center gap-3 px-5 py-4" style={{ borderTop: '5px solid #1877F2' }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#1877F2' }}>
+                  <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                  </svg>
                 </div>
-                <h3 className="font-serif font-bold text-[1.15rem] text-navy leading-snug flex-1">{p.title}</h3>
-                <p className="text-sm text-warm-gray leading-relaxed">{p.excerpt}</p>
-                <div className="flex items-center gap-1 text-sm font-semibold mt-1" style={{ color: p.colour }}>
-                  Read more <ArrowRight className="w-3.5 h-3.5" />
+                <div>
+                  <div className="font-bold text-navy text-[0.95rem]">Aldeia on Facebook</div>
+                  <a href="https://www.facebook.com/aldeianeuro" target="_blank" rel="noopener noreferrer" className="text-xs no-underline" style={{ color: '#1877F2' }}>
+                    facebook.com/aldeianeuro
+                  </a>
                 </div>
+                <a href="https://www.facebook.com/aldeianeuro" target="_blank" rel="noopener noreferrer"
+                  className="ml-auto text-xs font-bold px-4 py-1.5 rounded-full text-white no-underline flex-shrink-0"
+                  style={{ background: '#1877F2' }}>
+                  Follow
+                </a>
               </div>
-            </motion.article>
-          ))}
+              <div className="flex-1 min-h-[500px]">
+                <iframe
+                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
+                  width="100%"
+                  height="500"
+                  style={{ border: 'none', overflow: 'hidden', display: 'block' }}
+                  scrolling="no"
+                  frameBorder="0"
+                  allowFullScreen
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  title="Aldeia Facebook feed"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── Instagram card ── */}
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }}>
+            <div className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col h-full">
+              <div className="flex items-center gap-3 px-5 py-4" style={{ borderTop: '5px solid #E1306C' }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
+                  <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-bold text-navy text-[0.95rem]">Aldeia on Instagram</div>
+                  <a href="https://www.instagram.com/int.aldeianeuroinstitute/" target="_blank" rel="noopener noreferrer" className="text-xs no-underline" style={{ color: '#E1306C' }}>
+                    @int.aldeianeuroinstitute
+                  </a>
+                </div>
+                <a href="https://www.instagram.com/int.aldeianeuroinstitute/" target="_blank" rel="noopener noreferrer"
+                  className="ml-auto text-xs font-bold px-4 py-1.5 rounded-full text-white no-underline flex-shrink-0"
+                  style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
+                  Follow
+                </a>
+              </div>
+              <div className="flex flex-col items-center justify-center flex-1 px-8 py-12 text-center gap-6"
+                style={{ background: 'linear-gradient(135deg,#fdf0f8 0%,#f7f4ef 60%,#fce9f4 100%)' }}>
+                <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg"
+                  style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
+                  <svg className="w-10 h-10 fill-white" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-navy text-xl mb-1">@int.aldeianeuroinstitute</div>
+                  <div className="text-warm-gray text-sm leading-relaxed max-w-[28ch]">
+                    Real stories, practical tips and moments from our centres — follow us for daily inspiration.
+                  </div>
+                </div>
+                <a href="https://www.instagram.com/int.aldeianeuroinstitute/"
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-white no-underline text-sm shadow-md hover:-translate-y-0.5 transition-transform"
+                  style={{ background: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)' }}>
+                  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                  </svg>
+                  Follow on Instagram
+                </a>
+                <p className="text-xs text-warm-gray/50 italic">Tap to view our latest posts</p>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
