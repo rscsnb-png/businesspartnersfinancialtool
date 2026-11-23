@@ -168,7 +168,7 @@ function HeroSection() {
               <ArrowRight />
             </a>
             <a
-              href="https://wa.me/27000000000"
+              href="https://wa.me/27795423701"
               className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-green text-green text-sm font-bold rounded-full hover:bg-green/5 transition-colors"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -445,51 +445,54 @@ function AboutSection() {
   return (
     <section id="about" className="bg-navy py-20 lg:py-28 overflow-hidden" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Photo */}
+        {/* Top heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+          className="mb-14"
+        >
+          <span className="text-xs font-bold tracking-widest uppercase text-yellow block mb-3">Our story</span>
+          <h2 className="font-serif text-3xl lg:text-4xl text-white leading-snug max-w-2xl">
+            Built for children who don&apos;t fit neatly into one box
+          </h2>
+        </motion.div>
+
+        {/* Two-column story + team list */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="relative"
+            className="space-y-5 text-white/70 leading-relaxed"
           >
-            {/* Team photo — using brand image; replace with actual team photo when available */}
-            <img
-              src="/images/hero-therapeutic.webp"
-              alt="The Aldeia team"
-              className="rounded-[22px] w-full object-cover aspect-[4/3]"
-              style={{ objectPosition: '65% center' }}
-            />
-            <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-yellow/20 rounded-full blur-2xl" />
+            <p>
+              Aldeia was founded in 2013 by a group of learning therapists and behaviour
+              practitioners who kept encountering the same thing: children being sent from
+              specialist to specialist, with no one looking at the whole picture.
+            </p>
+            <p>
+              We built something different. Under one roof, your child&apos;s learning
+              therapist, behaviour practitioner, and educational consultant work together as
+              a real team — sharing notes, attending reviews, building a coherent plan.
+            </p>
+            <p>
+              Today we operate across 12 branches in South Africa, Namibia and the
+              Netherlands, and we&apos;ve supported 1,556 families across three countries.
+            </p>
+            <p>
+              <em className="text-white/50 not-italic font-serif text-lg">
+                &ldquo;Every child. Every family. Every step of the way.&rdquo;
+              </em>
+            </p>
           </motion.div>
 
-          {/* Text */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <span className="text-xs font-bold tracking-widest uppercase text-yellow block mb-3">Our story</span>
-            <h2 className="font-serif text-3xl lg:text-4xl text-white leading-snug mb-6">
-              Built for children who don&apos;t fit<br className="hidden lg:block" /> neatly into one box
-            </h2>
-            <div className="space-y-4 text-white/70 leading-relaxed mb-8">
-              <p>
-                Aldeia was founded in 2013 by a group of learning therapists and behaviour
-                practitioners who kept encountering the same thing: children being sent from
-                specialist to specialist, with no one looking at the whole picture.
-              </p>
-              <p>
-                We built something different. Under one roof, your child&apos;s learning
-                therapist, behaviour practitioner, and educational consultant work together as
-                a real team — sharing notes, attending reviews, building a coherent plan.
-              </p>
-              <p>
-                Today we operate in South Africa, Namibia and the Netherlands, and we&apos;ve
-                supported more than 2,800 families across three countries.
-              </p>
-            </div>
-
+            <p className="text-xs font-bold tracking-widest uppercase text-yellow/70 mb-5">Our practitioners include</p>
             <div className="grid sm:grid-cols-2 gap-3">
               {[
                 'Qualified Learning Therapists',
@@ -504,6 +507,19 @@ function AboutSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                   </svg>
                   {s}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 grid grid-cols-3 gap-4">
+              {[
+                { n: '14', label: 'Awards' },
+                { n: '12', label: 'Branches' },
+                { n: '1,556', label: 'Families' },
+              ].map(s => (
+                <div key={s.label} className="text-center border border-white/10 rounded-2xl py-5">
+                  <div className="font-serif text-2xl text-yellow mb-1">{s.n}</div>
+                  <div className="text-xs text-white/40 uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -587,7 +603,7 @@ function CentresSection() {
           </div>
           <div className="flex justify-center bg-white py-4 overflow-hidden">
             <iframe
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FAldeiaWellness&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
               width="500"
               height="500"
               className="max-w-full"

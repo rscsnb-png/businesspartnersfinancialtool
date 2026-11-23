@@ -5,7 +5,7 @@ import { useState } from 'react'
 // - THERAPEUTIC_IMG: A warm, genuine photo of a child and adult working together (learning/therapy setting)
 // - WELLNESS_IMG: A calm, welcoming image — the Durbanville space, a family in a garden, or a natural interior
 const THERAPEUTIC_IMG = '/images/hero-therapeutic.webp'
-const WELLNESS_IMG = 'https://images.unsplash.com/photo-1569521006898-b4d1c8cfdc65?w=1400&q=80&auto=format&fit=crop'
+const WELLNESS_IMG = '/images/stats-bg.jpg'
 
 export default function Landing({ onTherapeutic, onWellness }) {
   const [hovered, setHovered] = useState(null)
