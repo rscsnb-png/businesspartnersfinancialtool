@@ -110,7 +110,7 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
         </a>
 
         <nav className="hidden md:flex items-center gap-1 ml-auto list-none p-0 m-0">
-          {[['About','#about'],['Services','#services'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
+          {[['About','#about'],['Services','#who-we-support'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
             <a key={label} href={href} className="block px-4 py-2 rounded-full no-underline text-[0.9rem] font-medium transition-colors" style={{ color: TWIG }}
               onMouseEnter={e => { e.currentTarget.style.color = BARK; e.currentTarget.style.background = LINEN2 }}
               onMouseLeave={e => { e.currentTarget.style.color = TWIG; e.currentTarget.style.background = 'transparent' }}>
@@ -149,7 +149,7 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
             style={{ background: LINEN, borderColor: BORDER }}
           >
             <div className="px-6 py-4 flex flex-col gap-1">
-              {[['About','#about'],['Services','#services'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
+              {[['About','#about'],['Services','#who-we-support'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
                 <a key={label} href={href}
                   className="block px-3 py-2.5 rounded-xl no-underline font-medium transition-colors"
                   style={{ color: BARK }}
@@ -336,7 +336,7 @@ function WhoWeSupport() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section ref={ref} style={{ background: '#fff', paddingTop: '100px', paddingBottom: '100px' }}>
+    <section id="who-we-support" ref={ref} style={{ background: '#fff', paddingTop: '100px', paddingBottom: '100px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
 
         <motion.div
