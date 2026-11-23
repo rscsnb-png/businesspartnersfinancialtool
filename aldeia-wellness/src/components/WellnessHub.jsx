@@ -85,7 +85,6 @@ export default function WellnessHub({ onClose }) {
       <HeroSection />
       <WhoWeSupport />
       <ServicesSection />
-      <FamilyPlanSection />
       <PractitionersSection />
       <AccreditationSection />
       <InterestSection submitted={submitted} setSubmitted={setSubmitted} />
@@ -110,7 +109,7 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
         </a>
 
         <nav className="hidden md:flex items-center gap-1 ml-auto list-none p-0 m-0">
-          {[['About','#about'],['Services','#services'],['Family Plan','#family-plan'],['Join Us','#join']].map(([label, href]) => (
+          {[['About','#about'],['Services','#services'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
             <a key={label} href={href} className="block px-4 py-2 rounded-full no-underline text-[0.9rem] font-medium transition-colors" style={{ color: TWIG }}
               onMouseEnter={e => { e.currentTarget.style.color = BARK; e.currentTarget.style.background = LINEN2 }}
               onMouseLeave={e => { e.currentTarget.style.color = TWIG; e.currentTarget.style.background = 'transparent' }}>
@@ -149,7 +148,7 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
             style={{ background: LINEN, borderColor: BORDER }}
           >
             <div className="px-6 py-4 flex flex-col gap-1">
-              {[['About','#about'],['Services','#services'],['Family Plan','#family-plan'],['Join Us','#join']].map(([label, href]) => (
+              {[['About','#about'],['Services','#services'],['Practitioners','#services'],['Join Us','#join']].map(([label, href]) => (
                 <a key={label} href={href}
                   className="block px-3 py-2.5 rounded-xl no-underline font-medium transition-colors"
                   style={{ color: BARK }}
@@ -329,26 +328,42 @@ function WhoWeSupport() {
 
 // ── Services ──────────────────────────────────────────────────────────────────
 
-const SERVICES = [
+const DISCIPLINES = [
   {
-    icon: '◇',
-    title: 'Family Wellness Plan',
-    desc: 'A 12-week programme giving your family a clear, written plan — 3–5 realistic goals, routines, roles and review dates. Support while you put it into practice.',
+    title: 'Family Wellness & Development',
+    desc: 'Family relationships, parenting, development and everyday challenges.',
+    img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80&auto=format&fit=crop',
+    accent: SAGE,
   },
   {
-    icon: '◇',
-    title: 'Wellness Counselling',
-    desc: 'For parents and caregivers: coping, balance and emotional wellbeing. Individual sessions tailored to your season of life.',
+    title: 'Counselling & Emotional Wellbeing',
+    desc: 'Support for emotional wellbeing, coping, stress and life transitions.',
+    img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&auto=format&fit=crop',
+    accent: SAGE,
   },
   {
-    icon: '◇',
-    title: 'Behaviour Therapy',
-    desc: 'Support for children and teenagers with behaviour, routines, emotional regulation and social skills.',
+    title: 'Allied Health & Therapies',
+    desc: 'Occupational therapy, speech therapy and other registered professional services.',
+    img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop',
+    accent: SAGE,
   },
   {
-    icon: '◇',
-    title: 'Educational Psychology, OT, Arts Therapies & More',
-    desc: 'Independent practitioners offering complementary services — occupational therapy, arts therapies, counselling, yoga and more.',
+    title: 'Nutrition & Lifestyle',
+    desc: 'Nutrition, sustainable habits and healthier everyday routines.',
+    img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&auto=format&fit=crop',
+    accent: SAGE,
+  },
+  {
+    title: 'Body & Restorative Wellness',
+    desc: 'Massage, bodywork and restorative wellness practices.',
+    img: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&auto=format&fit=crop',
+    accent: '#7A5E8A',
+  },
+  {
+    title: 'Movement & Mindfulness',
+    desc: 'Yoga, Pilates, movement and relaxation-based practices.',
+    img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80&auto=format&fit=crop',
+    accent: '#8B6355',
   },
 ]
 
@@ -363,144 +378,78 @@ function ServicesSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <span className="text-[0.72rem] font-semibold tracking-[0.2em] uppercase block mb-4" style={{ color: SAGE }}>
-            What you&apos;ll find here
-          </span>
-          <h2 className="font-serif font-bold leading-[1.15] mb-5" style={{ fontSize: 'clamp(2rem,4vw,3rem)', color: BARK }}>
-            Practitioners under one roof
-          </h2>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {SERVICES.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.08 }}
-              className="rounded-[20px] p-8 flex flex-col gap-3"
-              style={{ background: '#fff', border: `1px solid ${BORDER}` }}
-            >
-              <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: SAGE_PALE }}>
-                <Leaf className="w-4 h-4" style={{ color: SAGE }} />
-              </div>
-              <h3 className="font-serif font-bold text-[1.15rem] leading-snug" style={{ color: BARK }}>{s.title}</h3>
-              <p className="text-sm leading-[1.8]" style={{ color: TWIG }}>{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="rounded-[20px] p-7"
-          style={{ background: LINEN2, border: `1px solid ${BORDER}` }}
-        >
-          <p className="text-sm leading-[1.8]" style={{ color: TWIG }}>
-            <strong style={{ color: BARK }}>Independent practitioners —</strong> Each practitioner at Aldeia Wellness House runs their own independent
-            practice. They hold their own professional registration and insurance, and manage
-            their own bookings, fees and client records. You choose who you see, and nothing is
-            shared between practitioners without your consent.
-          </p>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// ── Family Wellness Plan ──────────────────────────────────────────────────────
-
-const PLAN_STEPS = [
-  { n: 1, title: 'Getting to know your family', duration: '90 min', desc: 'Your priorities, routines, strengths, pressures and the professionals already involved.' },
-  { n: 2, title: 'Seeing daily life', duration: '60 min', desc: 'A visit at home, or at a time of day that is hard for your family.' },
-  { n: 3, title: 'Your Family Wellness Plan', duration: '60–90 min', desc: 'A written plan with 3–5 realistic goals, routines, who does what, and review dates.' },
-  { n: 4, title: 'Three follow-up sessions', duration: '60 min · every 3–4 weeks', desc: "Review what's working, adjust the plan, and ongoing parent support." },
-]
-
-function FamilyPlanSection() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  return (
-    <section id="family-plan" ref={ref} style={{ background: BARK, paddingTop: '100px', paddingBottom: '100px' }}>
-      <div className="max-w-[1200px] mx-auto px-6">
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
           className="mb-14"
         >
-          <span className="text-[0.72rem] font-semibold tracking-[0.2em] uppercase block mb-4" style={{ color: SAGE }}>
-            The 12-week programme
-          </span>
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
-            <h2 className="font-serif font-bold text-white leading-[1.15]" style={{ fontSize: 'clamp(2rem,4vw,3rem)' }}>
-              The Family Wellness Plan
-            </h2>
-            <p className="max-w-sm leading-[1.8] text-sm" style={{ color: 'rgba(249,246,241,0.55)', maxWidth: '38ch' }}>
-              When one person in a family needs more, everyone feels it. We help families step
-              back, see the whole picture, and agree on a plan that fits real life.
-            </p>
+          <div className="flex items-center gap-3 mb-5">
+            <span className="text-[0.72rem] font-semibold tracking-[0.2em] uppercase" style={{ color: SAGE }}>
+              Practitioners Under One Roof
+            </span>
+            <div className="flex-1 h-px" style={{ background: BORDER }} />
           </div>
+          <h2 className="font-serif font-bold leading-[1.1] mb-4" style={{ fontSize: 'clamp(2rem,4.5vw,3.2rem)', color: BARK }}>
+            Different paths. One place for{' '}
+            <em className="not-italic" style={{ color: SAGE }}>wellbeing.</em>
+          </h2>
+          <p className="leading-[1.8]" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '58ch' }}>
+            Discover a community of independent practitioners, each bringing their own expertise
+            and approach to supporting your wellbeing.
+          </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="grid sm:grid-cols-2 gap-5 mb-10"
-        >
-          {[['0%', 'A family wellness conversation'], ['100%', 'Creating a personalised family plan']].map(([x, label]) => (
-            <div key={x} className="rounded-[20px] overflow-hidden h-60 relative">
-              <div className="absolute inset-0"
-                style={{
-                  backgroundImage: 'url(/images/wellness-family-plan.webp)',
-                  backgroundSize: '200% auto',
-                  backgroundPositionX: x,
-                  backgroundPositionY: '50%',
-                }}
-              />
-              <div className="absolute bottom-0 inset-x-0 p-4"
-                style={{ background: 'linear-gradient(to top, rgba(44,36,32,0.65) 0%, transparent 100%)' }}>
-                <span className="text-xs font-medium text-white/80 tracking-wide">{label}</span>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-          {PLAN_STEPS.map((s, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {DISCIPLINES.map((d, i) => (
             <motion.div
-              key={s.n}
-              initial={{ opacity: 0, y: 20 }}
+              key={d.title}
+              initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="rounded-[20px] p-6"
-              style={{ background: 'rgba(249,246,241,0.07)', border: '1px solid rgba(249,246,241,0.12)' }}
+              transition={{ duration: 0.6, delay: i * 0.08 }}
+              className="rounded-[20px] overflow-hidden bg-white flex flex-col"
+              style={{
+                borderTop: `4px solid ${d.accent}`,
+                boxShadow: '0 2px 16px rgba(44,36,32,0.07), 0 1px 3px rgba(44,36,32,0.04)',
+              }}
             >
-              <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold mb-5 font-serif flex-shrink-0"
-                style={{ background: SAGE }}>
-                {s.n}
+              <div className="w-full overflow-hidden" style={{ height: '200px' }}>
+                <img
+                  src={d.img}
+                  alt={d.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <h3 className="font-serif font-bold text-[1.05rem] text-white mb-1 leading-snug">{s.title}</h3>
-              <p className="text-xs mb-3 font-medium" style={{ color: 'rgba(249,246,241,0.4)' }}>{s.duration}</p>
-              <p className="text-sm leading-[1.8]" style={{ color: 'rgba(249,246,241,0.6)' }}>{s.desc}</p>
+              <div className="p-6">
+                <h3 className="font-serif font-bold text-[1.1rem] mb-2 leading-snug" style={{ color: BARK }}>{d.title}</h3>
+                <p className="text-sm leading-[1.8]" style={{ color: TWIG }}>{d.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
 
+        {/* Bottom banner */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="rounded-[20px] p-6 text-sm"
-          style={{ background: 'rgba(249,246,241,0.05)', border: '1px solid rgba(249,246,241,0.08)', color: 'rgba(249,246,241,0.4)' }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="rounded-[20px] p-7 flex flex-col md:flex-row md:items-start gap-6"
+          style={{ background: LINEN2, border: `1px solid ${BORDER}` }}
         >
-          Investment details will be confirmed soon. This service is not claimable from medical aid. ·
-          Plan only (steps 1–3) also available as a standalone option.
+          <div className="flex items-center gap-3 md:flex-shrink-0 md:w-64">
+            <Leaf className="w-5 h-5 flex-shrink-0" style={{ color: SAGE }} />
+            <div className="h-8 w-px flex-shrink-0" style={{ background: BORDER }} />
+            <span className="font-serif font-bold text-[1.05rem] leading-snug" style={{ color: BARK }}>
+              Independent practitioners. Shared values.
+            </span>
+          </div>
+          <div className="text-sm leading-[1.8] space-y-2" style={{ color: TWIG }}>
+            <p>
+              Wellness House brings together practitioners from different disciplines, creating
+              opportunities for individuals and families to find support that suits their needs.
+            </p>
+            <p>
+              Each practitioner operates independently, with their own professional qualifications,
+              services and approach.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
