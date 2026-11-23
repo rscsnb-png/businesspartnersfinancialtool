@@ -638,6 +638,13 @@ const CENTRES = [
     ],
     email: 'info@aldeiawellness.com',
   },
+  {
+    country: 'USA', flag: '🇺🇸', colour: '#C8363F',
+    map: '/images/map-usa.webp',
+    regions: [],
+    email: null,
+    comingSoon: true,
+  },
 ]
 
 function CentresSection() {
@@ -658,16 +665,9 @@ function CentresSection() {
           <div className="flex flex-col md:flex-row md:items-end gap-6">
             <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight flex-1">Our centres</h2>
           </div>
-          <div className="mt-6 rounded-[22px] overflow-hidden shadow-sm border border-stone/40">
-            <img
-              src="/images/map-world.webp"
-              alt="Aldeia global centres map"
-              className="w-full h-auto block"
-            />
-          </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-[18px] mb-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-[18px] mb-6">
           {CENTRES.map((c, i) => (
             <motion.div
               key={c.country}
@@ -690,7 +690,13 @@ function CentresSection() {
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">{c.flag}</span>
                   <h3 className="font-serif font-bold text-xl text-navy">{c.country}</h3>
+                  {c.comingSoon && (
+                    <span className="ml-auto text-xs font-bold px-2.5 py-1 rounded-full text-white" style={{ background: c.colour }}>Coming Soon</span>
+                  )}
                 </div>
+                {c.comingSoon ? (
+                  <p className="text-sm text-warm-gray italic flex-1">We&apos;re expanding to the USA — stay tuned for our launch.</p>
+                ) : (
                 <div className="space-y-3 flex-1">
                   {c.regions.map(r => (
                     <div key={r.region || 'main'}>
@@ -709,6 +715,7 @@ function CentresSection() {
                     </div>
                   ))}
                 </div>
+                )}
                 {c.email && (
                   <a href={`mailto:${c.email}`} className="text-sm text-blue hover:underline mt-4 block">{c.email}</a>
                 )}
@@ -727,11 +734,7 @@ function CentresSection() {
         >
           <div className="p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#7E479A22' }}>
-                <svg className="w-5 h-5" style={{ color: '#7E479A' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3" />
-                </svg>
-              </div>
+              <img src="/images/globe-online.webp" alt="Online worldwide" className="w-14 h-14 object-contain flex-shrink-0" />
               <div>
                 <h3 className="font-serif font-bold text-lg text-navy">Online Sessions</h3>
                 <p className="text-sm text-warm-gray">Available worldwide — teletherapy for learning support and behaviour sessions</p>
