@@ -79,14 +79,12 @@ export default function WellnessHub({ onClose }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: 'transparent' }}
-    >
-      {/* Fixed Cape Town background */}
-      <div style={{
-        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
+      style={{
         backgroundImage: "url('/images/cape-town-bg.webp')",
-        backgroundSize: 'cover', backgroundPosition: 'center 30%',
-      }} />
+        backgroundSize: 'cover',
+        backgroundPosition: 'center 30%',
+      }}
+    >
       <div style={{ position: 'relative', zIndex: 1 }}>
         <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
         <HeroSection />
