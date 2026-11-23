@@ -248,6 +248,7 @@ const SERVICES = [
     body: 'Our qualified learning therapists identify the cognitive and perceptual barriers that make reading, writing and maths harder than it needs to be. Then they address the root cause.',
     tags: ['Homeschool', 'Mainstream'],
     colour: '#006CC0',
+    imgX: '0%', imgY: '0%',
   },
   {
     title: 'Behavioural Support',
@@ -255,6 +256,7 @@ const SERVICES = [
     body: 'We work with children and families to understand what the behaviour is expressing — and then develop practical, compassionate strategies that work at home and at school.',
     tags: ['Individual', 'Family'],
     colour: '#C8363F',
+    imgX: '100%', imgY: '0%',
   },
   {
     title: 'Homeschool Pathways',
@@ -262,6 +264,7 @@ const SERVICES = [
     body: 'From curriculum consultation to therapeutic co-teaching, we walk alongside homeschool families. Your child learns; your family stays connected.',
     tags: ['Curriculum', 'Co-teaching'],
     colour: '#7BA93A',
+    imgX: '0%', imgY: '100%',
   },
   {
     title: 'Mainstream School Support',
@@ -269,6 +272,7 @@ const SERVICES = [
     body: 'We liaise with teachers, compile support plans and provide in-school or after-school sessions that complement what\'s happening in the classroom.',
     tags: ['School liaison', 'Support plans'],
     colour: '#7E479A',
+    imgX: '100%', imgY: '100%',
   },
 ]
 
@@ -311,9 +315,18 @@ function ServicesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white rounded-[22px] p-7 border border-stone/50 flex flex-col gap-3 overflow-hidden"
-              style={{ borderTop: `7px solid ${s.colour}` }}
+              className="bg-white rounded-[22px] border border-stone/50 flex flex-col overflow-hidden"
             >
+              <div
+                className="w-full h-52 flex-shrink-0"
+                style={{
+                  backgroundImage: 'url(/images/therapeutic-services.webp)',
+                  backgroundSize: '200% auto',
+                  backgroundPositionX: s.imgX,
+                  backgroundPositionY: s.imgY,
+                }}
+              />
+              <div className="p-7 flex flex-col gap-3 flex-1" style={{ borderTop: `5px solid ${s.colour}` }}>
               <h3 className="font-serif font-bold text-[1.35rem] text-navy leading-snug">{s.title}</h3>
               <p className="font-semibold text-sm text-navy/70 italic leading-snug">{s.sub}</p>
               <p className="text-sm text-warm-gray leading-relaxed flex-1">{s.body}</p>
@@ -324,6 +337,7 @@ function ServicesSection() {
                     {t}
                   </span>
                 ))}
+              </div>
               </div>
             </motion.div>
           ))}
