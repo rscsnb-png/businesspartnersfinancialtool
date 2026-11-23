@@ -31,17 +31,14 @@ export default function Landing({ onTherapeutic, onWellness }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Full-screen background image */}
-      <img
-        src="/images/landing-bg.webp"
-        alt="Aldeia Wellness — choose your door"
-        className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-        style={{ objectPosition: '50% 0%' }}
-        draggable={false}
-      />
-
-      {/* ── Desktop: transparent hover zones over the doors ── */}
-      <div className="hidden md:block">
+      {/* ── Desktop: full-screen cover image + hover zones ── */}
+      <div className="hidden md:block absolute inset-0">
+        <img
+          src="/images/landing-bg.webp"
+          alt="Aldeia Wellness — choose your door"
+          className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+          draggable={false}
+        />
         {zones.map(zone => (
           <motion.div
             key={zone.id}
@@ -63,7 +60,6 @@ export default function Landing({ onTherapeutic, onWellness }) {
                 />
               )}
             </AnimatePresence>
-
             <AnimatePresence>
               {hovered === zone.id && (
                 <motion.div
@@ -86,13 +82,17 @@ export default function Landing({ onTherapeutic, onWellness }) {
         ))}
       </div>
 
-      {/* ── Mobile: bottom tray with two large tap targets ── */}
-      <div className="md:hidden absolute bottom-0 left-0 right-0 z-10">
-        {/* Gradient fade above the tray */}
-        <div className="h-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)' }} />
-
-        <div className="flex">
+      {/* ── Mobile: image at natural ratio, buttons below ── */}
+      <div className="md:hidden flex flex-col h-full" style={{ background: '#0d1a0a' }}>
+        <div className="flex-shrink-0 w-full">
+          <img
+            src="/images/landing-bg.webp"
+            alt="Aldeia Wellness — choose your door"
+            className="w-full h-auto block select-none"
+            draggable={false}
+          />
+        </div>
+        <div className="flex flex-1">
           <button
             onClick={onTherapeutic}
             className="flex-1 py-6 px-5 text-left transition-all active:brightness-90"
@@ -105,9 +105,7 @@ export default function Landing({ onTherapeutic, onWellness }) {
               Supporting children &amp; families →
             </div>
           </button>
-
           <div className="w-px flex-shrink-0" style={{ background: 'rgba(255,255,255,0.2)' }} />
-
           <button
             onClick={onWellness}
             className="flex-1 py-6 px-5 text-left transition-all active:brightness-90"
