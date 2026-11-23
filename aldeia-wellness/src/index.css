@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Primary logo palette ── */
+  --color-navy:        #0D3A91;
+  --color-blue:        #0D3A91;   /* backward-compat alias → navy (used for headings) */
+  --color-blue-light:  #2080CC;
+  --color-blue-dark:   #092668;
+  --color-sky:         #237BB7;
+  --color-red:         #C8363F;
+  --color-yellow:      #F2C418;
+  --color-green:       #7BA93A;
+  --color-purple:      #7E479A;
+
+  /* ── Neutrals ── */
+  --color-cream:       #FDF8EF;
+  --color-white:       #FFFFFF;
+  --color-warm-gray:   #5A6E82;
+  --color-stone:       #E5E0D8;
+
+  /* ── Backward-compat aliases so existing class names work with new colours ── */
+  --color-coral:       #C8363F;   /* → red */
+  --color-coral-light: #D95861;
+  --color-sage:        #7BA93A;   /* → green */
+  --color-sage-dark:   #5A7D2B;
+  --color-sage-light:  #A0C463;
+  --color-gold:        #F2C418;   /* → yellow */
+  --color-gold-dark:   #B08A00;
+  --color-gold-light:  #F7DC5A;
+  --color-lavender:    #7E479A;   /* → purple */
+  --color-mint:        #237BB7;   /* → sky */
+  --color-sunshine:    #F2C418;   /* → yellow */
+  --color-charcoal:    #0D3A91;   /* → navy */
+  --color-beige:       #FDF8EF;   /* → cream */
+  --color-beige-dark:  #F0E8D8;
+
+  /* ── Fonts ── */
+  --font-serif: "Baloo 2", "Trebuchet MS", sans-serif;
+  --font-sans:  "Figtree", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-navy);
+    background: var(--color-white);
+  }
+
+  /* Baloo 2 is designed to be used at weight 800 for display/headings */
+  .font-serif {
+    font-weight: 800;
+  }
+}
