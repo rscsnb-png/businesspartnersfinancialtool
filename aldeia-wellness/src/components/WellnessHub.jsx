@@ -210,22 +210,12 @@ function HeroSection() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="rounded-[22px] overflow-hidden"
         >
-          <div className="rounded-[22px] overflow-hidden" style={{ background: `linear-gradient(135deg, ${NAVY} 0%, #1a4a6e 100%)` }}>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-0 py-14 px-6">
-              {[
-                { n: '10', label: 'Branches\nWorldwide' },
-                { n: '3,526', label: 'Families\nSupported' },
-                { n: '14', label: 'International\nAwards Won' },
-              ].map((s, i) => (
-                <div key={s.n} className="flex items-stretch">
-                  {i > 0 && <div className="hidden md:block w-px mx-2 self-stretch my-4" style={{ background: 'rgba(255,255,255,0.15)' }} />}
-                  <div className="text-center px-10 py-4">
-                    <div className="font-serif font-extrabold text-white leading-none mb-3" style={{ fontSize: 'clamp(3rem,8vw,5rem)' }}>{s.n}</div>
-                    <div className="text-xs font-bold tracking-[0.2em] uppercase whitespace-pre-line" style={{ color: `${SAGE}cc` }}>{s.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="rounded-[22px] overflow-hidden">
+            <img
+              src="/images/stats-banner.webp"
+              alt="Aldeia — Our Power in Numbers"
+              className="w-full h-auto block"
+            />
           </div>
         </motion.div>
       </div>
