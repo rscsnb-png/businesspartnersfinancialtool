@@ -625,7 +625,7 @@ function AccreditationSection() {
           <img
             src="/images/accreditation-iphm.png"
             alt="IPHM — International Practitioners of Holistic Medicine, Accredited Training Provider · Member Organisation"
-            className="w-full max-w-2xl h-auto object-contain"
+            className="w-full max-w-[960px] h-auto object-contain"
           />
           <div className="flex flex-wrap justify-center gap-6 text-xs font-medium tracking-wide" style={{ color: TWIG }}>
             <span>Accredited Training Provider</span>
