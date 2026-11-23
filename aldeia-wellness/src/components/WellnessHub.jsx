@@ -224,10 +224,10 @@ function HeroSection() {
 // ── Who we support ────────────────────────────────────────────────────────────
 
 const SUPPORT_CARDS = [
-  { icon: '👨‍👩‍👧', title: 'Families with additional needs', desc: 'Raising a child with learning differences, behavioural challenges or developmental needs — we walk the whole journey with you.', colour: MUTED_BLUE },
-  { icon: '🤲', title: 'Parents & caregivers', desc: 'You hold everything together. We support your wellbeing too — coping, balance and emotional resilience.', colour: SAGE },
-  { icon: '🌿', title: 'Adults & life transitions', desc: 'Personal wellbeing, life changes, new seasons — practical support for adults who want to look after themselves.', colour: MAUVE },
-  { icon: '🏡', title: 'Families navigating change', desc: 'New schools, adolescence, a move, a loss — we help families find their footing during uncertain times.', colour: CLAY },
+  { title: 'Families with additional needs', desc: 'Raising a child with learning differences, behavioural challenges or developmental needs — we walk the whole journey with you.', colour: MUTED_BLUE, img: '/images/wellness-who-1.webp', imgX: '0%', imgY: '100%' },
+  { title: 'Parents & caregivers', desc: 'You hold everything together. We support your wellbeing too — coping, balance and emotional resilience.', colour: SAGE, img: '/images/wellness-who-1.webp', imgX: '100%', imgY: '100%' },
+  { title: 'Adults & life transitions', desc: 'Personal wellbeing, life changes, new seasons — practical support for adults who want to look after themselves.', colour: MAUVE, img: '/images/wellness-who-2.webp', imgX: '0%', imgY: '0%' },
+  { title: 'Families navigating change', desc: 'New schools, adolescence, a move, a loss — we help families find their footing during uncertain times.', colour: CLAY, img: '/images/wellness-who-2.webp', imgX: '100%', imgY: '0%' },
 ]
 
 function WhoWeSupport() {
@@ -260,11 +260,19 @@ function WhoWeSupport() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white rounded-[22px] p-7 flex gap-5 overflow-hidden"
-              style={{ borderTop: `6px solid ${c.colour}`, border: '1px solid #E0DCD4', borderTopWidth: '6px', borderTopColor: c.colour }}
+              className="bg-white rounded-[22px] overflow-hidden flex flex-col"
+              style={{ border: '1px solid #E0DCD4', borderTopWidth: '6px', borderTopColor: c.colour }}
             >
-              <span className="text-3xl flex-shrink-0 mt-0.5">{c.icon}</span>
-              <div>
+              <div
+                className="w-full h-52 flex-shrink-0"
+                style={{
+                  backgroundImage: `url(${c.img})`,
+                  backgroundSize: '200% auto',
+                  backgroundPositionX: c.imgX,
+                  backgroundPositionY: c.imgY,
+                }}
+              />
+              <div className="p-7">
                 <h3 className="font-serif font-bold text-[1.2rem] mb-2 leading-snug" style={{ color: NAVY }}>{c.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: '#6B6358' }}>{c.desc}</p>
               </div>
@@ -379,6 +387,27 @@ function FamilyPlanSection() {
               back, see the whole picture, and agree on a plan that fits real life.
             </p>
           </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="grid sm:grid-cols-2 gap-4 mb-10"
+        >
+          {[['0%', 'A family wellness conversation'], ['100%', 'Creating a personalised family plan']].map(([x, label]) => (
+            <div key={x} className="rounded-[22px] overflow-hidden h-64 relative">
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: 'url(/images/wellness-family-plan.webp)',
+                  backgroundSize: '200% auto',
+                  backgroundPositionX: x,
+                  backgroundPositionY: '50%',
+                }}
+              />
+            </div>
+          ))}
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
