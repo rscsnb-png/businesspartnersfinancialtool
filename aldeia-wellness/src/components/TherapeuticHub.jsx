@@ -295,19 +295,6 @@ function ServicesSection() {
           </h2>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mb-8 rounded-[22px] overflow-hidden shadow-sm border border-stone/40"
-        >
-          <img
-            src="/images/services-banner.webp"
-            alt="Aldeia therapeutic learning services"
-            className="w-full h-auto block"
-          />
-        </motion.div>
-
         <div className="grid md:grid-cols-2 gap-[18px]">
           {SERVICES.map((s, i) => (
             <motion.div
@@ -317,7 +304,7 @@ function ServicesSection() {
               transition={{ duration: 0.6, delay: i * 0.08 }}
               className="bg-white rounded-[22px] border border-stone/50 flex flex-col overflow-hidden"
             >
-              <div className="w-full h-52 flex-shrink-0 overflow-hidden">
+              <div className="w-full overflow-hidden" style={{ aspectRatio: '2/1' }}>
                 <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
               </div>
               <div className="p-7 flex flex-col gap-3 flex-1" style={{ borderTop: `5px solid ${s.colour}` }}>
