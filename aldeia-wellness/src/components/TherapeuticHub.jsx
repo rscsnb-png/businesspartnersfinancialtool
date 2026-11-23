@@ -148,7 +148,7 @@ function HeroSection() {
               Established 2013 · South Africa · Namibia · Netherlands
             </span>
             <RainbowStroke className="w-32 mt-1 mb-5" />
-            <h1 className="font-serif font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.08] tracking-tight mb-5">
+            <h1 className="font-serif font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.08] tracking-tight mb-5 [overflow-wrap:normal] [word-break:normal]">
               <span className="inline-block" style={{ color: '#C8363F' }}>Supporting</span>{' '}
               <span className="inline-block text-navy">children.</span>{' '}
               <br className="hidden sm:block" />
