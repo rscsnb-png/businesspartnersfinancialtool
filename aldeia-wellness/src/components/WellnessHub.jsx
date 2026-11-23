@@ -221,7 +221,7 @@ function HeroSection() {
               <a href="#join"
                 className="inline-flex items-center gap-2.5 px-7 py-4 text-white font-semibold rounded-full no-underline transition-all duration-200 hover:opacity-90"
                 style={{ background: SAGE, fontSize: '0.95rem' }}>
-                Opening 2027 — Stay in Touch <ArrowRight />
+                Get in Touch <ArrowRight />
               </a>
               <a href="mailto:info@aldeiawellness.com?subject=Wellness%20House%20Enquiry"
                 className="inline-flex items-center gap-2.5 px-7 py-4 font-semibold rounded-full no-underline transition-all duration-200"
@@ -653,7 +653,7 @@ function InterestSection({ submitted, setSubmitted }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent('Wellness House — 2027 Opening Enquiry')
+    const subject = encodeURIComponent('Wellness House — Enquiry')
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\n\nMessage: ${form.message || 'None'}`
     )
@@ -672,14 +672,13 @@ function InterestSection({ submitted, setSubmitted }) {
         >
           <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.2em] uppercase block mb-4" style={{ color: SAGE }}>
             <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: SAGE }} />
-            Cape Town · Opening 2027
+            Cape Town
           </span>
           <h2 className="font-serif font-bold leading-[1.15] max-w-xl" style={{ fontSize: 'clamp(2rem,4vw,3rem)', color: BARK }}>
-            We&apos;re opening in 2027.
+            Get in touch.
           </h2>
           <p className="mt-5 leading-[1.9]" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '50ch' }}>
-            We&apos;re not taking bookings yet — but if you&apos;d like us to reach out when we do,
-            leave your details below. No pressure, no spam.
+            Have a question, or ready to get started? Leave your details and we&apos;ll be in touch.
           </p>
         </motion.div>
 
@@ -697,7 +696,7 @@ function InterestSection({ submitted, setSubmitted }) {
               </svg>
             </div>
             <h3 className="font-serif text-2xl mb-3" style={{ color: BARK }}>We&apos;ll be in touch.</h3>
-            <p style={{ color: TWIG }}>Thank you — we&apos;ll reach out when we open our doors in 2027.</p>
+            <p style={{ color: TWIG }}>Thank you — we&apos;ll be in touch soon.</p>
           </motion.div>
         ) : (
           <motion.div
@@ -764,7 +763,7 @@ function InterestSection({ submitted, setSubmitted }) {
                   className="inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-full transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed self-start hover:opacity-90"
                   style={{ background: SAGE, fontSize: '0.95rem' }}
                 >
-                  Stay in Touch <ArrowRight />
+                  Send Message <ArrowRight />
                 </button>
               </form>
 
@@ -774,8 +773,8 @@ function InterestSection({ submitted, setSubmitted }) {
                   <div className="space-y-4">
                     {[
                       'We confirm we received your details',
-                      'We\'ll reach out closer to our 2027 opening',
-                      'You\'ll hear about workshops and events before anyone else',
+                      'A team member will reach out within 1–2 business days',
+                      'We\'ll match you with the right practitioner or service',
                     ].map((s, i) => (
                       <div key={s} className="flex items-start gap-3 text-sm" style={{ color: TWIG }}>
                         <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold flex-shrink-0 mt-0.5"
