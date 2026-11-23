@@ -524,30 +524,17 @@ function AccreditationSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-10 sm:gap-16"
+          className="flex flex-col items-center gap-5"
         >
-          <div className="flex flex-col items-center gap-3">
-            <img
-              src="/images/accreditation-iphm.png"
-              alt="IPHM — International Practitioners of Holistic Medicine, Accredited Training Provider"
-              className="h-32 w-auto object-contain"
-            />
-            <p className="text-xs text-center max-w-[180px] leading-relaxed" style={{ color: '#9A9080' }}>
-              Accredited Training Provider
-            </p>
-          </div>
-
-          <div className="hidden sm:block w-px h-24" style={{ background: '#E0DCD4' }} />
-
-          <div className="flex flex-col items-center gap-3">
-            <img
-              src="/images/accreditation-iaot.webp"
-              alt="International Association of Therapists"
-              className="h-24 w-auto object-contain"
-            />
-            <p className="text-xs text-center max-w-[180px] leading-relaxed" style={{ color: '#9A9080' }}>
-              Member Organisation
-            </p>
+          <img
+            src="/images/accreditation-iphm.png"
+            alt="IPHM — International Practitioners of Holistic Medicine, Accredited Training Provider · Member Organisation"
+            className="w-full max-w-2xl h-auto object-contain"
+          />
+          <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold tracking-wide" style={{ color: '#9A9080' }}>
+            <span>Accredited Training Provider</span>
+            <span style={{ color: '#D0CCc4' }}>·</span>
+            <span>Member Organisation</span>
           </div>
         </motion.div>
       </div>
