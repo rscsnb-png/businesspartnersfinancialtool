@@ -10,7 +10,7 @@ export default function Landing({ onTherapeutic, onWellness }) {
       label: 'Therapeutic Learning',
       sub: 'Supporting children & families',
       color: '#006CC0',
-      style: { left: 0, top: 0, width: '50%', bottom: 0 },
+      style: { left: 0, top: '40%', width: '50%', bottom: 0 },
       onClick: onTherapeutic,
     },
     {
@@ -18,7 +18,7 @@ export default function Landing({ onTherapeutic, onWellness }) {
       label: 'Wellness House',
       sub: 'Individual & family wellbeing',
       color: '#7BA93A',
-      style: { right: 0, top: 0, width: '50%', bottom: 0 },
+      style: { right: 0, top: '40%', width: '50%', bottom: 0 },
       onClick: onWellness,
     },
   ]
