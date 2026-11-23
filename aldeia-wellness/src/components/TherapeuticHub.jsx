@@ -248,7 +248,7 @@ const SERVICES = [
     body: 'Our qualified learning therapists identify the cognitive and perceptual barriers that make reading, writing and maths harder than it needs to be. Then they address the root cause.',
     tags: ['Homeschool', 'Mainstream'],
     colour: '#006CC0',
-    img: '/images/svc-learning-therapy.webp',
+    img: '/images/svc-learning-therapy.webp', imgPos: 'center center',
   },
   {
     title: 'Behavioural Support',
@@ -256,7 +256,7 @@ const SERVICES = [
     body: 'We work with children and families to understand what the behaviour is expressing — and then develop practical, compassionate strategies that work at home and at school.',
     tags: ['Individual', 'Family'],
     colour: '#C8363F',
-    img: '/images/svc-behavioural-support.webp',
+    img: '/images/svc-behavioural-support.webp', imgPos: 'center center',
   },
   {
     title: 'Homeschool Pathways',
@@ -264,7 +264,7 @@ const SERVICES = [
     body: 'From curriculum consultation to therapeutic co-teaching, we walk alongside homeschool families. Your child learns; your family stays connected.',
     tags: ['Curriculum', 'Co-teaching'],
     colour: '#7BA93A',
-    img: '/images/svc-homeschool-pathways.webp',
+    img: '/images/svc-homeschool-pathways.webp', imgPos: 'left center',
   },
   {
     title: 'Mainstream School Support',
@@ -272,7 +272,7 @@ const SERVICES = [
     body: 'We liaise with teachers, compile support plans and provide in-school or after-school sessions that complement what\'s happening in the classroom.',
     tags: ['School liaison', 'Support plans'],
     colour: '#7E479A',
-    img: '/images/svc-mainstream-support.webp',
+    img: '/images/svc-mainstream-support.webp', imgPos: 'left center',
   },
 ]
 
@@ -305,7 +305,7 @@ function ServicesSection() {
               className="bg-white rounded-[22px] border border-stone/50 flex flex-col overflow-hidden"
             >
               <div className="w-full overflow-hidden" style={{ aspectRatio: '2/1' }}>
-                <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+                <img src={s.img} alt={s.title} className="w-full h-full object-cover" style={{ objectPosition: s.imgPos || 'center' }} />
               </div>
               <div className="p-7 flex flex-col gap-3 flex-1" style={{ borderTop: `5px solid ${s.colour}` }}>
               <h3 className="font-serif font-bold text-[1.35rem] text-navy leading-snug">{s.title}</h3>
