@@ -264,7 +264,7 @@ const SERVICES = [
     body: 'From curriculum consultation to therapeutic co-teaching, we walk alongside homeschool families. Your child learns; your family stays connected.',
     tags: ['Curriculum', 'Co-teaching'],
     colour: '#7BA93A',
-    img: '/images/svc-homeschool-pathways.webp', imgPos: 'left center', imgH: 180,
+    img: '/images/svc-homeschool-pathways.webp', imgPos: 'center top', imgH: 220,
   },
   {
     title: 'Mainstream School Support',
@@ -272,7 +272,7 @@ const SERVICES = [
     body: 'We liaise with teachers, compile support plans and provide in-school or after-school sessions that complement what\'s happening in the classroom.',
     tags: ['School liaison', 'Support plans'],
     colour: '#7E479A',
-    img: '/images/svc-mainstream-support.webp', imgPos: 'center center', imgH: 180,
+    img: '/images/svc-mainstream-support.webp', imgPos: 'center top', imgH: 220,
   },
 ]
 
