@@ -179,23 +179,24 @@ function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right: dark navy stats card */}
+          {/* Right: yellow stats card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="bg-navy text-white rounded-[22px] p-7 relative overflow-hidden"
+            className="rounded-[22px] p-7 relative overflow-hidden"
+            style={{ background: '#F2C418' }}
           >
             {/* Rainbow top stripe */}
             <div className="absolute inset-x-0 top-0 h-[8px]" style={{ background: RAINBOW }} />
 
-            <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-yellow block mt-2 mb-2">
+            <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase block mt-2 mb-2" style={{ color: '#0D3A91' }}>
               Aldeia Neurobehaviour Institute
             </span>
-            <h2 className="font-serif text-[2rem] mb-2 leading-tight">
+            <h2 className="font-serif text-[2rem] mb-2 leading-tight font-extrabold" style={{ color: '#0D3A91' }}>
               Every child. Every family.
             </h2>
-            <p className="text-[1.15rem] font-serif text-[#ffd9d9] mb-5">
+            <p className="text-[1.15rem] font-serif mb-5 font-semibold" style={{ color: '#365644' }}>
               Every step of the way.
             </p>
 
@@ -205,17 +206,17 @@ function HeroSection() {
                 { n: '10', label: 'Branches' },
                 { n: '3,526', label: 'Families' },
               ].map(s => (
-                <div key={s.label} className="bg-white/8 rounded-2xl p-3 text-center">
-                  <b className="block font-serif font-extrabold text-[1.7rem] leading-none font-variant-numeric tabular-nums text-yellow">{s.n}</b>
-                  <span className="text-[0.82rem] text-[#d7d4e6] leading-tight block mt-1">{s.label}</span>
+                <div key={s.label} className="bg-white rounded-2xl p-3 text-center shadow-sm">
+                  <b className="block font-serif font-extrabold text-[1.7rem] leading-none tabular-nums" style={{ color: '#0D3A91' }}>{s.n}</b>
+                  <span className="text-[0.82rem] font-semibold leading-tight block mt-1" style={{ color: '#365644' }}>{s.label}</span>
                 </div>
               ))}
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-white/50">
+            <div className="flex items-center gap-2 text-sm" style={{ color: '#0D3A91' }}>
               <Stars n={5} />
-              <span className="font-bold text-white">4.9</span>
-              <span>· 127 Google reviews</span>
+              <span className="font-bold">4.9</span>
+              <span className="opacity-70">· 127 Google reviews</span>
             </div>
           </motion.div>
         </div>
