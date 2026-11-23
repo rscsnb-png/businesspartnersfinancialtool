@@ -215,7 +215,7 @@ function HeroSection() {
               <a href="#join"
                 className="inline-flex items-center gap-2.5 px-7 py-4 text-white font-semibold rounded-full no-underline transition-all duration-200 hover:opacity-90"
                 style={{ background: SAGE, fontSize: '0.95rem' }}>
-                Join the Interest List <ArrowRight />
+                Opening 2027 — Stay in Touch <ArrowRight />
               </a>
               <a href="mailto:info@aldeiawellness.com?subject=Wellness%20House%20Enquiry"
                 className="inline-flex items-center gap-2.5 px-7 py-4 font-semibold rounded-full no-underline transition-all duration-200"
@@ -643,28 +643,13 @@ function AccreditationSection() {
 function InterestSection({ submitted, setSubmitted }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const [form, setForm] = useState({
-    name: '', email: '', phone: '', interests: [], message: '', consent: false,
-  })
-
-  const interestOptions = [
-    'Family Wellness Plan',
-    'Support for myself as a parent or caregiver',
-    'Adult wellbeing',
-    'Workshops and parent evenings',
-    "I'm a health, wellness or holistic practitioner looking for a room",
-  ]
-
-  const toggle = (val) => setForm(f => ({
-    ...f,
-    interests: f.interests.includes(val) ? f.interests.filter(i => i !== val) : [...f.interests, val],
-  }))
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', consent: false })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent('Wellness House Interest List')
+    const subject = encodeURIComponent('Wellness House — 2027 Opening Enquiry')
     const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\n\nInterested in:\n${form.interests.map(i => `- ${i}`).join('\n')}\n\nMessage: ${form.message || 'None'}`
+      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone || 'Not provided'}\n\nMessage: ${form.message || 'None'}`
     )
     window.location.href = `mailto:info@aldeiawellness.com?subject=${subject}&body=${body}`
     setSubmitted(true)
@@ -681,14 +666,14 @@ function InterestSection({ submitted, setSubmitted }) {
         >
           <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold tracking-[0.2em] uppercase block mb-4" style={{ color: SAGE }}>
             <span className="w-1.5 h-1.5 rounded-full animate-pulse inline-block" style={{ background: SAGE }} />
-            Durbanville, Cape Town
+            Cape Town · Opening 2027
           </span>
           <h2 className="font-serif font-bold leading-[1.15] max-w-xl" style={{ fontSize: 'clamp(2rem,4vw,3rem)', color: BARK }}>
-            Be the first to know
+            We&apos;re opening in 2027.
           </h2>
           <p className="mt-5 leading-[1.9]" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '50ch' }}>
-            Leave your details and we&apos;ll let you know when bookings open, and invite
-            you to our first workshops.
+            We&apos;re not taking bookings yet — but if you&apos;d like us to reach out when we do,
+            leave your details below. No pressure, no spam.
           </p>
         </motion.div>
 
@@ -705,8 +690,8 @@ function InterestSection({ submitted, setSubmitted }) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
               </svg>
             </div>
-            <h3 className="font-serif text-2xl mb-3" style={{ color: BARK }}>You&apos;re on the list.</h3>
-            <p style={{ color: TWIG }}>We&apos;ll be in touch as soon as bookings open.</p>
+            <h3 className="font-serif text-2xl mb-3" style={{ color: BARK }}>We&apos;ll be in touch.</h3>
+            <p style={{ color: TWIG }}>Thank you — we&apos;ll reach out when we open our doors in 2027.</p>
           </motion.div>
         ) : (
           <motion.div
@@ -731,39 +716,13 @@ function InterestSection({ submitted, setSubmitted }) {
                 </div>
 
                 <label className="flex flex-col gap-1.5 text-sm font-medium" style={{ color: BARK }}>
-                  Phone
+                  Phone <span className="font-normal" style={{ color: TWIG }}>(optional)</span>
                   <input type="tel" value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                     className="text-[0.95rem] px-4 py-3 rounded-xl bg-white placeholder:opacity-30 outline-none"
                     style={{ border: `1.5px solid ${BORDER}`, color: BARK }}
                     placeholder="+27 ..." />
                 </label>
-
-                <div>
-                  <p className="text-sm font-medium mb-4" style={{ color: BARK }}>
-                    I&apos;m interested in <span style={{ color: '#B85050' }}>*</span>
-                  </p>
-                  <div className="space-y-3">
-                    {interestOptions.map(opt => (
-                      <label key={opt} className="flex items-center gap-3 cursor-pointer">
-                        <div
-                          className="w-5 h-5 rounded flex items-center justify-center border flex-shrink-0 transition-all duration-150"
-                          style={form.interests.includes(opt)
-                            ? { background: SAGE, borderColor: SAGE }
-                            : { background: '#fff', borderColor: BORDER }}
-                          onClick={() => toggle(opt)}
-                        >
-                          {form.interests.includes(opt) && (
-                            <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                            </svg>
-                          )}
-                        </div>
-                        <span className="text-sm leading-relaxed" style={{ color: TWIG }} onClick={() => toggle(opt)}>{opt}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
 
                 <label className="flex flex-col gap-1.5 text-sm font-medium" style={{ color: BARK }}>
                   Anything you&apos;d like us to know?
@@ -795,22 +754,22 @@ function InterestSection({ submitted, setSubmitted }) {
 
                 <button
                   type="submit"
-                  disabled={!form.consent || form.interests.length === 0}
+                  disabled={!form.consent}
                   className="inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-full transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed self-start hover:opacity-90"
                   style={{ background: SAGE, fontSize: '0.95rem' }}
                 >
-                  Join the Interest List <ArrowRight />
+                  Stay in Touch <ArrowRight />
                 </button>
               </form>
 
               <div className="space-y-5">
                 <div className="rounded-[20px] p-7" style={{ background: LINEN, border: `1px solid ${BORDER}` }}>
-                  <h3 className="font-serif font-bold text-lg mb-4" style={{ color: BARK }}>What happens next?</h3>
+                  <h3 className="font-serif font-bold text-lg mb-4" style={{ color: BARK }}>What to expect</h3>
                   <div className="space-y-4">
                     {[
                       'We confirm we received your details',
-                      'You get an invite to our first workshop in 2026',
-                      'When bookings open, you hear first',
+                      'We\'ll reach out closer to our 2027 opening',
+                      'You\'ll hear about workshops and events before anyone else',
                     ].map((s, i) => (
                       <div key={s} className="flex items-start gap-3 text-sm" style={{ color: TWIG }}>
                         <div className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold flex-shrink-0 mt-0.5"
