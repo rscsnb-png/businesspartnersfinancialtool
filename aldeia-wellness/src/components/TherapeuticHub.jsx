@@ -3,6 +3,12 @@ import { useRef, useState } from 'react'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+const RAINBOW = 'linear-gradient(90deg,#C8363F,#F2C418,#7BA93A,#7E479A,#237BB7,#006CC0)'
+
+function RainbowStroke({ className = 'w-32 my-4' }) {
+  return <div className={`h-[7px] rounded-full ${className}`} style={{ background: RAINBOW }} />
+}
+
 function Stars({ n = 5 }) {
   return (
     <span className="flex gap-0.5" aria-label={`${n} stars`}>
@@ -27,7 +33,6 @@ function ArrowRight({ className = 'w-4 h-4' }) {
 
 export default function TherapeuticHub({ onClose }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [openBlog, setOpenBlog] = useState(null)
 
   return (
     <motion.div
@@ -39,13 +44,12 @@ export default function TherapeuticHub({ onClose }) {
     >
       <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
       <HeroSection />
-      <StatsStrip />
       <ServicesSection />
       <ProcessSection />
       <ReviewsSection />
       <AboutSection />
       <CentresSection />
-      <BlogSection openBlog={openBlog} setOpenBlog={setOpenBlog} />
+      <BlogSection />
       <CTASection />
       <FooterSection onClose={onClose} />
     </motion.div>
@@ -56,45 +60,41 @@ export default function TherapeuticHub({ onClose }) {
 
 function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-stone/40">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
-        {/* Back */}
-        <button
-          onClick={onClose}
-          className="flex items-center gap-2 text-sm text-warm-gray hover:text-navy transition-colors flex-shrink-0"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
-          <span className="hidden sm:inline">Home</span>
-        </button>
-
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src="/images/logo.png" alt="Aldeia" className="h-8 w-auto"
-            onError={(e) => { e.target.style.display='none' }} />
-          <span className="font-serif font-bold text-navy hidden sm:block">Aldeia</span>
-          <span className="text-xs text-warm-gray/60 hidden md:block">· Therapeutic Learning</span>
-        </div>
+    <header className="sticky top-0 z-40 bg-white/94 backdrop-blur-sm border-b border-stone/40">
+      <div className="max-w-[1160px] mx-auto px-4 h-[72px] flex items-center gap-5">
+        {/* Logo + name */}
+        <a onClick={onClose} href="#" className="flex items-center gap-2.5 text-navy no-underline flex-shrink-0 font-serif font-bold text-[1.2rem]">
+          <div className="w-[54px] h-[54px] rounded-full bg-white border border-stone/40 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-sm">
+            <img src="/images/logo.png" alt="Aldeia" className="w-9 h-9 object-contain"
+              onError={(e) => { e.target.style.display = 'none' }} />
+          </div>
+          <span className="hidden sm:block">Aldeia</span>
+          <span className="text-sm text-warm-gray/60 font-normal hidden md:block">· Therapeutic Learning</span>
+        </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm text-warm-gray">
-          <a href="#services" className="hover:text-navy transition-colors">Services</a>
-          <a href="#reviews" className="hover:text-navy transition-colors">Reviews</a>
-          <a href="#about" className="hover:text-navy transition-colors">Our Team</a>
-          <a href="#centres" className="hover:text-navy transition-colors">Centres</a>
+        <nav className="hidden md:flex items-center gap-1 ml-auto list-none p-0 m-0">
+          {[['Services','#services'],['Reviews','#reviews'],['About','#about'],['Centres','#centres']].map(([label, href]) => (
+            <a key={label} href={href} className="block px-3 py-2 rounded-[10px] text-navy no-underline font-semibold text-[0.95rem] hover:bg-cream transition-colors">
+              {label}
+            </a>
+          ))}
         </nav>
 
         {/* CTA */}
         <a
           href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
-          className="flex-shrink-0 px-4 py-2 bg-red text-white text-xs font-bold rounded-full shadow-[3px_3px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[3px_4px_0_0_#9B2429] active:translate-y-px transition-all duration-150"
+          className="ml-auto md:ml-4 flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-red text-white text-sm font-bold rounded-full no-underline shadow-[0_6px_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[0_8px_0_#9B2429] transition-all duration-150"
         >
           Book Free Consult
         </a>
 
-        {/* Mobile menu toggle */}
-        <button className="md:hidden p-1" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        {/* Mobile burger */}
+        <button
+          className="md:hidden ml-2 bg-transparent border-2 border-navy rounded-xl px-3 py-2 font-bold text-[0.9rem] cursor-pointer"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Menu"
+        >
           <svg className="w-5 h-5 text-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d={mobileMenuOpen ? "M6 18 18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
           </svg>
@@ -110,11 +110,11 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden border-t border-stone/40 bg-white overflow-hidden"
           >
-            <div className="px-6 py-4 flex flex-col gap-3 text-sm text-warm-gray">
-              {['Services', 'Reviews', 'Our Team', 'Centres'].map(link => (
-                <a key={link} href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  className="hover:text-navy" onClick={() => setMobileMenuOpen(false)}>
-                  {link}
+            <div className="px-6 py-4 flex flex-col gap-1">
+              {[['Services','#services'],['Reviews','#reviews'],['About','#about'],['Centres','#centres']].map(([label, href]) => (
+                <a key={label} href={href} className="block px-3 py-2 rounded-[10px] text-navy no-underline font-semibold hover:bg-cream transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}>
+                  {label}
                 </a>
               ))}
             </div>
@@ -130,89 +130,111 @@ function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
 function HeroSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+
   return (
-    <section ref={ref} className="bg-white">
-      {/* Full-width brand banner image */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.7 }}
-        className="w-full overflow-hidden"
-      >
-        <img
-          src="/images/hero-therapeutic.webp"
-          alt="Aldeia Neurobehaviour Institute — Supporting children, strengthening families"
-          className="w-full h-auto block"
-        />
-      </motion.div>
+    <section ref={ref} className="pt-14 pb-0 bg-white">
+      <div className="max-w-[1160px] mx-auto px-4">
 
-      {/* CTA strip below banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="max-w-7xl mx-auto px-6 lg:px-12 py-10 lg:py-12"
-      >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <p className="text-warm-gray leading-relaxed max-w-lg">
-            Evidence-based learning support that empowers children to grow
-            academically, emotionally and confidently — across South Africa,
-            Namibia and the Netherlands.
-          </p>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <a
-              href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150"
-            >
-              Book free consultation
-              <ArrowRight />
-            </a>
-            <a
-              href="https://wa.me/27795423701"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-green text-green text-sm font-bold rounded-full hover:bg-green/5 transition-colors"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                <path d="M11.998 0C5.372 0 0 5.373 0 12c0 2.117.555 4.112 1.527 5.843L.057 23.927l6.293-1.651C8.047 23.312 9.98 24 11.998 24 18.627 24 24 18.627 24 12S18.627 0 11.998 0zm0 21.818a9.78 9.78 0 01-4.991-1.371l-.358-.213-3.712.974.99-3.624-.234-.375A9.773 9.773 0 012.182 12c0-5.414 4.401-9.818 9.816-9.818 5.414 0 9.816 4.404 9.816 9.818 0 5.414-4.402 9.818-9.816 9.818z" />
-              </svg>
-              WhatsApp us
-            </a>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  )
-}
+        {/* Two-column: text left, dark card right */}
+        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center mb-14">
 
-// ── Stats strip ────────────────────────────────────────────────────────────────
-
-function StatsStrip() {
-  const stats = [
-    { n: 'Since 2013', label: 'Established' },
-    { n: '12', label: 'Branches' },
-    { n: '1,556', label: 'Families supported' },
-    { n: '14', label: 'National & international awards' },
-  ]
-  return (
-    <div className="relative bg-navy overflow-hidden">
-      {/* Subtle background image */}
-      <img
-        src="/images/stats-bg.jpg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
-      />
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-          {stats.map(s => (
-            <div key={s.label} className="px-8 py-10 text-center">
-              <div className="font-serif text-3xl lg:text-4xl text-yellow mb-1">{s.n}</div>
-              <div className="text-xs font-medium tracking-wider text-white/50 uppercase">{s.label}</div>
+          {/* Left: heading + lede + CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-block font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray mb-3">
+              Established 2013 · South Africa · Namibia · Netherlands
+            </span>
+            <RainbowStroke className="w-32 mt-1 mb-5" />
+            <h1 className="font-serif font-extrabold text-[clamp(2.6rem,5.5vw,4.4rem)] leading-[1.08] tracking-tight mb-5">
+              <span className="inline-block" style={{ color: '#C8363F' }}>Supporting</span>{' '}
+              <span className="inline-block text-navy">children.</span>{' '}
+              <br className="hidden sm:block" />
+              <span className="inline-block" style={{ color: '#7BA93A' }}>Strengthening</span>{' '}
+              <span className="inline-block" style={{ color: '#006CC0' }}>families.</span>
+            </h1>
+            <p className="text-[1.15rem] text-warm-gray mb-8 max-w-[44ch] leading-relaxed">
+              Evidence-based therapeutic learning and behaviour support — for children who need more
+              than a tutor, and families who need more than advice.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
+                className="inline-flex items-center gap-2 px-6 py-4 bg-red text-white font-bold text-[1rem] rounded-full no-underline shadow-[0_6px_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[0_8px_0_#9B2429] transition-all duration-150"
+              >
+                Book free consultation <ArrowRight />
+              </a>
+              <a
+                href="https://wa.me/27795423701"
+                className="inline-flex items-center gap-2 px-6 py-4 bg-white text-navy border-2 border-navy font-bold text-[1rem] rounded-full no-underline hover:bg-cream transition-colors"
+              >
+                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path d="M11.998 0C5.372 0 0 5.373 0 12c0 2.117.555 4.112 1.527 5.843L.057 23.927l6.293-1.651C8.047 23.312 9.98 24 11.998 24 18.627 24 24 18.627 24 12S18.627 0 11.998 0zm0 21.818a9.78 9.78 0 01-4.991-1.371l-.358-.213-3.712.974.99-3.624-.234-.375A9.773 9.773 0 012.182 12c0-5.414 4.401-9.818 9.816-9.818 5.414 0 9.816 4.404 9.816 9.818 0 5.414-4.402 9.818-9.816 9.818z" />
+                </svg>
+                WhatsApp us
+              </a>
             </div>
-          ))}
+          </motion.div>
+
+          {/* Right: dark navy stats card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="bg-navy text-white rounded-[22px] p-7 relative overflow-hidden"
+          >
+            {/* Rainbow top stripe */}
+            <div className="absolute inset-x-0 top-0 h-[8px]" style={{ background: RAINBOW }} />
+
+            <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-yellow block mt-2 mb-2">
+              Aldeia Neurobehaviour Institute
+            </span>
+            <h2 className="font-serif text-[2rem] mb-2 leading-tight">
+              Every child. Every family.
+            </h2>
+            <p className="text-[1.15rem] font-serif text-[#ffd9d9] mb-5">
+              Every step of the way.
+            </p>
+
+            <div className="grid grid-cols-3 gap-2.5 mb-5">
+              {[
+                { n: '14', label: 'Awards' },
+                { n: '12', label: 'Branches' },
+                { n: '1,556', label: 'Families' },
+              ].map(s => (
+                <div key={s.label} className="bg-white/8 rounded-2xl p-3 text-center">
+                  <b className="block font-serif font-extrabold text-[1.7rem] leading-none font-variant-numeric tabular-nums text-yellow">{s.n}</b>
+                  <span className="text-[0.82rem] text-[#d7d4e6] leading-tight block mt-1">{s.label}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 text-sm text-white/50">
+              <Stars n={5} />
+              <span className="font-bold text-white">4.9</span>
+              <span>· 127 Google reviews</span>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Full-width brand banner image */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="rounded-[22px] overflow-hidden"
+        >
+          <img
+            src="/images/hero-therapeutic.webp"
+            alt="Aldeia Neurobehaviour Institute — Supporting children, strengthening families"
+            className="w-full h-auto block"
+          />
+        </motion.div>
       </div>
-    </div>
+    </section>
   )
 }
 
@@ -220,7 +242,6 @@ function StatsStrip() {
 
 const SERVICES = [
   {
-    n: '01',
     title: 'Learning Therapy',
     sub: 'Understanding how your child learns — not just what they\'re missing.',
     body: 'Our qualified learning therapists identify the cognitive and perceptual barriers that make reading, writing and maths harder than it needs to be. Then they address the root cause.',
@@ -228,7 +249,6 @@ const SERVICES = [
     colour: '#006CC0',
   },
   {
-    n: '02',
     title: 'Behavioural Support',
     sub: 'When behaviour is communication.',
     body: 'We work with children and families to understand what the behaviour is expressing — and then develop practical, compassionate strategies that work at home and at school.',
@@ -236,7 +256,6 @@ const SERVICES = [
     colour: '#C8363F',
   },
   {
-    n: '03',
     title: 'Homeschool Pathways',
     sub: 'Education, your way, with real support.',
     body: 'From curriculum consultation to therapeutic co-teaching, we walk alongside homeschool families. Your child learns; your family stays connected.',
@@ -244,7 +263,6 @@ const SERVICES = [
     colour: '#7BA93A',
   },
   {
-    n: '04',
     title: 'Mainstream School Support',
     sub: 'In school, but not thriving.',
     body: 'We liaise with teachers, compile support plans and provide in-school or after-school sessions that complement what\'s happening in the classroom.',
@@ -257,39 +275,40 @@ function ServicesSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="services" className="py-20 lg:py-28 bg-cream" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="services" className="py-[88px] bg-cream" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-14"
+          className="mb-10"
         >
-          <span className="text-xs font-bold tracking-widest uppercase text-purple block mb-3">What we offer</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy max-w-lg leading-snug">
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">What we offer</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy max-w-lg leading-tight">
             Programmes that look at the whole child
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-stone/40 rounded-[22px] overflow-hidden border border-stone/40">
+        <div className="grid md:grid-cols-2 gap-[18px]">
           {SERVICES.map((s, i) => (
             <motion.div
-              key={s.n}
+              key={s.title}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="bg-white p-8 lg:p-10 group hover:bg-cream/80 transition-colors"
+              className="bg-white rounded-[22px] p-7 border border-stone/50 flex flex-col gap-3 overflow-hidden"
+              style={{ borderTop: `7px solid ${s.colour}` }}
             >
-              <div className="flex items-start gap-4 mb-5">
-                <span className="font-serif text-sm font-bold text-warm-gray/40">{s.n}</span>
-                <div className="w-6 h-0.5 mt-3 flex-shrink-0" style={{ background: s.colour }} />
-                <h3 className="font-serif text-xl text-navy leading-snug">{s.title}</h3>
-              </div>
-              <p className="text-sm font-medium text-navy/70 italic mb-3 leading-snug">{s.sub}</p>
-              <p className="text-sm text-warm-gray leading-relaxed mb-5">{s.body}</p>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="font-serif font-bold text-[1.35rem] text-navy leading-snug">{s.title}</h3>
+              <p className="font-semibold text-sm text-navy/70 italic leading-snug">{s.sub}</p>
+              <p className="text-sm text-warm-gray leading-relaxed flex-1">{s.body}</p>
+              <div className="flex flex-wrap gap-2 mt-1">
                 {s.tags.map(t => (
-                  <span key={t} className="text-xs px-2.5 py-1 rounded-full border border-stone text-warm-gray">{t}</span>
+                  <span key={t} className="text-xs px-3 py-1.5 rounded-full font-semibold border-2"
+                    style={{ color: s.colour, borderColor: s.colour + '44', background: s.colour + '0d' }}>
+                    {t}
+                  </span>
                 ))}
               </div>
             </motion.div>
@@ -303,31 +322,41 @@ function ServicesSection() {
 // ── Process ───────────────────────────────────────────────────────────────────
 
 const STEPS = [
-  { n: 1, title: 'Start with a conversation', body: 'Tell us your child\'s story. No forms, no immediate assessments — just an honest call with one of our practitioners.' },
-  { n: 2, title: 'Full picture assessment', body: 'We identify what\'s happening and why: cognitive, emotional, and educational. We work with your child\'s school where needed.' },
-  { n: 3, title: 'A plan that fits your family', body: 'A tailored programme that your child\'s team — therapists, teachers, parents — can follow and build on together.' },
-  { n: 4, title: 'Real progress, properly tracked', body: 'Regular reviews, parent coaching, school liaison. We celebrate every milestone and adjust when life changes.' },
+  { n: 1, title: 'Start with a conversation', body: 'Tell us your child\'s story. No forms, no immediate assessments — just an honest call with one of our practitioners.', colour: '#C8363F' },
+  { n: 2, title: 'Full picture assessment', body: 'We identify what\'s happening and why: cognitive, emotional, and educational. We work with your child\'s school where needed.', colour: '#F2C418' },
+  { n: 3, title: 'A plan that fits your family', body: 'A tailored programme that your child\'s team — therapists, teachers, parents — can follow and build on together.', colour: '#7BA93A' },
+  { n: 4, title: 'Real progress, properly tracked', body: 'Regular reviews, parent coaching, school liaison. We celebrate every milestone and adjust when life changes.', colour: '#006CC0' },
 ]
 
 function ProcessSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section className="py-20 lg:py-28 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-14">
-          <span className="text-xs font-bold tracking-widest uppercase text-green block mb-3">How we work</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy max-w-lg leading-snug">From your first message to real progress</h2>
+    <section className="py-[88px] bg-white" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-10">
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">How we work</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy max-w-lg leading-tight">
+            From your first message to real progress
+          </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {STEPS.map((s, i) => (
-            <motion.div key={s.n}
+            <motion.div
+              key={s.n}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}>
-              <div className="font-serif text-5xl text-navy/8 font-bold mb-4 leading-none">{String(s.n).padStart(2, '0')}</div>
-              <h3 className="font-serif text-lg text-navy mb-3 leading-snug">{s.title}</h3>
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="bg-white rounded-[22px] p-6 border border-stone/50"
+              style={{ borderTop: `7px solid ${s.colour}` }}
+            >
+              <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold mb-4 font-serif"
+                style={{ background: s.colour }}>
+                {s.n}
+              </div>
+              <h3 className="font-serif font-bold text-[1.15rem] text-navy mb-2 leading-snug">{s.title}</h3>
               <p className="text-sm text-warm-gray leading-relaxed">{s.body}</p>
             </motion.div>
           ))}
@@ -370,41 +399,38 @@ function ReviewsSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="reviews" className="py-20 lg:py-28 bg-cream" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
+    <section id="reviews" className="py-[88px] bg-cream" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-12"
+          className="mb-10"
         >
-          <div className="flex flex-wrap items-end gap-6 mb-4">
-            <div>
-              <span className="text-xs font-bold tracking-widest uppercase text-blue block mb-3">What parents say</span>
-              <h2 className="font-serif text-3xl lg:text-4xl text-navy leading-snug">
-                Families who found their way
-              </h2>
-            </div>
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">What parents say</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <div className="flex flex-wrap items-end gap-6">
+            <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight">
+              Families who found their way
+            </h2>
             <div className="flex items-center gap-3 pb-1">
               <Stars n={5} />
               <span className="font-serif text-2xl font-bold text-navy">4.9</span>
-              <span className="text-sm text-warm-gray">· 127 reviews</span>
+              <span className="text-sm text-warm-gray">· 127 Google reviews</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Review cards */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-[18px]">
           {REVIEWS.map((r, i) => (
             <motion.div
               key={r.name}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-white rounded-[20px] p-7 border border-stone/50 flex flex-col"
+              className="bg-white rounded-[22px] p-7 border border-stone/50 flex flex-col overflow-hidden"
+              style={{ borderTop: `7px solid ${r.colour}` }}
             >
-              {/* Reviewer */}
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0"
                   style={{ background: r.colour }}>
@@ -426,10 +452,9 @@ function ReviewsSection() {
         <div className="mt-10 text-center">
           <a
             href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-navy text-white text-sm font-bold rounded-full hover:bg-navy/90 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-navy text-white font-bold rounded-full no-underline shadow-[0_6px_0_#071f52] hover:-translate-y-0.5 hover:shadow-[0_8px_0_#071f52] transition-all duration-150"
           >
-            Start your child&apos;s journey
-            <ArrowRight />
+            Start your child&apos;s journey <ArrowRight />
           </a>
         </div>
       </div>
@@ -439,26 +464,34 @@ function ReviewsSection() {
 
 // ── About ─────────────────────────────────────────────────────────────────────
 
+const PRACTITIONERS = [
+  { label: 'Qualified Learning Therapists', colour: '#C8363F' },
+  { label: 'Registered Behaviour Practitioners', colour: '#F2C418' },
+  { label: 'Educational Consultants', colour: '#7BA93A' },
+  { label: 'Speech & Language Therapists', colour: '#7E479A' },
+  { label: 'Occupational Therapists', colour: '#237BB7' },
+  { label: 'Parent Coaches', colour: '#006CC0' },
+]
+
 function AboutSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="about" className="bg-navy py-20 lg:py-28 overflow-hidden" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Top heading */}
+    <section id="about" className="py-[88px] bg-navy" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-14"
+          className="mb-10"
         >
-          <span className="text-xs font-bold tracking-widest uppercase text-yellow block mb-3">Our story</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-white leading-snug max-w-2xl">
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-yellow block mb-2">Our story</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-white max-w-2xl leading-tight">
             Built for children who don&apos;t fit neatly into one box
           </h2>
         </motion.div>
 
-        {/* Two-column story + team list */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -480,10 +513,8 @@ function AboutSection() {
               Today we operate across 12 branches in South Africa, Namibia and the
               Netherlands, and we&apos;ve supported 1,556 families across three countries.
             </p>
-            <p>
-              <em className="text-white/50 not-italic font-serif text-lg">
-                &ldquo;Every child. Every family. Every step of the way.&rdquo;
-              </em>
+            <p className="font-serif text-lg text-white/50 italic">
+              &ldquo;Every child. Every family. Every step of the way.&rdquo;
             </p>
           </motion.div>
 
@@ -492,33 +523,25 @@ function AboutSection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
-            <p className="text-xs font-bold tracking-widest uppercase text-yellow/70 mb-5">Our practitioners include</p>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {[
-                'Qualified Learning Therapists',
-                'Registered Behaviour Practitioners',
-                'Educational Consultants',
-                'Speech & Language Therapists',
-                'Occupational Therapists',
-                'Parent Coaches',
-              ].map(s => (
-                <div key={s} className="flex items-center gap-2 text-sm text-white/70">
-                  <svg className="w-4 h-4 text-green flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                  </svg>
-                  {s}
-                </div>
+            <p className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-yellow/70 mb-5">Our practitioners include</p>
+            <ul className="flex flex-wrap gap-2.5 list-none p-0 m-0 mb-10">
+              {PRACTITIONERS.map(p => (
+                <li key={p.label}
+                  className="px-4 py-2 rounded-full font-semibold text-[0.95rem] bg-white/5 border-2"
+                  style={{ color: p.colour, borderColor: p.colour }}>
+                  {p.label}
+                </li>
               ))}
-            </div>
+            </ul>
 
-            <div className="mt-10 grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 { n: '14', label: 'Awards' },
                 { n: '12', label: 'Branches' },
                 { n: '1,556', label: 'Families' },
               ].map(s => (
                 <div key={s.label} className="text-center border border-white/10 rounded-2xl py-5">
-                  <div className="font-serif text-2xl text-yellow mb-1">{s.n}</div>
+                  <div className="font-serif font-extrabold text-2xl text-yellow mb-1">{s.n}</div>
                   <div className="text-xs text-white/40 uppercase tracking-wider">{s.label}</div>
                 </div>
               ))}
@@ -533,36 +556,37 @@ function AboutSection() {
 // ── Centres + Facebook ────────────────────────────────────────────────────────
 
 const CENTRES = [
-  { country: 'South Africa', flag: '🇿🇦', colour: '#006CC0', locations: ['Cape Town (Durbanville)', 'Pretoria (Lynnwood)'], phone: '+27 (0)21 000 0000', email: 'info@aldeiawellness.co.za' },
-  { country: 'Namibia', flag: '🇳🇦', colour: '#C8363F', locations: ['Windhoek (Klein Windhoek)'], phone: '+264 (0)61 000 0000', email: 'info@aldeiawellness.com' },
-  { country: 'Netherlands', flag: '🇳🇱', colour: '#7BA93A', locations: ['Connecting online'], phone: '', email: 'info@aldeiawellness.com' },
+  { country: 'South Africa', flag: '🇿🇦', colour: '#006CC0', locations: ['Cape Town (Durbanville)', 'Pretoria (Lynnwood)'], email: 'info@aldeiawellness.co.za' },
+  { country: 'Namibia', flag: '🇳🇦', colour: '#C8363F', locations: ['Windhoek (Klein Windhoek)'], email: 'info@aldeiawellness.com' },
+  { country: 'Netherlands', flag: '🇳🇱', colour: '#7BA93A', locations: ['Connecting online'], email: 'info@aldeiawellness.com' },
 ]
 
 function CentresSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="centres" className="py-20 lg:py-28 bg-white" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-14">
-          <span className="text-xs font-bold tracking-widest uppercase text-red block mb-3">Where we are</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy leading-snug">Our centres</h2>
+    <section id="centres" className="py-[88px] bg-white" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-10">
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">Where we are</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight">Our centres</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-14">
+        <div className="grid md:grid-cols-3 gap-[18px] mb-14">
           {CENTRES.map((c, i) => (
             <motion.div
               key={c.country}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="rounded-[20px] border border-stone/50 overflow-hidden"
+              className="bg-white rounded-[22px] border border-stone/50 overflow-hidden"
+              style={{ borderTop: `7px solid ${c.colour}` }}
             >
-              <div className="h-1 w-full" style={{ background: c.colour }} />
               <div className="p-7">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-2xl">{c.flag}</span>
-                  <h3 className="font-serif text-xl text-navy">{c.country}</h3>
+                  <h3 className="font-serif font-bold text-xl text-navy">{c.country}</h3>
                 </div>
                 {c.locations.map(l => (
                   <div key={l} className="flex items-center gap-2 text-sm text-warm-gray mb-2">
@@ -581,38 +605,33 @@ function CentresSection() {
           ))}
         </div>
 
-        {/* Facebook section */}
+        {/* Facebook */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="rounded-[22px] border border-stone/50 overflow-hidden"
         >
-          <div className="bg-cream px-8 py-6 border-b border-stone/40">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-[#1877F2] rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </div>
-              <div>
-                <p className="font-serif font-bold text-navy text-sm">Aldeia Wellness on Facebook</p>
-                <p className="text-xs text-warm-gray">Follow us for updates, articles and community</p>
-              </div>
+          <div className="bg-cream px-8 py-5 border-b border-stone/40 flex items-center gap-3">
+            <div className="w-9 h-9 bg-[#1877F2] rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <div>
+              <p className="font-serif font-bold text-navy text-sm">Aldeia on Facebook</p>
+              <p className="text-xs text-warm-gray">Follow us for updates, articles and community</p>
             </div>
           </div>
           <div className="flex justify-center bg-white py-4 overflow-hidden">
             <iframe
               src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-              width="500"
-              height="500"
+              width="500" height="500"
               className="max-w-full"
               style={{ border: 'none', overflow: 'hidden' }}
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen
+              scrolling="no" frameBorder="0" allowFullScreen
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              title="Aldeia Wellness Facebook"
+              title="Aldeia Facebook"
             />
           </div>
         </motion.div>
@@ -627,7 +646,7 @@ const BLOG_POSTS = [
   {
     id: 1,
     tag: 'Learning Therapy',
-    tagColour: '#006CC0',
+    colour: '#006CC0',
     title: 'The difference between learning therapy and tutoring',
     excerpt: 'Tutoring fills gaps in what your child knows. Learning therapy addresses why they struggle in the first place. Here\'s how to know which your child needs.',
     readTime: '8 min',
@@ -636,7 +655,7 @@ const BLOG_POSTS = [
   {
     id: 2,
     tag: 'Behavioural Support',
-    tagColour: '#C8363F',
+    colour: '#C8363F',
     title: 'When a child \'won\'t\' versus when a child \'can\'t\'',
     excerpt: 'One of the most important questions a practitioner asks is: is this a won\'t or a can\'t? The answer changes everything about how we respond.',
     readTime: '6 min',
@@ -645,7 +664,7 @@ const BLOG_POSTS = [
   {
     id: 3,
     tag: 'Homeschool',
-    tagColour: '#7BA93A',
+    colour: '#7BA93A',
     title: 'Homeschooling a child with learning differences: what actually works',
     excerpt: 'After working with hundreds of homeschool families, here are the approaches that consistently make a difference — and the traps that trip people up.',
     readTime: '10 min',
@@ -657,33 +676,39 @@ function BlogSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section className="py-20 lg:py-28 bg-cream" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-12">
-          <span className="text-xs font-bold tracking-widest uppercase text-purple block mb-3">Resources</span>
-          <h2 className="font-serif text-3xl lg:text-4xl text-navy leading-snug">For the parents in the thick of it</h2>
+    <section className="py-[88px] bg-cream" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="mb-10">
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-warm-gray block mb-2">Resources</span>
+          <RainbowStroke className="w-32 mt-1 mb-4" />
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy leading-tight">
+            For the parents in the thick of it
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-[18px]">
           {BLOG_POSTS.map((p, i) => (
             <motion.article
               key={p.id}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="bg-white rounded-[20px] overflow-hidden border border-stone/50 group cursor-pointer"
+              className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col group cursor-pointer"
+              style={{ borderTop: `7px solid ${p.colour}` }}
             >
               <div className="relative h-44 overflow-hidden">
                 <img src={p.img} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="p-6">
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase mb-3" style={{ color: p.tagColour }}>
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.tagColour }} />
-                  {p.tag}
-                </span>
-                <h3 className="font-serif text-lg text-navy leading-snug mb-3">{p.title}</h3>
-                <p className="text-sm text-warm-gray leading-relaxed mb-4">{p.excerpt}</p>
-                <span className="text-xs text-warm-gray/60">{p.readTime} read</span>
+              <div className="p-6 flex flex-col gap-2 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold tracking-widest uppercase" style={{ color: p.colour }}>{p.tag}</span>
+                  <span className="text-xs text-warm-gray/50">· {p.readTime} read</span>
+                </div>
+                <h3 className="font-serif font-bold text-[1.15rem] text-navy leading-snug flex-1">{p.title}</h3>
+                <p className="text-sm text-warm-gray leading-relaxed">{p.excerpt}</p>
+                <div className="flex items-center gap-1 text-sm font-semibold mt-1" style={{ color: p.colour }}>
+                  Read more <ArrowRight className="w-3.5 h-3.5" />
+                </div>
               </div>
             </motion.article>
           ))}
@@ -699,35 +724,39 @@ function CTASection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section className="bg-navy py-20 lg:py-28" ref={ref}>
-      <div className="max-w-2xl mx-auto px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-          <div className="flex justify-center gap-1 w-28 mx-auto mb-8">
-            {['#C8363F','#F2C418','#7BA93A','#7E479A','#237BB7','#006CC0'].map(c => (
-              <div key={c} className="h-[3px] flex-1 rounded-full" style={{ background: c }} />
-            ))}
+    <section className="py-[88px] bg-navy" ref={ref}>
+      <div className="max-w-[1160px] mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase text-yellow block mb-2">Ready to begin?</span>
+          <div className="flex justify-center mb-6">
+            <RainbowStroke className="w-32 mt-1 mb-0" />
           </div>
-          <h2 className="font-serif text-3xl lg:text-4xl text-white mb-5 leading-snug">
-            Ready to find out what&apos;s<br />holding your child back?
+          <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-white max-w-xl mx-auto leading-tight mb-5">
+            Your child&apos;s journey starts with a single conversation
           </h2>
-          <p className="text-white/60 mb-10 leading-relaxed">
-            Book a free, no-pressure consultation with one of our practitioners.
-            We&apos;ll listen, ask the right questions, and tell you honestly
-            what we think would help.
+          <p className="text-white/60 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
+            No commitment required. Just an honest, free consultation with one of our practitioners.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="mailto:info@aldeiawellness.com?subject=Free%20Consultation%20Request"
-              className="px-8 py-4 bg-red text-white text-sm font-bold rounded-full shadow-[4px_4px_0_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[4px_5px_0_0_#9B2429] transition-all duration-150 inline-flex items-center justify-center gap-2"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-red text-white font-bold rounded-full no-underline shadow-[0_6px_0_#9B2429] hover:-translate-y-0.5 hover:shadow-[0_8px_0_#9B2429] transition-all duration-150"
             >
-              Book free consultation
-              <ArrowRight />
+              Book free consultation <ArrowRight />
             </a>
             <a
-              href="mailto:info@aldeiawellness.com"
-              className="px-8 py-4 border border-white/25 text-white text-sm font-bold rounded-full hover:bg-white/8 transition-colors inline-flex items-center justify-center gap-2"
+              href="https://wa.me/27795423701"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/40 text-white font-bold rounded-full no-underline hover:border-white/70 transition-colors"
             >
-              Just have a question?
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                <path d="M11.998 0C5.372 0 0 5.373 0 12c0 2.117.555 4.112 1.527 5.843L.057 23.927l6.293-1.651C8.047 23.312 9.98 24 11.998 24 18.627 24 24 18.627 24 12S18.627 0 11.998 0zm0 21.818a9.78 9.78 0 01-4.991-1.371l-.358-.213-3.712.974.99-3.624-.234-.375A9.773 9.773 0 012.182 12c0-5.414 4.401-9.818 9.816-9.818 5.414 0 9.816 4.404 9.816 9.818 0 5.414-4.402 9.818-9.816 9.818z" />
+              </svg>
+              WhatsApp us
             </a>
           </div>
         </motion.div>
@@ -740,54 +769,27 @@ function CTASection() {
 
 function FooterSection({ onClose }) {
   return (
-    <footer className="bg-[#06244f] text-white/50 text-sm">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/images/logo.png" alt="" className="h-8 w-auto opacity-80"
-                onError={(e) => { e.target.style.display='none' }} />
-              <span className="font-serif font-bold text-white">Aldeia</span>
+    <footer className="bg-white border-t border-stone/40 py-10">
+      <div className="max-w-[1160px] mx-auto px-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-full border border-stone/40 flex items-center justify-center overflow-hidden">
+              <img src="/images/logo.png" alt="Aldeia" className="w-6 h-6 object-contain"
+                onError={(e) => { e.target.style.display = 'none' }} />
             </div>
-            <p className="text-xs leading-relaxed">
-              Integrated therapeutic and educational support<br />
-              for children across three countries.
-            </p>
+            <span className="font-serif font-bold text-navy text-sm">Aldeia Neurobehaviour Institute</span>
           </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-3">Services</h4>
-            <ul className="space-y-1.5 text-xs">
-              {['Learning Therapy', 'Behavioural Support', 'Homeschool Pathways', 'Mainstream Support'].map(s => (
-                <li key={s}><a href="#services" className="hover:text-white transition-colors">{s}</a></li>
-              ))}
-            </ul>
+          <div className="flex flex-wrap gap-3 text-xs text-warm-gray/60 items-center">
+            <span>© 2025 Aldeia</span>
+            <span>·</span>
+            <a href="mailto:info@aldeiawellness.co.za" className="hover:text-navy transition-colors no-underline">info@aldeiawellness.co.za</a>
+            <span>·</span>
+            <a href="https://wa.me/27795423701" className="hover:text-navy transition-colors no-underline">+27 79 542 3701</a>
+            <span>·</span>
+            <button onClick={onClose} className="hover:text-navy transition-colors bg-transparent border-0 cursor-pointer text-xs text-warm-gray/60 p-0">
+              ← Back to home
+            </button>
           </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-3">Locations</h4>
-            <ul className="space-y-1.5 text-xs">
-              <li>Cape Town, South Africa</li>
-              <li>Pretoria, South Africa</li>
-              <li>Windhoek, Namibia</li>
-              <li>Netherlands (online)</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-3">Contact</h4>
-            <ul className="space-y-1.5 text-xs">
-              <li><a href="mailto:info@aldeiawellness.com" className="hover:text-white">info@aldeiawellness.com</a></li>
-              <li><a href="https://www.aldeiawellness.com" className="hover:text-white">aldeiawellness.com</a></li>
-              <li><a href="https://www.aldeiawellness.co.za" className="hover:text-white">aldeiawellness.co.za</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="pt-8 border-t border-white/8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs">&copy; 2026 Aldeia Wellness (Pty) Ltd. All rights reserved.</p>
-          <button onClick={onClose} className="text-xs hover:text-white transition-colors inline-flex items-center gap-1.5">
-            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-            </svg>
-            Back to home
-          </button>
         </div>
       </div>
     </footer>
