@@ -108,6 +108,11 @@ export default function Landing({ onTherapeutic, onWellness }) {
             className="flex-1 flex flex-col items-center justify-center px-5 pb-10 text-center transition-all active:brightness-90"
             style={{ background: '#006CC0' }}
           >
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex-shrink-0"
+              style={{ border: '3px solid rgba(255,255,255,0.35)', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+              <img src="/images/door-therapeutic.webp" alt="Therapeutic Learning door"
+                className="w-full h-full object-cover" style={{ objectPosition: '68% 50%' }} />
+            </div>
             <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
               Therapeutic<br/>Learning
             </div>
@@ -121,6 +126,11 @@ export default function Landing({ onTherapeutic, onWellness }) {
             className="flex-1 flex flex-col items-center justify-center px-5 pb-10 text-center transition-all active:brightness-90"
             style={{ background: '#4E7C5F' }}
           >
+            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex-shrink-0"
+              style={{ border: '3px solid rgba(255,255,255,0.35)', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
+              <img src="/images/door-wellness.webp" alt="Wellness House door"
+                className="w-full h-full object-cover" style={{ objectPosition: 'center 50%' }} />
+            </div>
             <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
               Wellness<br/>House
             </div>
