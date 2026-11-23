@@ -202,8 +202,8 @@ function HeroSection() {
             <div className="grid grid-cols-3 gap-2.5 mb-5">
               {[
                 { n: '14', label: 'Awards' },
-                { n: '12', label: 'Branches' },
-                { n: '1,556', label: 'Families' },
+                { n: '10', label: 'Branches' },
+                { n: '3,526', label: 'Families' },
               ].map(s => (
                 <div key={s.label} className="bg-white/8 rounded-2xl p-3 text-center">
                   <b className="block font-serif font-extrabold text-[1.7rem] leading-none font-variant-numeric tabular-nums text-yellow">{s.n}</b>
@@ -537,8 +537,8 @@ function AboutSection() {
             <div className="grid grid-cols-3 gap-3">
               {[
                 { n: '14', label: 'Awards' },
-                { n: '12', label: 'Branches' },
-                { n: '1,556', label: 'Families' },
+                { n: '10', label: 'Branches' },
+                { n: '3,526', label: 'Families' },
               ].map(s => (
                 <div key={s.label} className="text-center border border-white/10 rounded-2xl py-5">
                   <div className="font-serif font-extrabold text-2xl text-yellow mb-1">{s.n}</div>

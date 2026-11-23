@@ -5,8 +5,8 @@ import RainbowBar from './RainbowBar'
 const credentials = [
   { label: 'Years of Experience', value: '12+', color: 'text-red' },
   { label: 'Qualified Practitioners', value: '15+', color: 'text-green' },
-  { label: 'International Awards', value: '13', color: 'text-yellow' },
-  { label: 'Families Served', value: '2800+', color: 'text-sky' },
+  { label: 'International Awards', value: '14', color: 'text-yellow' },
+  { label: 'Families Served', value: '3,526', color: 'text-sky' },
 ]
 
 const specialisms = [
