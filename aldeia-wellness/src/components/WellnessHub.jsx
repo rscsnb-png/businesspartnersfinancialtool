@@ -195,11 +195,19 @@ function HeroSection() {
               <em className="not-italic" style={{ color: SAGE }}>exhale.</em>
             </h1>
 
-            <p className="leading-[1.9] mb-4" style={{ fontSize: '1.1rem', color: TWIG, maxWidth: '52ch' }}>
-              A warm, welcoming space in Durbanville where individuals, parents and families
-              find practical wellbeing support — without needing a diagnosis or a referral.
+            <p className="leading-[1.9] mb-4" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '52ch' }}>
+              Life can feel overwhelming. Whether you&apos;re navigating family challenges,
+              supporting someone you love, or simply needing space for yourself, you don&apos;t
+              have to figure everything out alone.
             </p>
-            <p className="leading-[1.9] mb-10" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '52ch' }}>
+            <p className="leading-[1.9] mb-4" style={{ fontSize: '1.05rem', color: TWIG, maxWidth: '52ch' }}>
+              At Aldeia Wellness House, we offer a warm, welcoming space for individuals,
+              parents and families to find practical support for their wellbeing.
+            </p>
+            <p className="font-semibold mb-4" style={{ fontSize: '1.05rem', color: BARK, maxWidth: '52ch' }}>
+              No diagnosis. No referral. Just a place to begin.
+            </p>
+            <p className="italic mb-10" style={{ fontSize: '1rem', color: TWIG, maxWidth: '52ch' }}>
               You don&apos;t have to have it all figured out. Come as you are.
             </p>
 
@@ -224,8 +232,8 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block"
           >
-            <div className="rounded-[28px] overflow-hidden shadow-lg">
-              <img src="/images/stats-banner.webp" alt="Aldeia — Our impact in numbers" className="w-full h-auto block" />
+            <div className="rounded-[28px] overflow-hidden shadow-lg" style={{ aspectRatio: '4/3' }}>
+              <img src="/images/wellness-hero.webp" alt="A warm welcome at Aldeia Wellness House" className="w-full h-full object-cover" />
             </div>
           </motion.div>
         </div>
@@ -237,7 +245,7 @@ function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="lg:hidden mt-12 rounded-[22px] overflow-hidden"
         >
-          <img src="/images/stats-banner.webp" alt="Aldeia — Our impact in numbers" className="w-full h-auto block" />
+          <img src="/images/wellness-hero.webp" alt="A warm welcome at Aldeia Wellness House" className="w-full h-auto block" />
         </motion.div>
       </div>
     </section>
