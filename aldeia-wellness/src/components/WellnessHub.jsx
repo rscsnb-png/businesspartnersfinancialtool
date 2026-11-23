@@ -224,10 +224,10 @@ function HeroSection() {
 // ── Who we support ────────────────────────────────────────────────────────────
 
 const SUPPORT_CARDS = [
-  { title: 'Families with additional needs', desc: 'Raising a child with learning differences, behavioural challenges or developmental needs — we walk the whole journey with you.', colour: MUTED_BLUE, img: '/images/wellness-who-1.webp', imgX: '0%', imgY: '100%' },
-  { title: 'Parents & caregivers', desc: 'You hold everything together. We support your wellbeing too — coping, balance and emotional resilience.', colour: SAGE, img: '/images/wellness-who-1.webp', imgX: '100%', imgY: '100%' },
-  { title: 'Adults & life transitions', desc: 'Personal wellbeing, life changes, new seasons — practical support for adults who want to look after themselves.', colour: MAUVE, img: '/images/wellness-who-2.webp', imgX: '0%', imgY: '0%' },
-  { title: 'Families navigating change', desc: 'New schools, adolescence, a move, a loss — we help families find their footing during uncertain times.', colour: CLAY, img: '/images/wellness-who-2.webp', imgX: '100%', imgY: '0%' },
+  { title: 'Families with additional needs', desc: 'Raising a child with learning differences, behavioural challenges or developmental needs — we walk the whole journey with you.', colour: MUTED_BLUE, img: '/images/wellness-families-additional.webp', imgPos: 'center top' },
+  { title: 'Parents & caregivers', desc: 'You hold everything together. We support your wellbeing too — coping, balance and emotional resilience.', colour: SAGE, img: '/images/wellness-parents-caregivers.webp', imgPos: 'center top' },
+  { title: 'Adults & life transitions', desc: 'Personal wellbeing, life changes, new seasons — practical support for adults who want to look after themselves.', colour: MAUVE, img: '/images/wellness-adults-transitions.webp', imgPos: 'center top' },
+  { title: 'Families navigating change', desc: 'New schools, adolescence, a move, a loss — we help families find their footing during uncertain times.', colour: CLAY, img: '/images/wellness-families-change.webp', imgPos: 'center top' },
 ]
 
 function WhoWeSupport() {
@@ -263,15 +263,9 @@ function WhoWeSupport() {
               className="bg-white rounded-[22px] overflow-hidden flex flex-col"
               style={{ border: '1px solid #E0DCD4', borderTopWidth: '6px', borderTopColor: c.colour }}
             >
-              <div
-                className="w-full h-52 flex-shrink-0"
-                style={{
-                  backgroundImage: `url(${c.img})`,
-                  backgroundSize: '200% auto',
-                  backgroundPositionX: c.imgX,
-                  backgroundPositionY: c.imgY,
-                }}
-              />
+              <div className="w-full overflow-hidden flex-shrink-0" style={{ height: '220px' }}>
+                <img src={c.img} alt={c.title} className="w-full h-full object-cover" style={{ objectPosition: c.imgPos || 'center top' }} />
+              </div>
               <div className="p-7">
                 <h3 className="font-serif font-bold text-[1.2rem] mb-2 leading-snug" style={{ color: NAVY }}>{c.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: '#6B6358' }}>{c.desc}</p>
