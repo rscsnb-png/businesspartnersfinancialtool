@@ -209,45 +209,12 @@ function HeroSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="rounded-[22px] overflow-hidden"
-          style={{ background: NAVY }}
         >
-          <div
-            className="rounded-[22px] overflow-hidden relative"
-            style={{
-              backgroundImage: 'url(/images/stats-banner.webp)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            {/* Dark overlay so our HTML stats are legible over the photo */}
-            <div className="absolute inset-0" style={{ background: 'rgba(5,20,55,0.72)' }} />
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-0 px-8 md:px-12 py-10 md:py-12">
-              {/* Title */}
-              <div className="md:flex-1 text-center md:text-left">
-                <p className="text-xs font-bold tracking-[0.18em] uppercase mb-2" style={{ color: GOLD }}>Aldeia</p>
-                <h3 className="font-serif font-extrabold leading-tight text-white" style={{ fontSize: 'clamp(1.6rem,3.5vw,2.6rem)' }}>
-                  Our Power<br />in Numbers
-                </h3>
-              </div>
-              {/* Stats */}
-              <div className="flex flex-row md:flex-row gap-4 md:gap-6 md:flex-2">
-                {[
-                  { n: '10', label: 'Branches Worldwide' },
-                  { n: '3,526', label: 'Families Supported' },
-                  { n: '14', label: 'International Awards Won' },
-                ].map(s => (
-                  <div
-                    key={s.label}
-                    className="flex flex-col items-center justify-center text-center px-5 py-6 rounded-2xl"
-                    style={{ border: `2px solid ${SAGE}`, minWidth: 100 }}
-                  >
-                    <div className="font-serif font-extrabold text-white mb-1" style={{ fontSize: 'clamp(1.8rem,3vw,2.8rem)' }}>{s.n}</div>
-                    <div className="font-semibold tracking-[0.1em] uppercase text-white/60" style={{ fontSize: '0.65rem' }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <img
+            src="/images/stats-banner.webp"
+            alt="Aldeia — Our Power in Numbers"
+            className="w-full h-auto block"
+          />
         </motion.div>
       </div>
     </section>
