@@ -50,7 +50,7 @@ const TICKER = [
 function MarqueeTicker() {
   const items = [...TICKER, ...TICKER]
   return (
-    <div className="overflow-hidden border-b" style={{ background: LINEN2, borderColor: BORDER }}>
+    <div className="overflow-hidden border-b" style={{ background: 'rgba(242,237,228,0.88)', borderColor: BORDER }}>
       <style>{`
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
       `}</style>
@@ -79,17 +79,13 @@ export default function WellnessHub({ onClose }) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="fixed inset-0 z-50 overflow-y-auto"
-      style={{ background: LINEN }}
+      style={{ background: 'transparent' }}
     >
-      {/* Fixed Cape Town background — very washed out */}
+      {/* Fixed Cape Town background */}
       <div style={{
         position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
         backgroundImage: "url('/images/cape-town-bg.webp')",
         backgroundSize: 'cover', backgroundPosition: 'center 30%',
-      }} />
-      <div style={{
-        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
-        background: 'rgba(249,246,241,0.91)',
       }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
@@ -110,7 +106,7 @@ export default function WellnessHub({ onClose }) {
 
 function StickyNav({ onClose, mobileMenuOpen, setMobileMenuOpen }) {
   return (
-    <header className="sticky top-0 z-40" style={{ background: LINEN, borderBottom: `1px solid ${BORDER}` }}>
+    <header className="sticky top-0 z-40" style={{ background: 'rgba(249,246,241,0.95)', backdropFilter: 'blur(8px)', borderBottom: `1px solid ${BORDER}` }}>
       <div className="max-w-[1200px] mx-auto px-6 h-[72px] flex items-center gap-5">
         <a onClick={onClose} href="#" className="flex items-center gap-3 no-underline flex-shrink-0">
           <img src="/images/logo.png" alt="Aldeia logo" className="w-14 h-14 object-contain flex-shrink-0"
@@ -184,7 +180,7 @@ function HeroSection() {
   const inView = useInView(ref, { once: true })
 
   return (
-    <section id="about" ref={ref} style={{ background: LINEN, paddingTop: '80px', paddingBottom: '80px' }}>
+    <section id="about" ref={ref} style={{ background: 'rgba(249,246,241,0.88)', paddingTop: '80px', paddingBottom: '80px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-[1fr_1fr] gap-16 items-center">
 
@@ -270,7 +266,7 @@ function PhilosophySection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section ref={ref} style={{ background: LINEN, paddingTop: '80px', paddingBottom: '80px' }}>
+    <section ref={ref} style={{ background: 'rgba(249,246,241,0.88)', paddingTop: '80px', paddingBottom: '80px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -348,7 +344,7 @@ function WhoWeSupport() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="who-we-support" ref={ref} style={{ background: '#fff', paddingTop: '100px', paddingBottom: '100px' }}>
+    <section id="who-we-support" ref={ref} style={{ background: 'rgba(255,255,255,0.88)', paddingTop: '100px', paddingBottom: '100px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
 
         <motion.div
@@ -439,7 +435,7 @@ function ServicesSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section id="services" ref={ref} style={{ background: LINEN, paddingTop: '100px', paddingBottom: '100px' }}>
+    <section id="services" ref={ref} style={{ background: 'rgba(249,246,241,0.88)', paddingTop: '100px', paddingBottom: '100px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
 
         <motion.div
@@ -530,7 +526,7 @@ function PractitionersSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
   return (
-    <section ref={ref} style={{ background: '#fff', paddingTop: '100px', paddingBottom: '100px' }}>
+    <section ref={ref} style={{ background: 'rgba(255,255,255,0.88)', paddingTop: '100px', paddingBottom: '100px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
 
         <motion.div
@@ -614,7 +610,7 @@ function AccreditationSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   return (
-    <section ref={ref} style={{ background: LINEN, paddingTop: '72px', paddingBottom: '72px' }}>
+    <section ref={ref} style={{ background: 'rgba(249,246,241,0.88)', paddingTop: '72px', paddingBottom: '72px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -668,7 +664,7 @@ function InterestSection({ submitted, setSubmitted }) {
   }
 
   return (
-    <section id="join" ref={ref} style={{ background: '#fff', paddingTop: '100px', paddingBottom: '100px' }}>
+    <section id="join" ref={ref} style={{ background: 'rgba(255,255,255,0.88)', paddingTop: '100px', paddingBottom: '100px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -823,7 +819,7 @@ function InterestSection({ submitted, setSubmitted }) {
 
 function FooterSection({ onClose }) {
   return (
-    <footer style={{ background: LINEN, borderTop: `1px solid ${BORDER}`, paddingTop: '48px', paddingBottom: '48px' }}>
+    <footer style={{ background: 'rgba(249,246,241,0.88)', borderTop: `1px solid ${BORDER}`, paddingTop: '48px', paddingBottom: '48px' }}>
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-3">
