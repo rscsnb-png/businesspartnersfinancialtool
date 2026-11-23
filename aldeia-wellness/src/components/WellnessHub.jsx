@@ -169,8 +169,7 @@ function HeroSection() {
   return (
     <section id="about" ref={ref} className="pt-14 pb-0 bg-white">
       <div className="max-w-[1160px] mx-auto px-4">
-        <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-center mb-14">
-
+        <div className="mb-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -186,7 +185,7 @@ function HeroSection() {
               Individual &amp; Family{' '}
               <span style={{ color: SAGE }}>Wellbeing.</span>
             </h1>
-            <p className="text-[1.15rem] mb-8 max-w-[44ch] leading-relaxed" style={{ color: '#6B6358' }}>
+            <p className="text-[1.15rem] mb-8 max-w-[70ch] leading-relaxed" style={{ color: '#6B6358' }}>
               A village of practitioners under one welcoming roof in Durbanville — bringing
               practical wellness support to individuals, parents and families.
             </p>
@@ -205,39 +204,6 @@ function HeroSection() {
               >
                 Send us a message
               </a>
-            </div>
-          </motion.div>
-
-          {/* Right: dark card */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="rounded-[22px] p-7 relative overflow-hidden"
-            style={{ background: NAVY }}
-          >
-            <div className="absolute inset-x-0 top-0 h-[7px] rounded-t-[22px]" style={{ background: SAGE_LINE }} />
-            <span className="font-bold text-[0.8rem] tracking-[0.14em] uppercase block mt-2 mb-2" style={{ color: GOLD }}>
-              Aldeia Wellness House
-            </span>
-            <h2 className="font-serif text-[1.9rem] mb-1 leading-tight text-white">
-              A village of professionals
-            </h2>
-            <p className="text-[1.1rem] font-serif mb-6" style={{ color: '#A8C8B8' }}>
-              under one welcoming roof.
-            </p>
-            <div className="space-y-3">
-              {[
-                { icon: '🌿', text: 'Holistic family wellness support' },
-                { icon: '👨‍👩‍👧', text: 'Support for parents & caregivers' },
-                { icon: '🏡', text: 'Life transitions & adult wellbeing' },
-                { icon: '🤝', text: 'Workshops & parent evenings' },
-              ].map(item => (
-                <div key={item.text} className="flex items-center gap-3 text-sm text-white/70">
-                  <span className="text-base flex-shrink-0">{item.icon}</span>
-                  {item.text}
-                </div>
-              ))}
             </div>
           </motion.div>
         </div>
