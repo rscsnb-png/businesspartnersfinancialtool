@@ -81,15 +81,27 @@ export default function WellnessHub({ onClose }) {
       className="fixed inset-0 z-50 overflow-y-auto"
       style={{ background: LINEN }}
     >
-      <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-      <HeroSection />
-      <WhoWeSupport />
-      <PhilosophySection />
-      <ServicesSection />
-      <PractitionersSection />
-      <AccreditationSection />
-      <InterestSection submitted={submitted} setSubmitted={setSubmitted} />
-      <FooterSection onClose={onClose} />
+      {/* Fixed Cape Town background — very washed out */}
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
+        backgroundImage: "url('/images/cape-town-bg.webp')",
+        backgroundSize: 'cover', backgroundPosition: 'center 30%',
+      }} />
+      <div style={{
+        position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none',
+        background: 'rgba(249,246,241,0.91)',
+      }} />
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <StickyNav onClose={onClose} mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
+        <HeroSection />
+        <WhoWeSupport />
+        <PhilosophySection />
+        <ServicesSection />
+        <PractitionersSection />
+        <AccreditationSection />
+        <InterestSection submitted={submitted} setSubmitted={setSubmitted} />
+        <FooterSection onClose={onClose} />
+      </div>
     </motion.div>
   )
 }
