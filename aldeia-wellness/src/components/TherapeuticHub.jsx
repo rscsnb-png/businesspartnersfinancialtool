@@ -152,7 +152,7 @@ function HeroSection() {
               <span className="inline-block" style={{ color: '#C8363F' }}>Supporting</span>{' '}
               <span className="inline-block text-navy">children.</span>{' '}
               <br className="hidden sm:block" />
-              <span className="inline-block" style={{ color: '#7BA93A' }}>Strengthening</span>{' '}
+              <span className="inline-block whitespace-nowrap" style={{ color: '#7BA93A' }}>Strengthening</span>{' '}
               <span className="inline-block" style={{ color: '#006CC0' }}>families.</span>
             </h1>
             <p className="text-[1.15rem] text-warm-gray mb-8 max-w-[44ch] leading-relaxed">
