@@ -62,11 +62,21 @@ export default function Landing({ onTherapeutic, onWellness }) {
             )}
           </AnimatePresence>
 
-          {/* Floating label pill on hover */}
+          {/* Always-visible tap label on mobile */}
+          <div className="md:hidden absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none">
+            <div
+              className="text-white text-xs font-bold tracking-[0.14em] uppercase px-5 py-2.5 rounded-full shadow-2xl whitespace-nowrap"
+              style={{ background: zone.color, boxShadow: `0 6px 24px ${zone.color}88` }}
+            >
+              {zone.label} →
+            </div>
+          </div>
+
+          {/* Hover label on desktop */}
           <AnimatePresence>
             {hovered === zone.id && (
               <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none"
+                className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 pointer-events-none"
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 4 }}
@@ -74,10 +84,7 @@ export default function Landing({ onTherapeutic, onWellness }) {
               >
                 <div
                   className="text-white text-xs font-bold tracking-[0.18em] uppercase px-5 py-2.5 rounded-full shadow-2xl whitespace-nowrap"
-                  style={{
-                    background: zone.color,
-                    boxShadow: `0 6px 24px ${zone.color}88`,
-                  }}
+                  style={{ background: zone.color, boxShadow: `0 6px 24px ${zone.color}88` }}
                 >
                   {zone.label} →
                 </div>
