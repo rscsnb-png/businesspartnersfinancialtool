@@ -111,13 +111,22 @@ export default function Landing({ onTherapeutic, onWellness }) {
             <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex-shrink-0"
               style={{ border: '3px solid rgba(255,255,255,0.35)', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
               <img src="/images/door-therapeutic.webp" alt="Therapeutic Learning door"
-                className="w-full h-full object-cover" style={{ objectPosition: '68% 50%' }} />
+                className="w-full h-full object-cover" style={{ objectPosition: 'center' }} />
             </div>
             <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
               Therapeutic<br/>Learning
             </div>
-            <div className="font-medium" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
-              Supporting children &amp; families →
+            <div className="font-medium mb-5" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
+              Supporting children &amp; families
+            </div>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold"
+              style={{ background: 'rgba(255,255,255,0.18)', border: '1.5px solid rgba(255,255,255,0.45)', color: '#fff', letterSpacing: '0.01em' }}>
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="3" width="13" height="18" rx="1.5" strokeLinejoin="round"/>
+                <path strokeLinecap="round" d="M16 8l5 4-5 4"/>
+                <circle cx="13.5" cy="12" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+              Open the door
             </div>
           </button>
           <div className="w-px flex-shrink-0" style={{ background: 'rgba(255,255,255,0.15)' }} />
@@ -129,13 +138,22 @@ export default function Landing({ onTherapeutic, onWellness }) {
             <div className="w-24 h-24 rounded-full overflow-hidden mb-4 flex-shrink-0"
               style={{ border: '3px solid rgba(255,255,255,0.35)', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}>
               <img src="/images/door-wellness.webp" alt="Wellness House door"
-                className="w-full h-full object-cover" style={{ objectPosition: 'center 50%' }} />
+                className="w-full h-full object-cover" style={{ objectPosition: 'center' }} />
             </div>
             <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
               Wellness<br/>House
             </div>
-            <div className="font-medium" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
-              Individual &amp; family wellbeing →
+            <div className="font-medium mb-5" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
+              Individual &amp; family wellbeing
+            </div>
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold"
+              style={{ background: 'rgba(255,255,255,0.18)', border: '1.5px solid rgba(255,255,255,0.45)', color: '#fff', letterSpacing: '0.01em' }}>
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                <rect x="3" y="3" width="13" height="18" rx="1.5" strokeLinejoin="round"/>
+                <path strokeLinecap="round" d="M16 8l5 4-5 4"/>
+                <circle cx="13.5" cy="12" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+              Open the door
             </div>
           </button>
         </div>
