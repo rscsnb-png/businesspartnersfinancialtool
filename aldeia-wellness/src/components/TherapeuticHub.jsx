@@ -290,6 +290,19 @@ function ServicesSection() {
           </h2>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mb-8 rounded-[22px] overflow-hidden shadow-sm border border-stone/40"
+        >
+          <img
+            src="/images/services-banner.webp"
+            alt="Aldeia therapeutic learning services"
+            className="w-full h-auto block"
+          />
+        </motion.div>
+
         <div className="grid md:grid-cols-2 gap-[18px]">
           {SERVICES.map((s, i) => (
             <motion.div
@@ -340,6 +353,19 @@ function ProcessSection() {
           <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-navy max-w-lg leading-tight">
             From your first message to real progress
           </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mb-10 rounded-[22px] overflow-hidden shadow-sm border border-stone/40"
+        >
+          <img
+            src="/images/how-we-work.webp"
+            alt="How we work — Aldeia practitioners with family"
+            className="w-full h-auto block"
+          />
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -490,6 +516,19 @@ function AboutSection() {
           <h2 className="font-serif font-extrabold text-[clamp(2rem,4.2vw,3rem)] text-white max-w-2xl leading-tight">
             Built for children who don&apos;t fit neatly into one box
           </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mb-10 rounded-[22px] overflow-hidden shadow-sm border border-white/10"
+        >
+          <img
+            src="/images/our-story.webp"
+            alt="Aldeia — our story, our children"
+            className="w-full h-auto block"
+          />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
