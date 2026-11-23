@@ -710,7 +710,7 @@ function CentresSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="bg-white rounded-[22px] border border-stone/50 overflow-hidden mb-14"
+          className="bg-white rounded-[22px] border border-stone/50 overflow-hidden"
           style={{ borderTop: '7px solid #7E479A' }}
         >
           <div className="p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
