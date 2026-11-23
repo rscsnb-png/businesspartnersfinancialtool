@@ -136,7 +136,7 @@ export default function About() {
             {/* Awards */}
             <div className="bg-white/8 rounded-[22px] p-6 mb-10 border border-white/10">
               <div className="text-xs font-bold tracking-widest uppercase text-yellow mb-4">
-                Global Winner of 13 Awards
+                Global Winner of 14 Awards
               </div>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[

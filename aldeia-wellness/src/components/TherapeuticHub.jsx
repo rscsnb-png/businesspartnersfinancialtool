@@ -510,8 +510,8 @@ function AboutSection() {
               a real team — sharing notes, attending reviews, building a coherent plan.
             </p>
             <p>
-              Today we operate across 12 branches in South Africa, Namibia and the
-              Netherlands, and we&apos;ve supported 1,556 families across three countries.
+              Today we operate across 10 branches in South Africa, Namibia and the
+              Netherlands, and we&apos;ve supported 3,526 families across three countries.
             </p>
             <p className="font-serif text-lg text-white/50 italic">
               &ldquo;Every child. Every family. Every step of the way.&rdquo;
