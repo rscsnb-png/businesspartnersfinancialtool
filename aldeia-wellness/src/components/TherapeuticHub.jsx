@@ -731,36 +731,6 @@ function CentresSection() {
           </div>
         </motion.div>
 
-        {/* Facebook */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="rounded-[22px] border border-stone/50 overflow-hidden"
-        >
-          <div className="bg-cream px-8 py-5 border-b border-stone/40 flex items-center gap-3">
-            <div className="w-9 h-9 bg-[#1877F2] rounded-full flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </div>
-            <div>
-              <p className="font-serif font-bold text-navy text-sm">Aldeia on Facebook</p>
-              <p className="text-xs text-warm-gray">Follow us for updates, articles and community</p>
-            </div>
-          </div>
-          <div className="flex justify-center bg-white py-4 overflow-hidden">
-            <iframe
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-              width="500" height="500"
-              className="max-w-full"
-              style={{ border: 'none', overflow: 'hidden' }}
-              scrolling="no" frameBorder="0" allowFullScreen
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              title="Aldeia Facebook"
-            />
-          </div>
-        </motion.div>
       </div>
     </section>
   )
