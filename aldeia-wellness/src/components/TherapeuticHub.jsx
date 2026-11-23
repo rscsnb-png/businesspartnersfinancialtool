@@ -202,9 +202,9 @@ function HeroSection() {
 
             <div className="grid grid-cols-3 gap-2.5 mb-5">
               {[
-                { n: '14', label: 'Awards' },
-                { n: '10', label: 'Branches' },
-                { n: '3,526', label: 'Families' },
+                { n: '12', label: 'Branches Worldwide' },
+                { n: '1,654', label: 'Families Supported' },
+                { n: '14', label: 'International Awards' },
               ].map(s => (
                 <div key={s.label} className="bg-white rounded-2xl p-3 text-center shadow-sm">
                   <b className="block font-serif font-extrabold text-[1.7rem] leading-none tabular-nums" style={{ color: '#0D3A91' }}>{s.n}</b>
@@ -571,9 +571,9 @@ function AboutSection() {
 
             <div className="grid grid-cols-3 gap-3">
               {[
-                { n: '14', label: 'Awards' },
-                { n: '10', label: 'Branches' },
-                { n: '3,526', label: 'Families' },
+                { n: '12', label: 'Branches Worldwide' },
+                { n: '1,654', label: 'Families Supported' },
+                { n: '14', label: 'International Awards' },
               ].map(s => (
                 <div key={s.label} className="text-center border border-white/10 rounded-2xl py-5">
                   <div className="font-serif font-extrabold text-2xl text-yellow mb-1">{s.n}</div>
