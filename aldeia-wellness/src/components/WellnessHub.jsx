@@ -175,11 +175,7 @@ function HeroSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <span className="inline-flex items-center gap-2 font-bold text-[0.8rem] tracking-[0.14em] uppercase mb-3" style={{ color: SAGE }}>
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: SAGE }} />
-              Opening 2027 · Durbanville, Cape Town
-            </span>
-            <SageLine className="w-32 mt-1 mb-5" />
+            <SageLine className="w-32 mb-5" />
             <h1 className="font-serif font-extrabold leading-[1.08] tracking-tight mb-5 [overflow-wrap:normal] [word-break:normal]"
               style={{ fontSize: 'clamp(2.6rem,5.5vw,4.4rem)', color: NAVY }}>
               Individual &amp; Family{' '}
