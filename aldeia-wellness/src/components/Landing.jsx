@@ -82,39 +82,49 @@ export default function Landing({ onTherapeutic, onWellness }) {
         ))}
       </div>
 
-      {/* ── Mobile: image at natural ratio, buttons below ── */}
+      {/* ── Mobile: image at natural ratio, wave transition, blocks below ── */}
       <div className="md:hidden flex flex-col h-full" style={{ background: '#0d1a0a' }}>
-        <div className="flex-shrink-0 w-full">
+        {/* Image with wave painted over its bottom edge */}
+        <div className="flex-shrink-0 w-full relative">
           <img
             src="/images/landing-bg.webp"
             alt="Aldeia Wellness — choose your door"
             className="w-full h-auto block select-none"
             draggable={false}
           />
+          {/* Split-colour wave: left=blue, right=green — bridges image into blocks */}
+          <div className="absolute bottom-0 left-0 right-0" style={{ height: '52px' }}>
+            <svg viewBox="0 0 400 52" className="w-full h-full" preserveAspectRatio="none" style={{ display: 'block' }}>
+              <path d="M0,52 L0,28 C66,8 134,46 200,28 L200,52 Z" fill="#006CC0"/>
+              <path d="M200,28 C266,8 334,46 400,28 L400,52 L200,52 Z" fill="#4E7C5F"/>
+            </svg>
+          </div>
         </div>
+
+        {/* Two destination blocks */}
         <div className="flex flex-1">
           <button
             onClick={onTherapeutic}
-            className="flex-1 py-6 px-5 text-left transition-all active:brightness-90"
+            className="flex-1 flex flex-col items-center justify-center px-5 pb-10 text-center transition-all active:brightness-90"
             style={{ background: '#006CC0' }}
           >
-            <div className="text-white font-bold text-[1.05rem] leading-snug">
-              Therapeutic Learning
+            <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
+              Therapeutic<br/>Learning
             </div>
-            <div className="text-white/70 text-xs mt-1">
+            <div className="font-medium" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
               Supporting children &amp; families →
             </div>
           </button>
-          <div className="w-px flex-shrink-0" style={{ background: 'rgba(255,255,255,0.2)' }} />
+          <div className="w-px flex-shrink-0" style={{ background: 'rgba(255,255,255,0.15)' }} />
           <button
             onClick={onWellness}
-            className="flex-1 py-6 px-5 text-left transition-all active:brightness-90"
+            className="flex-1 flex flex-col items-center justify-center px-5 pb-10 text-center transition-all active:brightness-90"
             style={{ background: '#4E7C5F' }}
           >
-            <div className="text-white font-bold text-[1.05rem] leading-snug">
-              Wellness House
+            <div className="text-white font-bold text-[1.65rem] leading-tight mb-3">
+              Wellness<br/>House
             </div>
-            <div className="text-white/70 text-xs mt-1">
+            <div className="font-medium" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem' }}>
               Individual &amp; family wellbeing →
             </div>
           </button>
