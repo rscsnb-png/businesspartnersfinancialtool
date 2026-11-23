@@ -91,27 +91,53 @@ export default function Centres() {
           ))}
         </div>
 
-        {/* Facebook embed */}
+        {/* Facebook follow card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white rounded-[22px] p-8 lg:p-12 shadow-[0_1px_3px_rgba(0,0,0,0.04)] text-center max-w-3xl mx-auto border-2 border-stone/20"
+          className="max-w-3xl mx-auto"
         >
-          <h3 className="font-serif text-xl text-navy mb-3">Follow Our Journey</h3>
-          <p className="text-warm-gray text-sm mb-6">
-            See what&apos;s happening at our centres — follow us on Facebook for updates, events, and stories.
-          </p>
-          <div className="flex justify-center">
-            <iframe
-              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=600&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
-              width="500"
-              height="600"
-              className="max-w-full border-none overflow-hidden rounded-xl"
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-              loading="lazy"
-              title="Aldeia Neuro Facebook Page"
-            />
+          <div className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col">
+            <div className="flex items-center gap-3 px-5 py-4" style={{ borderTop: '5px solid #1877F2' }}>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#1877F2' }}>
+                <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                </svg>
+              </div>
+              <div>
+                <div className="font-bold text-navy text-[0.95rem]">Aldeia on Facebook</div>
+                <a href="https://www.facebook.com/aldeianeuro" target="_blank" rel="noopener noreferrer" className="text-xs no-underline" style={{ color: '#1877F2' }}>
+                  facebook.com/aldeianeuro
+                </a>
+              </div>
+              <a href="https://www.facebook.com/aldeianeuro" target="_blank" rel="noopener noreferrer"
+                className="ml-auto text-xs font-bold px-4 py-1.5 rounded-full text-white no-underline flex-shrink-0"
+                style={{ background: '#1877F2' }}>
+                Follow
+              </a>
+            </div>
+            <div className="flex flex-col items-center justify-center px-8 py-12 text-center gap-6"
+              style={{ background: 'linear-gradient(135deg,#f0f4ff 0%,#f7f4ef 60%,#e8f0ff 100%)' }}>
+              <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg" style={{ background: '#1877F2' }}>
+                <svg className="w-10 h-10 fill-white" viewBox="0 0 24 24">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                </svg>
+              </div>
+              <div>
+                <div className="font-serif font-bold text-navy text-xl mb-1">facebook.com/aldeianeuro</div>
+                <div className="text-warm-gray text-sm leading-relaxed max-w-[32ch]">
+                  Updates, events, and stories from our centres — follow us to stay connected.
+                </div>
+              </div>
+              <a href="https://www.facebook.com/aldeianeuro"
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-white no-underline text-sm shadow-md hover:-translate-y-0.5 transition-transform"
+                style={{ background: '#1877F2' }}>
+                Follow on Facebook
+              </a>
+              <p className="text-xs text-warm-gray/50 italic">Tap to view our latest posts</p>
+            </div>
           </div>
         </motion.div>
       </div>

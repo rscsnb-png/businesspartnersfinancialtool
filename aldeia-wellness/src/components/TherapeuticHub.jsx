@@ -817,9 +817,9 @@ function BlogSection() {
 
         <div className="grid md:grid-cols-2 gap-6">
 
-          {/* ── Facebook live feed ── */}
+          {/* ── Facebook follow card ── */}
           <motion.div initial={{ opacity: 0, y: 24 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col">
+            <div className="bg-white rounded-[22px] overflow-hidden border border-stone/50 flex flex-col h-full">
               <div className="flex items-center gap-3 px-5 py-4" style={{ borderTop: '5px solid #1877F2' }}>
                 <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: '#1877F2' }}>
                   <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
@@ -838,18 +838,29 @@ function BlogSection() {
                   Follow
                 </a>
               </div>
-              <div className="flex-1 min-h-[500px]">
-                <iframe
-                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Faldeianeuro&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false"
-                  width="100%"
-                  height="500"
-                  style={{ border: 'none', overflow: 'hidden', display: 'block' }}
-                  scrolling="no"
-                  frameBorder="0"
-                  allowFullScreen
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  title="Aldeia Facebook feed"
-                />
+              <div className="flex flex-col items-center justify-center flex-1 px-8 py-12 text-center gap-6"
+                style={{ background: 'linear-gradient(135deg,#f0f4ff 0%,#f7f4ef 60%,#e8f0ff 100%)' }}>
+                <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg" style={{ background: '#1877F2' }}>
+                  <svg className="w-10 h-10 fill-white" viewBox="0 0 24 24">
+                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-serif font-bold text-navy text-xl mb-1">facebook.com/aldeianeuro</div>
+                  <div className="text-warm-gray text-sm leading-relaxed max-w-[28ch]">
+                    Real updates, family stories and resources from our team — follow us to stay in the loop.
+                  </div>
+                </div>
+                <a href="https://www.facebook.com/aldeianeuro"
+                  target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-white no-underline text-sm shadow-md hover:-translate-y-0.5 transition-transform"
+                  style={{ background: '#1877F2' }}>
+                  <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.532-4.697 1.313 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                  </svg>
+                  Follow on Facebook
+                </a>
+                <p className="text-xs text-warm-gray/50 italic">Tap to view our latest posts</p>
               </div>
             </div>
           </motion.div>
