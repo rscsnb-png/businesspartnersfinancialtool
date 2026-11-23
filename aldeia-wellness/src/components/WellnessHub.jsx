@@ -43,7 +43,7 @@ const TICKER = [
   'Life Coaching',
   'Mindfulness & Resilience',
   'Workshops & Parent Evenings',
-  'Durbanville, Cape Town',
+  'Cape Town',
   'IPHM Accredited Provider',
 ]
 
@@ -184,8 +184,8 @@ function HeroSection() {
           >
             <div className="flex items-center gap-2 mb-6">
               <Leaf className="w-4 h-4" style={{ color: SAGE }} />
-              <span className="text-[0.72rem] font-semibold tracking-[0.2em] uppercase" style={{ color: SAGE }}>
-                Wellness House · Durbanville
+              <span className="text-[0.82rem] font-semibold tracking-[0.2em] uppercase" style={{ color: SAGE }}>
+                Wellness House · Cape Town
               </span>
             </div>
 
