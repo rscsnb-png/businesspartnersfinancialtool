@@ -553,7 +553,7 @@ function PractitionersSection() {
             </p>
             <p className="leading-[1.9] mb-10" style={{ color: TWIG }}>
               You keep your own practice, clients and fees. We simply ask for proof of
-              relevant training or registration and professional indemnity insurance where applicable.
+              relevant training or registration.
             </p>
             <a
               href="mailto:info@aldeiawellness.com?subject=Room%20Availability%20Enquiry%20%E2%80%94%20Aldeia%20Wellness%20House"
